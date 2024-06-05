@@ -13,7 +13,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       home: MyDashBord(),
       theme: new ThemeData(
-          scaffoldBackgroundColor: Color.fromARGB(175, 238, 234, 234)),
+          scaffoldBackgroundColor: Color.fromARGB(173, 230, 229, 229)),
       debugShowCheckedModeBanner: false,
     );
   }

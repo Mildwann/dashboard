@@ -1,5 +1,5 @@
-import 'package:dashbord_flutter/tabveiwer/TabView.dart';
 import 'package:flutter/material.dart';
+import 'package:dashbord_flutter/tabveiwer/TabView.dart';
 
 class MyDashBord extends StatefulWidget {
   const MyDashBord({Key? key}) : super(key: key);
@@ -261,13 +261,14 @@ class _MyDashBordState extends State<MyDashBord> {
                                 ),
                                 Expanded(
                                   child: Container(
-                                    padding: EdgeInsets.all(20),
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 20, horizontal: 20),
                                     decoration: BoxDecoration(
-                                      color: Color.fromARGB(115, 255, 255,
+                                      color: const Color.fromARGB(115, 255, 255,
                                           255), // Background color
                                       border: Border.all(
-                                          color: const Color.fromARGB(
-                                              255, 0, 0, 0)), // Border color
+                                          color: Colors.black,
+                                          width: 1), // Border color
                                     ),
                                     child: const Column(
                                       mainAxisAlignment:
@@ -314,8 +315,34 @@ class _MyDashBordState extends State<MyDashBord> {
                           const Text("data"),
                           Expanded(
                             child: Container(
-                              height: 50,
+                              padding: EdgeInsets.all(10),
+                              width: double.infinity,
                               color: Colors.deepPurple,
+                              child: const Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "data",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  Text(
+                                    "data",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.window_rounded),
+                                      Text(
+                                        "data",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 20),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           const SizedBox(
@@ -323,10 +350,36 @@ class _MyDashBordState extends State<MyDashBord> {
                           ),
                           Expanded(
                             child: Container(
-                              height: 50,
+                              padding: EdgeInsets.all(10),
+                              width: double.infinity,
                               color: Colors.deepPurple,
+                              child: const Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "data",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  Text(
+                                    "data",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.window_rounded),
+                                      Text(
+                                        "data",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 20),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -350,7 +403,7 @@ class _MyDashBordState extends State<MyDashBord> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text("Order Item"),
+                          Text("Order Item"),
                           Expanded(
                             child: TabView(), //TabVeiw
                           ),

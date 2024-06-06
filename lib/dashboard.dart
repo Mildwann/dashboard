@@ -1,5 +1,6 @@
 import 'package:dashbord_flutter/tabveiwer/TabView.dart';
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class MyDashBord extends StatefulWidget {
   const MyDashBord({Key? key}) : super(key: key);
@@ -17,7 +18,6 @@ class _MyDashBordState extends State<MyDashBord> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -182,11 +182,6 @@ class _MyDashBordState extends State<MyDashBord> {
                         //Clear button
                         ElevatedButton(
                           onPressed: () {},
-                          child: const Text(
-                            'Clear',
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 241, 213, 85)),
-                          ),
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(horizontal: 40),
                             backgroundColor: Colors.transparent,
@@ -197,6 +192,11 @@ class _MyDashBordState extends State<MyDashBord> {
                                     color: Color.fromARGB(255, 241, 213, 85))),
                             textStyle: const TextStyle(fontSize: 14),
                           ),
+                          child: const Text(
+                            'Clear',
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 241, 213, 85)),
+                          ),
                         ),
                         const SizedBox(
                           width: 15,
@@ -205,10 +205,6 @@ class _MyDashBordState extends State<MyDashBord> {
                         // Search Button
                         ElevatedButton(
                           onPressed: () {},
-                          child: const Text(
-                            'Search',
-                            style: TextStyle(color: Colors.white),
-                          ),
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(horizontal: 40),
                             backgroundColor:
@@ -217,6 +213,10 @@ class _MyDashBordState extends State<MyDashBord> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(11),
                             ),
+                          ),
+                          child: const Text(
+                            'Search',
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
                       ],
@@ -228,7 +228,7 @@ class _MyDashBordState extends State<MyDashBord> {
 
             // row 2
             Container(
-              margin: const EdgeInsets.fromLTRB(30, 50, 30, 20),
+              margin: const EdgeInsets.fromLTRB(30, 20, 30, 20),
               height: 300,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -760,7 +760,7 @@ class _MyDashBordState extends State<MyDashBord> {
                         color: Colors.white,
                       ),
                       width: (width - 60) * 0.59,
-                      child: const Column(
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -791,11 +791,142 @@ class _MyDashBordState extends State<MyDashBord> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text("data"),
-                          Container(
-                            height: 50,
-                            color: Colors.deepPurple,
+                          const Text(
+                            "Approve Task",
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
+                          Container(
+                            margin: const EdgeInsets.only(top: 25),
+                            height: 50,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    child: const Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Provisioning",
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.circle,
+                                              color: Color.fromARGB(
+                                                  255, 151, 102, 214),
+                                              size: 10,
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Flexible(
+                                              child: Text(
+                                                "200 Task",
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    child: const Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Package/component",
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.circle,
+                                              color: Color.fromARGB(
+                                                  255, 232, 143, 173),
+                                              size: 10,
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Flexible(
+                                              child: Text(
+                                                "60 Task",
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    child: const Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Backdate",
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.circle,
+                                              color: Color.fromARGB(
+                                                  255, 79, 162, 218),
+                                              size: 10,
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Flexible(
+                                              child: Text(
+                                                "80 Task",
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Expanded(
+                              child:
+                                  Stack(alignment: Alignment.center, children: [
+                            const Text(
+                              "340 Task",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            PieChart(PieChartData(sections: [
+                              PieChartSectionData(
+                                  radius: 60,
+                                  value: 80,
+                                  color: Color.fromARGB(255, 79, 162, 218)),
+                              PieChartSectionData(
+                                  radius: 60,
+                                  value: 60,
+                                  color: Color.fromARGB(255, 232, 143, 173)),
+                              PieChartSectionData(
+                                  radius: 60,
+                                  value: 200,
+                                  color: Color.fromARGB(255, 151, 102, 214))
+                            ])),
+                          ]))
                         ],
                       ),
                     ),

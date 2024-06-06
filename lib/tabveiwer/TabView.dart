@@ -1,5 +1,6 @@
-import './complete.dart';
 import 'package:flutter/material.dart';
+import './complete.dart';
+import './inprogress.dart';
 
 class TabView extends StatefulWidget {
   const TabView({super.key});
@@ -35,7 +36,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
           children: [
             Container(
               margin: const EdgeInsets.only(top: 10),
-              height: height * 0.03,
+              height: 30,
               decoration: const BoxDecoration(),
               child: TabBar(
                 controller: _tabController,
@@ -62,13 +63,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  const Text(
-                    'Inprogress Page',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                  Inprogress(), // Use the Inprogress widget here
                   Complete(),
                 ],
               ),

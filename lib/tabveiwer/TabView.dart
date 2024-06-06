@@ -1,7 +1,9 @@
-import 'package:dashbord_flutter/tabveiwer/Complete.dart';
+import './complete.dart';
 import 'package:flutter/material.dart';
 
 class TabView extends StatefulWidget {
+  const TabView({super.key});
+
   @override
   _TabViewState createState() => _TabViewState();
 }
@@ -41,22 +43,17 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                 indicatorSize: TabBarIndicatorSize.label,
                 isScrollable: true,
                 indicatorPadding: EdgeInsets.zero,
-                labelPadding: EdgeInsets.zero,
+                labelPadding: const EdgeInsets.only(right: 35),
                 indicatorWeight: 4,
                 indicatorColor: const Color.fromARGB(255, 236, 192, 68),
                 labelColor: const Color.fromARGB(255, 236, 192, 68),
                 unselectedLabelColor: Colors.grey.shade900,
-                tabs: [
-                  Container(
-                    child: const Tab(
-                      text: 'Inprogress',
-                    ),
+                tabs: const [
+                  Tab(
+                    text: 'Inprogress',
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 25),
-                    child: const Tab(
-                      text: 'Complete',
-                    ),
+                  Tab(
+                    text: 'Complete',
                   ),
                 ],
               ),
@@ -72,9 +69,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  Container(
-                    child: Complete(),
-                  ),
+                  Complete(),
                 ],
               ),
             ),

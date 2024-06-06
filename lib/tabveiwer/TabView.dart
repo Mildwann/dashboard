@@ -1,3 +1,4 @@
+import 'package:dashbord_flutter/tabveiwer/Complete.dart';
 import 'package:flutter/material.dart';
 
 class TabView extends StatefulWidget {
@@ -72,13 +73,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                     ),
                   ),
                   Container(
-                    child: const Text(
-                      'Complete Page',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                    child: Complete(),
                   ),
                 ],
               ),

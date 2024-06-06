@@ -49,14 +49,20 @@ class _MyDashBordState extends State<MyDashBord> {
                           width: (width - 100) / 3,
                           child: Container(
                             padding: const EdgeInsets.only(right: 20),
-                            child: TextField(
-                              controller: userId3Controller,
-                              decoration: const InputDecoration(
-                                  border: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.teal)),
-                                  hintText: 'Search',
-                                  suffixIcon: Icon(Icons.search)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("data"),
+                                TextField(
+                                  controller: userId3Controller,
+                                  decoration: const InputDecoration(
+                                      border: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.teal)),
+                                      hintText: 'Search',
+                                      suffixIcon: Icon(Icons.search)),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -64,14 +70,20 @@ class _MyDashBordState extends State<MyDashBord> {
                           width: (width - 100) / 3,
                           child: Container(
                             padding: const EdgeInsets.only(right: 20),
-                            child: TextField(
-                              controller: userId3Controller,
-                              decoration: const InputDecoration(
-                                  border: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.teal)),
-                                  hintText: 'Search',
-                                  suffixIcon: Icon(Icons.search)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("data"),
+                                TextField(
+                                  controller: userId3Controller,
+                                  decoration: const InputDecoration(
+                                      border: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.teal)),
+                                      hintText: 'Search',
+                                      suffixIcon: Icon(Icons.search)),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -79,14 +91,20 @@ class _MyDashBordState extends State<MyDashBord> {
                           width: (width - 100) / 3,
                           child: Container(
                             padding: const EdgeInsets.only(right: 20),
-                            child: TextField(
-                              controller: userId3Controller,
-                              decoration: const InputDecoration(
-                                  border: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.teal)),
-                                  hintText: 'Search',
-                                  suffixIcon: Icon(Icons.search)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("data"),
+                                TextField(
+                                  controller: userId3Controller,
+                                  decoration: const InputDecoration(
+                                      border: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.teal)),
+                                      hintText: 'Search',
+                                      suffixIcon: Icon(Icons.search)),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -129,7 +147,35 @@ class _MyDashBordState extends State<MyDashBord> {
                               children: [
                                 Expanded(
                                   child: Container(
-                                    color: Colors.black45,
+                                    padding: EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                      color: Color.fromARGB(115, 255, 255,
+                                          255), // Background color
+                                      border: Border.all(
+                                          color: const Color.fromARGB(
+                                              255, 0, 0, 0)), // Border color
+                                    ),
+                                    child: const Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text("Provisioning"),
+                                            Text("200,000 THB"),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Text("100 ITEM"),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(
@@ -137,7 +183,35 @@ class _MyDashBordState extends State<MyDashBord> {
                                 ),
                                 Expanded(
                                   child: Container(
-                                    color: Colors.black45,
+                                    padding: EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                      color: Color.fromARGB(115, 255, 255,
+                                          255), // Background color
+                                      border: Border.all(
+                                          color: const Color.fromARGB(
+                                              255, 0, 0, 0)), // Border color
+                                    ),
+                                    child: const Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text("Provisioning"),
+                                            Text("200,000 THB"),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Text("100 ITEM"),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
@@ -151,7 +225,35 @@ class _MyDashBordState extends State<MyDashBord> {
                               children: [
                                 Expanded(
                                   child: Container(
-                                    color: Colors.black45,
+                                    padding: EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                      color: Color.fromARGB(115, 255, 255,
+                                          255), // Background color
+                                      border: Border.all(
+                                          color: const Color.fromARGB(
+                                              255, 0, 0, 0)), // Border color
+                                    ),
+                                    child: const Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text("Provisioning"),
+                                            Text("200,000 THB"),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Text("100 ITEM"),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(
@@ -159,7 +261,35 @@ class _MyDashBordState extends State<MyDashBord> {
                                 ),
                                 Expanded(
                                   child: Container(
-                                    color: Colors.black45,
+                                    padding: EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                      color: Color.fromARGB(115, 255, 255,
+                                          255), // Background color
+                                      border: Border.all(
+                                          color: const Color.fromARGB(
+                                              255, 0, 0, 0)), // Border color
+                                    ),
+                                    child: const Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text("Provisioning"),
+                                            Text("200,000 THB"),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Text("100 ITEM"),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],

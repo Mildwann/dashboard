@@ -1,6 +1,12 @@
+import 'package:dashbord_flutter/Components/OrderItemSummary.dart';
+import 'package:dashbord_flutter/Components/OrderType.dart';
+import 'package:dashbord_flutter/Components/StandardSearch.dart';
+import 'package:dashbord_flutter/constants/ColorApp.dart';
+import 'package:dashbord_flutter/constants/MyIcons.dart';
 import 'package:dashbord_flutter/tabveiwer/TabView.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:intl/intl.dart';
 
 class MyDashBord extends StatefulWidget {
   const MyDashBord({Key? key}) : super(key: key);
@@ -18,6 +24,23 @@ class _MyDashBordState extends State<MyDashBord> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
+    String convertNumber(double number) {
+      if (number >= 1000) {
+        return NumberFormat('#,###0.00').format(number);
+      } else {
+        return number.toString();
+      }
+    }
+
+    String convertNodouble(int number) {
+      if (number >= 1000) {
+        return NumberFormat('#,###').format(number);
+      } else {
+        return number.toString();
+      }
+    }
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -30,9 +53,12 @@ class _MyDashBordState extends State<MyDashBord> {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
+
+            // StandardSearch
             Container(
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                  color: ColorApp.white,
+                  borderRadius: BorderRadius.circular(10)),
               margin: const EdgeInsets.fromLTRB(30, 0, 30, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,129 +77,23 @@ class _MyDashBordState extends State<MyDashBord> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          width: ((width - 100) / 3) - 10,
-                          child: Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  margin:
-                                      EdgeInsets.only(bottom: height * 0.005),
-                                  child: const Text(
-                                    "User ID",
-                                    style: TextStyle(fontSize: 11),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 30,
-                                  child: TextField(
-                                    controller: userId3Controller,
-                                    decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                                color: Colors.teal),
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        hintText: 'Search',
-                                        hintStyle:
-                                            const TextStyle(fontSize: 13),
-                                        suffixIcon: IconButton(
-                                          icon: const Icon(
-                                            Icons.search,
-                                            size: 16,
-                                          ),
-                                          onPressed: () {},
-                                        )),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: ((width - 100) / 3) - 10,
-                          child: Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  margin:
-                                      EdgeInsets.only(bottom: height * 0.005),
-                                  child: const Text(
-                                    "Billing Account (BA)",
-                                    style: TextStyle(fontSize: 11),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 30,
-                                  child: TextField(
-                                    controller: userId3Controller,
-                                    decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                                color: Colors.teal),
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        hintText: 'Search',
-                                        hintStyle:
-                                            const TextStyle(fontSize: 13),
-                                        suffixIcon: IconButton(
-                                          icon: const Icon(
-                                            Icons.search,
-                                            size: 16,
-                                          ),
-                                          onPressed: () {},
-                                        )),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: ((width - 100) / 3) - 10,
-                          child: Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  margin:
-                                      EdgeInsets.only(bottom: height * 0.005),
-                                  child: const Text(
-                                    "Calender",
-                                    style: TextStyle(fontSize: 11),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 30,
-                                  child: TextField(
-                                    controller: userId3Controller,
-                                    decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                                color: Colors.teal),
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        hintText: 'Search',
-                                        hintStyle:
-                                            const TextStyle(fontSize: 13),
-                                        suffixIcon: IconButton(
-                                          icon: const Icon(
-                                            Icons.calendar_today_outlined,
-                                            size: 16,
-                                          ),
-                                          onPressed: () {},
-                                        )),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        Standardsearch(
+                            head: "User ID ",
+                            hintText: "search",
+                            icon: Icons.search),
+                        Standardsearch(
+                            head: "Billing Account (BA) ",
+                            hintText: "search",
+                            icon: Icons.search),
+                        Standardsearch(
+                            head: "Calender ",
+                            hintText: "search",
+                            icon: Icons.calendar_today_outlined),
                       ],
                     ),
                   ),
+
+                  // //Clear button / Search Button
                   Container(
                     padding: const EdgeInsets.only(right: 20, bottom: 20),
                     child: Row(
@@ -194,21 +114,18 @@ class _MyDashBordState extends State<MyDashBord> {
                           ),
                           child: const Text(
                             'Clear',
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 241, 213, 85)),
+                            style: TextStyle(color: buttonColor.yellow),
                           ),
                         ),
                         const SizedBox(
                           width: 15,
                         ),
-
                         // Search Button
                         ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(horizontal: 40),
-                            backgroundColor:
-                                const Color.fromARGB(255, 241, 213, 85),
+                            backgroundColor: buttonColor.yellow,
                             shadowColor: Colors.transparent,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(11),
@@ -216,7 +133,7 @@ class _MyDashBordState extends State<MyDashBord> {
                           ),
                           child: const Text(
                             'Search',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: ColorApp.white),
                           ),
                         ),
                       ],
@@ -226,7 +143,7 @@ class _MyDashBordState extends State<MyDashBord> {
               ),
             ),
 
-            // row 2
+            //Order Item Summary
             Container(
               margin: const EdgeInsets.fromLTRB(30, 20, 30, 20),
               height: 300,
@@ -238,7 +155,7 @@ class _MyDashBordState extends State<MyDashBord> {
                     child: Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: ColorApp.white,
                           borderRadius: BorderRadius.circular(10)),
                       width: (width - 60) * 0.59,
                       child: Column(
@@ -255,174 +172,23 @@ class _MyDashBordState extends State<MyDashBord> {
                             child: Row(
                               children: [
                                 Expanded(
-                                  child: Container(
-                                    padding: const EdgeInsets.all(20),
-                                    decoration: BoxDecoration(
-                                        color: const Color.fromARGB(115, 255,
-                                            255, 255), // Background color
-                                        border: Border.all(
-                                            color: const Color.fromARGB(
-                                                238, 231, 227, 227)),
-                                        borderRadius: BorderRadius.circular(
-                                            12) // Border color
-                                        ),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                              child: Row(
-                                                children: [
-                                                  Container(
-                                                      width: 20,
-                                                      height: 20,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5),
-                                                        color: const Color
-                                                            .fromARGB(
-                                                            255, 210, 207, 28),
-                                                      ),
-                                                      child: const Icon(
-                                                        Icons
-                                                            .difference_outlined,
-                                                        size: 13,
-                                                        color: Colors.white,
-                                                      )),
-                                                  Flexible(
-                                                    child: Container(
-                                                      margin:
-                                                          const EdgeInsets.only(
-                                                              left: 5),
-                                                      child: const Text(
-                                                        "New",
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            const Flexible(
-                                              child: Text(
-                                                "280,000 THB",
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Container(
-                                          margin:
-                                              const EdgeInsets.only(top: 13),
-                                          child: const Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                "28 Item",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 16),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                                    child: Orderitemsummary(
+                                  title: "New",
+                                  amount: convertNumber(2800000),
+                                  icon: Myicons.NewIcon,
+                                  total: convertNumber(28),
+                                  color: iconColor.yellow,
+                                )),
                                 const SizedBox(
                                   width: 10,
                                 ),
                                 Expanded(
-                                  child: Container(
-                                    padding: const EdgeInsets.all(20),
-                                    decoration: BoxDecoration(
-                                        color: const Color.fromARGB(115, 255,
-                                            255, 255), // Background color
-                                        border: Border.all(
-                                            color: const Color.fromARGB(
-                                                238, 231, 227, 227)),
-                                        borderRadius: BorderRadius.circular(
-                                            12) // Border color
-                                        ),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                              child: Row(
-                                                children: [
-                                                  Container(
-                                                    width: 20,
-                                                    height: 20,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                      color:
-                                                          const Color.fromARGB(
-                                                              222,
-                                                              129,
-                                                              73,
-                                                              169),
-                                                    ),
-                                                    child: const Icon(
-                                                      Icons
-                                                          .edit_calendar_outlined,
-                                                      size: 13,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                  Flexible(
-                                                    child: Container(
-                                                      margin:
-                                                          const EdgeInsets.only(
-                                                              left: 5),
-                                                      child: const Text(
-                                                        "Provisioning",
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            const Flexible(
-                                              child: Text(
-                                                "90,000.00 THB",
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Container(
-                                          margin:
-                                              const EdgeInsets.only(top: 13),
-                                          child: const Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                "9 Item",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 16),
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                                    child: Orderitemsummary(
+                                        title: "Provisioning",
+                                        amount: convertNumber(90000),
+                                        icon: Myicons.ProvisioningIcon,
+                                        total: convertNumber(9),
+                                        color: iconColor.purple)),
                               ],
                             ),
                           ),
@@ -433,176 +199,22 @@ class _MyDashBordState extends State<MyDashBord> {
                             child: Row(
                               children: [
                                 Expanded(
-                                  child: Container(
-                                    padding: const EdgeInsets.all(20),
-                                    decoration: BoxDecoration(
-                                        color: const Color.fromARGB(115, 255,
-                                            255, 255), // Background color
-                                        border: Border.all(
-                                            color: const Color.fromARGB(
-                                                238, 231, 227, 227)),
-                                        borderRadius: BorderRadius.circular(
-                                            12) // Border color
-                                        ),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                              child: Row(
-                                                children: [
-                                                  Container(
-                                                    width: 20,
-                                                    height: 20,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                      color:
-                                                          const Color.fromARGB(
-                                                              222,
-                                                              78,
-                                                              154,
-                                                              220),
-                                                    ),
-                                                    child: const Icon(
-                                                      Icons
-                                                          .description_outlined,
-                                                      size: 13,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                  Flexible(
-                                                    child: Container(
-                                                      margin:
-                                                          const EdgeInsets.only(
-                                                              left: 5),
-                                                      child: const Text(
-                                                        "Billing",
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            const Flexible(
-                                              child: Text(
-                                                "590,000.00 THB",
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Container(
-                                          margin:
-                                              const EdgeInsets.only(top: 13),
-                                          child: const Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                "59 Item",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 16),
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                                    child: Orderitemsummary(
+                                        title: "Billing",
+                                        amount: convertNumber(590000),
+                                        icon: Myicons.BillingIcon,
+                                        total: convertNumber(59),
+                                        color: iconColor.blue)),
                                 const SizedBox(
                                   width: 10,
                                 ),
                                 Expanded(
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 20, horizontal: 20),
-                                    decoration: BoxDecoration(
-                                        color: const Color.fromARGB(115, 255,
-                                            255, 255), // Background color
-                                        border: Border.all(
-                                          color: const Color.fromARGB(
-                                              238, 231, 227, 227),
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                            12) // Border color
-                                        ),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                              child: Row(
-                                                children: [
-                                                  Container(
-                                                      width: 20,
-                                                      height: 20,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5),
-                                                        color: const Color
-                                                            .fromARGB(
-                                                            222, 91, 187, 91),
-                                                      ),
-                                                      child: const Icon(
-                                                        Icons
-                                                            .check_circle_outline_rounded,
-                                                        size: 13,
-                                                        color: Colors.white,
-                                                      )),
-                                                  Flexible(
-                                                    child: Container(
-                                                      margin:
-                                                          const EdgeInsets.only(
-                                                              left: 5),
-                                                      child: const Text(
-                                                        "Complete",
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            const Flexible(
-                                              child: Text(
-                                                "1,280,000.00 THB",
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Container(
-                                          margin:
-                                              const EdgeInsets.only(top: 13),
-                                          child: const Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                "128 Item",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 16),
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                                    child: Orderitemsummary(
+                                        title: "Complete",
+                                        amount: convertNumber(1280000),
+                                        icon: Myicons.CompleteIcon,
+                                        total: convertNumber(128),
+                                        color: iconColor.green)),
                               ],
                             ),
                           )
@@ -613,6 +225,8 @@ class _MyDashBordState extends State<MyDashBord> {
                   const SizedBox(
                     width: 30,
                   ),
+
+                  //OrderType
                   Expanded(
                     flex: 1,
                     child: Container(
@@ -632,111 +246,24 @@ class _MyDashBordState extends State<MyDashBord> {
                             height: 10,
                           ),
                           Expanded(
-                            child: Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromARGB(255, 228, 193, 55),
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Flexible(
-                                    child: Text(
-                                      "New",
-                                      style: TextStyle(color: Colors.white),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  const Flexible(
-                                    child: Text(
-                                      "1,090,000.00",
-                                      style: TextStyle(color: Colors.white),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.difference_outlined,
-                                        color: Colors.white,
-                                        size: 20,
-                                      ),
-                                      Flexible(
-                                        child: Container(
-                                          margin:
-                                              const EdgeInsets.only(left: 5),
-                                          child: const Text(
-                                            "2,099 Order",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                              child: Ordertype(
+                            title: "New",
+                            amount: convertNumber(1090000),
+                            order: convertNodouble(2099),
+                            color: ColorOrderType.yellow,
+                            icon: Myicons.NewIcon,
+                          )),
                           const SizedBox(
                             height: 10,
                           ),
                           Expanded(
-                            child: Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color: const Color.fromARGB(255, 223, 142, 2),
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Flexible(
-                                    child: Text(
-                                      "Modify",
-                                      style: TextStyle(color: Colors.white),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  const Flexible(
-                                    child: Text(
-                                      "88,000.00",
-                                      style: TextStyle(color: Colors.white),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.edit_calendar_outlined,
-                                        color: Colors.white,
-                                        size: 20,
-                                      ),
-                                      Flexible(
-                                        child: Container(
-                                          margin:
-                                              const EdgeInsets.only(left: 5),
-                                          child: const Text(
-                                            "890 Order",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                              child: Ordertype(
+                            title: "Modify",
+                            amount: convertNumber(88000),
+                            order: convertNodouble(890),
+                            color: ColorOrderType.Orange,
+                            icon: Icons.edit_calendar_outlined,
+                          )),
                         ],
                       ),
                     ),
@@ -760,7 +287,7 @@ class _MyDashBordState extends State<MyDashBord> {
                         color: Colors.white,
                       ),
                       width: (width - 60) * 0.59,
-                      child: Column(
+                      child: const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -902,7 +429,7 @@ class _MyDashBordState extends State<MyDashBord> {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           Expanded(
@@ -916,15 +443,18 @@ class _MyDashBordState extends State<MyDashBord> {
                               PieChartSectionData(
                                   radius: 60,
                                   value: 80,
-                                  color: Color.fromARGB(255, 79, 162, 218)),
+                                  color:
+                                      const Color.fromARGB(255, 79, 162, 218)),
                               PieChartSectionData(
                                   radius: 60,
                                   value: 60,
-                                  color: Color.fromARGB(255, 232, 143, 173)),
+                                  color:
+                                      const Color.fromARGB(255, 232, 143, 173)),
                               PieChartSectionData(
                                   radius: 60,
                                   value: 200,
-                                  color: Color.fromARGB(255, 151, 102, 214))
+                                  color:
+                                      const Color.fromARGB(255, 151, 102, 214))
                             ])),
                           ]))
                         ],

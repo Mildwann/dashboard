@@ -1,3 +1,4 @@
+import 'package:dashbord_flutter/constants/ColorApp.dart';
 import 'package:dashbord_flutter/dashboard.dart';
 import 'package:flutter/material.dart';
 
@@ -12,8 +13,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MyDashBord(),
-      theme: new ThemeData(
-          scaffoldBackgroundColor: Color.fromARGB(173, 230, 229, 229)),
+      theme: new ThemeData(scaffoldBackgroundColor: ColorApp.BackgroundColor),
       debugShowCheckedModeBanner: false,
     );
   }

@@ -1,3 +1,4 @@
+import 'package:dashbord_flutter/constants/ColorApp.dart';
 import 'package:flutter/material.dart';
 import './complete.dart';
 import './inprogress.dart';
@@ -30,13 +31,13 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
         child: Column(
           children: [
             Container(
-              margin: const EdgeInsets.only(top: 10),
-              height: 30,
+              margin: const EdgeInsets.only(top: 20),
+              height: 50,
               decoration: const BoxDecoration(),
               child: TabBar(
                 controller: _tabController,
@@ -44,11 +45,15 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                 indicatorSize: TabBarIndicatorSize.label,
                 isScrollable: true,
                 indicatorPadding: EdgeInsets.zero,
-                labelPadding: const EdgeInsets.only(right: 35),
-                indicatorWeight: 4,
-                indicatorColor: const Color.fromARGB(255, 236, 192, 68),
-                labelColor: const Color.fromARGB(255, 236, 192, 68),
+                labelPadding: const EdgeInsets.only(right: 41),
+                indicatorWeight: 5,
+                indicatorColor: buttonColor.yellow,
+                labelColor: buttonColor.yellow,
                 unselectedLabelColor: Colors.grey.shade900,
+                labelStyle: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w400,
+                ),
                 tabs: const [
                   Tab(
                     text: 'Inprogress',
@@ -63,7 +68,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  Inprogress(), // Use the Inprogress widget here
+                  Inprogress(),
                   Complete(),
                 ],
               ),

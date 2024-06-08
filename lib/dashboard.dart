@@ -44,13 +44,17 @@ class _MyDashBordState extends State<MyDashBord> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: double.infinity,
-              margin: const EdgeInsets.fromLTRB(30, 50, 30, 20),
+              margin: const EdgeInsets.fromLTRB(30, 50, 30, 40),
               child: const Text(
                 "Dashbord",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 36,
+                    fontFamily: 'NT',
+                    color: frontColor.black),
               ),
             ),
 
@@ -58,23 +62,26 @@ class _MyDashBordState extends State<MyDashBord> {
             Container(
               decoration: BoxDecoration(
                   color: ColorApp.white,
-                  borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(20)),
               margin: const EdgeInsets.fromLTRB(30, 0, 30, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     width: double.infinity,
-                    margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                    margin: const EdgeInsets.fromLTRB(32, 32, 20, 32),
                     child: const Text(
                       "Standard search",
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: "NT"),
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.all(20),
+                    margin: const EdgeInsets.fromLTRB(32, 0, 32, 32),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Standardsearch(
@@ -95,45 +102,62 @@ class _MyDashBordState extends State<MyDashBord> {
 
                   // //Clear button / Search Button
                   Container(
-                    padding: const EdgeInsets.only(right: 20, bottom: 20),
+                    padding: const EdgeInsets.only(right: 32, bottom: 32),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         //Clear button
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(horizontal: 40),
-                            backgroundColor: Colors.transparent,
-                            shadowColor: Colors.transparent,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(11),
-                                side: const BorderSide(
-                                    color: Color.fromARGB(255, 241, 213, 85))),
-                            textStyle: const TextStyle(fontSize: 14),
-                          ),
-                          child: const Text(
-                            'Clear',
-                            style: TextStyle(color: buttonColor.yellow),
+                        Container(
+                          width: 180,
+                          height: 42,
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent,
+                              shadowColor: Colors.transparent,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  side: const BorderSide(
+                                      color:
+                                          Color.fromARGB(255, 241, 213, 85))),
+                              textStyle: const TextStyle(fontSize: 14),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
+                              child: Text(
+                                'Clear',
+                                style: TextStyle(
+                                    color: buttonColor.yellow,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
                           ),
                         ),
                         const SizedBox(
                           width: 15,
                         ),
                         // Search Button
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(horizontal: 40),
-                            backgroundColor: buttonColor.yellow,
-                            shadowColor: Colors.transparent,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(11),
+                        Container(
+                          width: 180,
+                          height: 42,
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: buttonColor.yellow,
+                              shadowColor: Colors.transparent,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
                             ),
-                          ),
-                          child: const Text(
-                            'Search',
-                            style: TextStyle(color: ColorApp.white),
+                            child: const Padding(
+                              padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
+                              child: Text(
+                                'Search',
+                                style: TextStyle(
+                                    color: ColorApp.white,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -145,8 +169,8 @@ class _MyDashBordState extends State<MyDashBord> {
 
             //Order Item Summary
             Container(
-              margin: const EdgeInsets.fromLTRB(30, 20, 30, 20),
-              height: 300,
+              margin: const EdgeInsets.fromLTRB(30, 40, 30, 40),
+              height: 520,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -155,17 +179,28 @@ class _MyDashBordState extends State<MyDashBord> {
                     child: Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                          color: ColorApp.white,
-                          borderRadius: BorderRadius.circular(10)),
+                        color: ColorApp.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color.fromRGBO(41, 72, 152, 0.06),
+                            offset: Offset(0, 0),
+                            blurRadius: 50,
+                            spreadRadius: 0,
+                          ),
+                        ],
+                      ),
                       width: (width - 60) * 0.59,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            margin: const EdgeInsets.only(bottom: 10),
+                            margin: const EdgeInsets.only(
+                                top: 30, bottom: 30, left: 30),
                             child: const Text(
                               "Order Item Summary",
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 32),
                             ),
                           ),
                           Expanded(
@@ -175,20 +210,19 @@ class _MyDashBordState extends State<MyDashBord> {
                                     child: Orderitemsummary(
                                   title: "New",
                                   amount: convertNumber(2800000),
-                                  icon: Myicons.NewIcon,
+                                  image: 'assets/images/New.png',
                                   total: convertNumber(28),
-                                  color: iconColor.yellow,
                                 )),
                                 const SizedBox(
                                   width: 10,
                                 ),
                                 Expanded(
                                     child: Orderitemsummary(
-                                        title: "Provisioning",
-                                        amount: convertNumber(90000),
-                                        icon: Myicons.ProvisioningIcon,
-                                        total: convertNumber(9),
-                                        color: iconColor.purple)),
+                                  title: "Provisioning",
+                                  amount: convertNumber(90000),
+                                  image: 'assets/images/Provisoning.png',
+                                  total: convertNumber(9),
+                                )),
                               ],
                             ),
                           ),
@@ -200,21 +234,21 @@ class _MyDashBordState extends State<MyDashBord> {
                               children: [
                                 Expanded(
                                     child: Orderitemsummary(
-                                        title: "Billing",
-                                        amount: convertNumber(590000),
-                                        icon: Myicons.BillingIcon,
-                                        total: convertNumber(59),
-                                        color: iconColor.blue)),
+                                  title: "Billing",
+                                  amount: convertNumber(590000),
+                                  image: 'assets/images/Billing.png',
+                                  total: convertNumber(59),
+                                )),
                                 const SizedBox(
                                   width: 10,
                                 ),
                                 Expanded(
                                     child: Orderitemsummary(
-                                        title: "Complete",
-                                        amount: convertNumber(1280000),
-                                        icon: Myicons.CompleteIcon,
-                                        total: convertNumber(128),
-                                        color: iconColor.green)),
+                                  title: "Complete",
+                                  amount: convertNumber(1280000),
+                                  image: 'assets/images/complete.png',
+                                  total: convertNumber(128),
+                                )),
                               ],
                             ),
                           )
@@ -230,20 +264,30 @@ class _MyDashBordState extends State<MyDashBord> {
                   Expanded(
                     flex: 1,
                     child: Container(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(30),
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10)),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color.fromRGBO(41, 72, 152, 0.06),
+                            offset: Offset(0, 0),
+                            blurRadius: 50,
+                            spreadRadius: 0,
+                          ),
+                        ],
+                      ),
                       width: (width - 60) * 0.39,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
                             "Order Type",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 32),
                           ),
                           const SizedBox(
-                            height: 10,
+                            height: 30,
                           ),
                           Expanded(
                               child: Ordertype(
@@ -251,7 +295,7 @@ class _MyDashBordState extends State<MyDashBord> {
                             amount: convertNumber(1090000),
                             order: convertNodouble(2099),
                             color: ColorOrderType.yellow,
-                            icon: Myicons.NewIcon,
+                            image: 'assets/images/NewNoBack.png',
                           )),
                           const SizedBox(
                             height: 10,
@@ -262,7 +306,7 @@ class _MyDashBordState extends State<MyDashBord> {
                             amount: convertNumber(88000),
                             order: convertNodouble(890),
                             color: ColorOrderType.Orange,
-                            icon: Icons.edit_calendar_outlined,
+                            image: 'assets/images/Edit.png',
                           )),
                         ],
                       ),
@@ -271,9 +315,11 @@ class _MyDashBordState extends State<MyDashBord> {
                 ],
               ),
             ),
+
+            //Order Item
             Container(
               margin: const EdgeInsets.fromLTRB(30, 0, 30, 20),
-              height: 600,
+              height: 850,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -281,9 +327,9 @@ class _MyDashBordState extends State<MyDashBord> {
                   Expanded(
                     flex: 3,
                     child: Container(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(30),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(20),
                         color: Colors.white,
                       ),
                       width: (width - 60) * 0.59,
@@ -292,7 +338,8 @@ class _MyDashBordState extends State<MyDashBord> {
                         children: [
                           Text(
                             "Order Item",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 36),
                           ),
                           Expanded(
                             child: TabView(), //TabVeiw

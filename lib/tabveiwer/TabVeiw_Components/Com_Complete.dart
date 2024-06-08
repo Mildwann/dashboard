@@ -1,0 +1,60 @@
+import 'package:flutter/material.dart';
+
+class Com_Complete extends StatelessWidget {
+  final String image;
+  final String month;
+  final String amount;
+  const Com_Complete(
+      {super.key,
+      required this.amount,
+      required this.month,
+      required this.image});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+          color: const Color.fromARGB(115, 255, 255, 255), // Background color
+          border: Border.all(color: Color.fromARGB(255, 224, 224, 224)),
+          borderRadius: BorderRadius.circular(20) // Border color
+          ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    Image.asset(image),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Flexible(
+                        child: Text(
+                          month,
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.w400),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 4),
+            child: Text(
+              "$amount THB",
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 28),
+              overflow: TextOverflow.ellipsis,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}

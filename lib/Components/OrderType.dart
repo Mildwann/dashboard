@@ -5,21 +5,21 @@ class Ordertype extends StatelessWidget {
   final String amount;
   final String order;
   final Color color;
-  final IconData icon;
+  final String image;
   const Ordertype(
       {super.key,
       required this.title,
       required this.amount,
       required this.order,
       required this.color,
-      required this.icon});
+      required this.image});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.fromLTRB(32, 20, 32, 20),
       decoration:
-          BoxDecoration(color: color, borderRadius: BorderRadius.circular(10)),
+          BoxDecoration(color: color, borderRadius: BorderRadius.circular(20)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,30 +27,35 @@ class Ordertype extends StatelessWidget {
           Flexible(
             child: Text(
               title,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 28,
+                  fontWeight: FontWeight.w400),
               overflow: TextOverflow.ellipsis,
             ),
           ),
           Flexible(
             child: Text(
               "$amount THB",
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 28,
+                  fontWeight: FontWeight.w700),
               overflow: TextOverflow.ellipsis,
             ),
           ),
           Row(
             children: [
-              Icon(
-                icon,
-                color: Colors.white,
-                size: 20,
-              ),
+              Container(child: Image.asset(image)),
               Flexible(
                 child: Container(
-                  margin: const EdgeInsets.only(left: 5),
+                  margin: const EdgeInsets.only(left: 8),
                   child: Text(
                     "$order Order",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 40,
+                        fontWeight: FontWeight.w700),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),

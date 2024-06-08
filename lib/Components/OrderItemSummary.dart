@@ -4,25 +4,26 @@ import 'package:flutter/material.dart';
 class Orderitemsummary extends StatelessWidget {
   final String title;
   final String amount;
-  final IconData icon;
+  final String image;
   final String total;
-  final Color color;
-  const Orderitemsummary(
-      {super.key,
-      required this.title,
-      required this.amount,
-      required this.icon,
-      required this.total,
-      required this.color});
+
+  const Orderitemsummary({
+    super.key,
+    required this.title,
+    required this.amount,
+    required this.image,
+    required this.total,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.fromLTRB(30, 0, 30, 30),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
           color: ColorApp.white, // Background color
           border: Border.all(color: ColorApp.borderColor),
-          borderRadius: BorderRadius.circular(12) // Border color
+          borderRadius: BorderRadius.circular(20) // Border color
           ),
       child: Column(
         children: [
@@ -33,21 +34,21 @@ class Orderitemsummary extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                        width: 20,
-                        height: 20,
+                        width: 36,
+                        height: 36,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: color),
-                        child: Icon(
-                          icon,
-                          size: 13,
-                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Image.asset(
+                          image,
                         )),
                     Flexible(
                       child: Container(
-                        margin: const EdgeInsets.only(left: 5),
+                        margin: const EdgeInsets.only(left: 10),
                         child: Text(
                           title,
+                          style: const TextStyle(
+                              fontSize: 28, fontWeight: FontWeight.w400),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -58,6 +59,7 @@ class Orderitemsummary extends StatelessWidget {
               Flexible(
                 child: Text(
                   "$amount THB",
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.w400),
                   overflow: TextOverflow.ellipsis,
                 ),
               )
@@ -70,7 +72,7 @@ class Orderitemsummary extends StatelessWidget {
               children: [
                 Text(
                   "$total Item",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 40),
                 ),
               ],
             ),

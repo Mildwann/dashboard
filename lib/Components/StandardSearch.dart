@@ -24,27 +24,30 @@ class Standardsearch extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return Container(
-      width: ((width - 100) / 3) - 10,
+      width: ((width - 100) / 3) - 30,
       child: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.only(bottom: height * 0.005),
+              margin: const EdgeInsets.only(bottom: 16),
               child: Text(
                 head,
-                style: TextStyle(fontSize: 11),
+                style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "NT"),
               ),
             ),
             SizedBox(
-              height: 30,
+              height: 40,
               child: TextField(
                 controller: userId3Controller,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderSide:
                             const BorderSide(color: ColorApp.borderColorSearch),
-                        borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(12)),
                     hintText: hintText,
                     hintStyle: const TextStyle(fontSize: 13),
                     suffixIcon: IconButton(

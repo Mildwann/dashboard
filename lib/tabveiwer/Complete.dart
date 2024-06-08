@@ -1,5 +1,7 @@
+import 'package:dashbord_flutter/tabveiwer/TabVeiw_Components/Com_Complete.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:intl/intl.dart';
 
 class Complete extends StatefulWidget {
   @override
@@ -14,16 +16,24 @@ class _CompleteState extends State<Complete> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
+    String convertNumber(double number) {
+      if (number >= 1000) {
+        return NumberFormat('#,###0.00').format(number);
+      } else {
+        return number.toString();
+      }
+    }
+
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 18),
+            margin: const EdgeInsets.only(top: 34),
             color: const Color.fromARGB(255, 255, 255, 255),
             child: const Text(
               "Years",
-              style: TextStyle(fontSize: 15),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
             ),
           ),
           const SizedBox(height: 10),
@@ -34,6 +44,8 @@ class _CompleteState extends State<Complete> {
               ), // Border color
               borderRadius: BorderRadius.circular(8.0),
             ),
+
+            //Dropdown
             child: DropdownButtonHideUnderline(
               child: DropdownButton2<String>(
                 isExpanded: true,
@@ -72,157 +84,31 @@ class _CompleteState extends State<Complete> {
             ),
           ),
           const SizedBox(
-            height: 10,
+            height: 20,
           ),
           Row(
             children: [
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(
-                          115, 255, 255, 255), // Background color
-                      border: Border.all(
-                          color: const Color.fromARGB(238, 231, 227, 227)),
-                      borderRadius: BorderRadius.circular(12) // Border color
-                      ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.calendar_today_outlined,
-                                  size: 15,
-                                  color: Colors.green,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    "January",
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 5),
-                        child: const Text(
-                          "90,000.00 THB",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                  child: Com_Complete(
+                      amount: convertNumber(90000),
+                      month: "January",
+                      image: "assets/images/calender.png")),
               const SizedBox(
                 width: 10,
               ),
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(
-                          115, 255, 255, 255), // Background color
-                      border: Border.all(
-                          color: const Color.fromARGB(238, 231, 227, 227)),
-                      borderRadius: BorderRadius.circular(12) // Border color
-                      ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.calendar_today_outlined,
-                                  size: 15,
-                                  color: Colors.green,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    "February",
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 5),
-                        child: const Text(
-                          "90,000.00 THB",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                  child: Com_Complete(
+                      amount: convertNumber(90000),
+                      month: "February",
+                      image: "assets/images/calender.png")),
               const SizedBox(
                 width: 10,
               ),
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(
-                          115, 255, 255, 255), // Background color
-                      border: Border.all(
-                          color: const Color.fromARGB(238, 231, 227, 227)),
-                      borderRadius: BorderRadius.circular(12) // Border color
-                      ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.calendar_today_outlined,
-                                  size: 15,
-                                  color: Colors.green,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    "March",
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 5),
-                        child: const Text(
-                          "90,000.00 THB",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                  child: Com_Complete(
+                      amount: convertNumber(90000),
+                      month: "March",
+                      image: "assets/images/calender.png")),
             ],
           ),
           const SizedBox(
@@ -231,152 +117,26 @@ class _CompleteState extends State<Complete> {
           Row(
             children: [
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(
-                          115, 255, 255, 255), // Background color
-                      border: Border.all(
-                          color: const Color.fromARGB(238, 231, 227, 227)),
-                      borderRadius: BorderRadius.circular(12) // Border color
-                      ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.calendar_today_outlined,
-                                  size: 15,
-                                  color: Colors.green,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    "Aprill",
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 5),
-                        child: const Text(
-                          "90,000.00 THB",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                  child: Com_Complete(
+                      amount: convertNumber(90000),
+                      month: "Aprill",
+                      image: "assets/images/calender.png")),
               const SizedBox(
                 width: 10,
               ),
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(
-                          115, 255, 255, 255), // Background color
-                      border: Border.all(
-                          color: const Color.fromARGB(238, 231, 227, 227)),
-                      borderRadius: BorderRadius.circular(12) // Border color
-                      ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.calendar_today_outlined,
-                                  size: 15,
-                                  color: Colors.green,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    "May",
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 5),
-                        child: const Text(
-                          "90,000.00 THB",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                  child: Com_Complete(
+                      amount: convertNumber(90000),
+                      month: "May",
+                      image: "assets/images/calender.png")),
               const SizedBox(
                 width: 10,
               ),
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(
-                          115, 255, 255, 255), // Background color
-                      border: Border.all(
-                          color: const Color.fromARGB(238, 231, 227, 227)),
-                      borderRadius: BorderRadius.circular(12) // Border color
-                      ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.calendar_today_outlined,
-                                  size: 15,
-                                  color: Colors.green,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    "June",
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 5),
-                        child: const Text(
-                          "90,000.00 THB",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                  child: Com_Complete(
+                      amount: convertNumber(90000),
+                      month: "June",
+                      image: "assets/images/calender.png")),
             ],
           ),
           const SizedBox(
@@ -385,152 +145,26 @@ class _CompleteState extends State<Complete> {
           Row(
             children: [
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(
-                          115, 255, 255, 255), // Background color
-                      border: Border.all(
-                          color: const Color.fromARGB(238, 231, 227, 227)),
-                      borderRadius: BorderRadius.circular(12) // Border color
-                      ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.calendar_today_outlined,
-                                  size: 15,
-                                  color: Colors.green,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    "July",
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 5),
-                        child: const Text(
-                          "90,000.00 THB",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                  child: Com_Complete(
+                      amount: convertNumber(90000),
+                      month: "July",
+                      image: "assets/images/calender.png")),
               const SizedBox(
                 width: 10,
               ),
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(
-                          115, 255, 255, 255), // Background color
-                      border: Border.all(
-                          color: const Color.fromARGB(238, 231, 227, 227)),
-                      borderRadius: BorderRadius.circular(12) // Border color
-                      ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.calendar_today_outlined,
-                                  size: 15,
-                                  color: Colors.green,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    "August",
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 5),
-                        child: const Text(
-                          "90,000.00 THB",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                  child: Com_Complete(
+                      amount: convertNumber(90000),
+                      month: "August",
+                      image: "assets/images/calender.png")),
               const SizedBox(
                 width: 10,
               ),
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(
-                          115, 255, 255, 255), // Background color
-                      border: Border.all(
-                          color: const Color.fromARGB(238, 231, 227, 227)),
-                      borderRadius: BorderRadius.circular(12) // Border color
-                      ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.calendar_today_outlined,
-                                  size: 15,
-                                  color: Colors.green,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    "September",
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 5),
-                        child: const Text(
-                          "90,000.00 THB",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                  child: Com_Complete(
+                      amount: convertNumber(90000),
+                      month: "September",
+                      image: "assets/images/calender.png")),
             ],
           ),
           const SizedBox(
@@ -539,152 +173,26 @@ class _CompleteState extends State<Complete> {
           Row(
             children: [
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(
-                          115, 255, 255, 255), // Background color
-                      border: Border.all(
-                          color: const Color.fromARGB(238, 231, 227, 227)),
-                      borderRadius: BorderRadius.circular(12) // Border color
-                      ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.calendar_today_outlined,
-                                  size: 15,
-                                  color: Colors.green,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    "October",
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 5),
-                        child: const Text(
-                          "90,000.00 THB",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                  child: Com_Complete(
+                      amount: convertNumber(90000),
+                      month: "October",
+                      image: "assets/images/calender.png")),
               const SizedBox(
                 width: 10,
               ),
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(
-                          115, 255, 255, 255), // Background color
-                      border: Border.all(
-                          color: const Color.fromARGB(238, 231, 227, 227)),
-                      borderRadius: BorderRadius.circular(12) // Border color
-                      ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.calendar_today_outlined,
-                                  size: 15,
-                                  color: Colors.green,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    "November",
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 5),
-                        child: const Text(
-                          "90,000.00 THB",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                  child: Com_Complete(
+                      amount: convertNumber(90000),
+                      month: "November",
+                      image: "assets/images/calender.png")),
               const SizedBox(
                 width: 10,
               ),
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(
-                          115, 255, 255, 255), // Background color
-                      border: Border.all(
-                          color: const Color.fromARGB(238, 231, 227, 227)),
-                      borderRadius: BorderRadius.circular(12) // Border color
-                      ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.calendar_today_outlined,
-                                  size: 15,
-                                  color: Colors.green,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    "December",
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 5),
-                        child: const Text(
-                          "90,000.00 THB",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                  child: Com_Complete(
+                      amount: convertNumber(90000),
+                      month: "December",
+                      image: "assets/images/calender.png")),
             ],
           ),
         ],

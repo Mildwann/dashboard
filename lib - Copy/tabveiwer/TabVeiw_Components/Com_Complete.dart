@@ -29,15 +29,15 @@ class Com_Complete extends StatelessWidget {
                 child: Row(
                   children: [
                     Image.asset(image),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Flexible(
-                      child: Text(
-                        month,
-                        style: const TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.w400),
-                        overflow: TextOverflow.ellipsis,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Flexible(
+                        child: Text(
+                          month,
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.w400),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ),
                   ],
@@ -46,7 +46,7 @@ class Com_Complete extends StatelessWidget {
             ],
           ),
           Container(
-            margin: const EdgeInsets.only(top: 5),
+            margin: const EdgeInsets.only(top: 4),
             child: Text(
               "$amount THB",
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 28),

@@ -13,37 +13,26 @@ class Inprogress extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          buildSection("Over Due :", " 50 Item",
-              {"Flutter": 10, "React": 15, "Xamarin": 25}),
-          buildSection("Over Due :", " 20 Item", {"React": 10, "Xamarin": 10}),
-          buildSection("Over Due :", " 9 Item", {
-            "Flutter": 6,
-            "React": 3,
-          }),
-          buildSection("Over Due :", " 120 Item",
+          buildSection("Over Due : 50 Item",
+              {"Flutter": 20, "React": 15, "Xamarin": 25}),
+          buildSection("All Risk : 20 Item", {"React": 10, "Xamarin": 10}),
+          buildSection("Due this week : 9 Item", {"Flutter": 6, "React": 3}),
+          buildSection("Due This month : 120 Item",
               {"Flutter": 40, "React": 40, "Xamarin": 40}),
         ],
       ),
     );
   }
 
-  Widget buildSection(String title, String item, Map<String, double> dataMap) {
+  Widget buildSection(String title, Map<String, double> dataMap) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Text(
-                title,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
-              ),
-              Text(
-                item,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-              ),
-            ],
+          Text(
+            title,
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
           ),
           SizedBox(height: 11),
           CombinedValueBarChart(dataMap: dataMap, colorMap: {

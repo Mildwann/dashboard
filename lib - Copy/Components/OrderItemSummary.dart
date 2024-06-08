@@ -1,5 +1,4 @@
 import 'package:dashbord_flutter/constants/ColorApp.dart';
-
 import 'package:flutter/material.dart';
 
 class Orderitemsummary extends StatelessWidget {
@@ -22,14 +21,15 @@ class Orderitemsummary extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return Container(
-      padding: EdgeInsets.fromLTRB(20, 32, 20, 32),
+      height: 1000,
+      margin: EdgeInsets.fromLTRB(30, 0, 30, 30),
+      padding: const EdgeInsets.fromLTRB(20, 32, 20, 32),
       decoration: BoxDecoration(
           color: ColorApp.white, // Background color
           border: Border.all(color: ColorApp.borderColor),
           borderRadius: BorderRadius.circular(20) // Border color
           ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,20 +37,17 @@ class Orderitemsummary extends StatelessWidget {
               Expanded(
                 child: Row(
                   children: [
+                    Container(
+                        height: 36,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Image.asset(
+                          image,
+                        )),
                     Flexible(
-                      flex: 1,
                       child: Container(
-                          height: 36,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Image.asset(
-                            image,
-                          )),
-                    ),
-                    Flexible(
-                      flex: 5,
-                      child: Container(
+                        color: Colors.blue,
                         margin: const EdgeInsets.only(left: 10),
                         child: Text(
                           title,
@@ -64,25 +61,34 @@ class Orderitemsummary extends StatelessWidget {
                 ),
               ),
               Flexible(
-                child: Text(
-                  "$amount THB",
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.w400),
-                  overflow: TextOverflow.ellipsis,
+                child: Container(
+                  color: Colors.green,
+                  child: Text(
+                    "$amount THB",
+                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.w400),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               )
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Flexible(
-                child: Text(
-                  "$total Item",
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 40),
-                  overflow: TextOverflow.ellipsis,
-                ),
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.only(top: 13),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Flexible(
+                    child: Text(
+                      "$total Item",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w700, fontSize: 40),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ],
       ),

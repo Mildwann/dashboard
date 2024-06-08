@@ -1,7 +1,8 @@
 import 'package:dashbord_flutter/Components/OrderItemSummary.dart';
+import 'package:dashbord_flutter/Components/OrderType.dart';
 import 'package:dashbord_flutter/Components/StandardSearch.dart';
 import 'package:dashbord_flutter/constants/ColorApp.dart';
-import 'package:dashbord_flutter/Components/OrderType.dart';
+import 'package:dashbord_flutter/constants/MyIcons.dart';
 import 'package:dashbord_flutter/tabveiwer/TabView.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -178,14 +179,14 @@ class _MyDashBordState extends State<MyDashBord> {
             //Order Item Summary
             Container(
               margin: const EdgeInsets.fromLTRB(30, 40, 30, 40),
-              height: 500,
+              height: 520,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
                     flex: 2,
                     child: Container(
-                      padding: const EdgeInsets.all(30),
+                      padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: ColorApp.white,
                         borderRadius: BorderRadius.circular(20),
@@ -201,14 +202,14 @@ class _MyDashBordState extends State<MyDashBord> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Order Item Summary",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 32),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          SizedBox(
-                            height: 30,
+                          Container(
+                            margin: const EdgeInsets.only(
+                                top: 30, bottom: 30, left: 30),
+                            child: const Text(
+                              "Order Item Summary",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 32),
+                            ),
                           ),
                           Expanded(
                             child: Row(
@@ -221,7 +222,7 @@ class _MyDashBordState extends State<MyDashBord> {
                                   total: convertNumber(28),
                                 )),
                                 const SizedBox(
-                                  width: 20,
+                                  width: 10,
                                 ),
                                 Expanded(
                                     child: Orderitemsummary(
@@ -234,7 +235,7 @@ class _MyDashBordState extends State<MyDashBord> {
                             ),
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           Expanded(
                             child: Row(
@@ -247,7 +248,7 @@ class _MyDashBordState extends State<MyDashBord> {
                                   total: convertNumber(59),
                                 )),
                                 const SizedBox(
-                                  width: 20,
+                                  width: 10,
                                 ),
                                 Expanded(
                                     child: Orderitemsummary(

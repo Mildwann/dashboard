@@ -17,7 +17,7 @@ class TransferApprove extends StatefulWidget {
 class _TransferApproveState extends State<TransferApprove> {
   bool _isEmployeeChecked = false;
   bool _isApprovalGroupChecked = false;
-  int numberPages = 10;
+  int numberPages = 59;
   int currentpage = 0;
 
   @override
@@ -28,11 +28,12 @@ class _TransferApproveState extends State<TransferApprove> {
         (index) => Center(
               child: Container(
                 margin: const EdgeInsets.fromLTRB(40, 5, 40, 20),
-                height: 984,
+                height: 475,
                 width: (width - 80),
                 decoration: BoxDecoration(
                     border: Border.all(
-                        color: const Color.fromRGBO(248, 207, 24, 1))),
+                        color: const Color.fromRGBO(254, 206, 0, 0.25)),
+                    borderRadius: BorderRadius.circular(20)),
                 child: MyTable(),
               ),
             ));
@@ -230,7 +231,6 @@ class _TransferApproveState extends State<TransferApprove> {
                       setState(() {
                         currentpage = index;
                       });
-                      debugPrint("$index");
                     },
                   ),
                 ),

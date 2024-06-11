@@ -1,3 +1,4 @@
+import 'package:dashbord_flutter/TransferApprove.dart';
 import 'package:dashbord_flutter/constants/ColorApp.dart';
 import 'package:dashbord_flutter/dashboard.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyDashBord(),
+      home: TransferApprove(),
       theme: new ThemeData(scaffoldBackgroundColor: ColorApp.BackgroundColor),
       debugShowCheckedModeBanner: false,
     );

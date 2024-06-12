@@ -16,11 +16,14 @@ class _MyTableState extends State<MyTable> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return DataTable(
-      dataRowHeight: 41.66,
+      headingRowHeight: 55,
       headingRowColor: MaterialStateColor.resolveWith(
-        (states) => Color.fromARGB(255, 248, 248, 248),
-      ),
+          (states) => Color.fromARGB(255, 248, 248, 248)),
+      showCheckboxColumn: false,
+      dataRowHeight: 41.66,
       columns: const <DataColumn>[
         DataColumn(
           label: Expanded(
@@ -53,71 +56,49 @@ class _MyTableState extends State<MyTable> {
           color: MaterialStateProperty.resolveWith((states) {
             return rowColors[index];
           }),
+          onSelectChanged: (value) {
+            setState(() {
+              rowColors[index] = rowColors[index] == Colors.white
+                  ? Color.fromRGBO(252, 182, 0, 0.03)
+                  : Colors.white;
+              showIcon[index] = !showIcon[index];
+            });
+          },
           cells: <DataCell>[
             DataCell(
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    rowColors[index] = rowColors[index] == Colors.white
-                        ? Color.fromRGBO(252, 182, 0, 0.03)
-                        : Colors.white;
-                    showIcon[index] = !showIcon[index];
-                  });
-                },
-                child: Container(
-                  width: double.infinity,
-                  child: Text('0000000000'),
-                ),
+              Container(
+                width: double.infinity,
+                child: Text('0000000000'),
               ),
             ),
             DataCell(
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    rowColors[index] = rowColors[index] == Colors.white
-                        ? Color.fromRGBO(252, 182, 0, 0.03)
-                        : Colors.white;
-                    showIcon[index] = !showIcon[index];
-                  });
-                },
-                child: Container(
-                  width: double.infinity,
-                  child: Text('0000000000'),
-                ),
+              Container(
+                width: double.infinity,
+                child: Text('0000000000'),
               ),
             ),
             DataCell(
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    rowColors[index] = rowColors[index] == Colors.white
-                        ? Color.fromRGBO(252, 182, 0, 0.03)
-                        : Colors.white;
-                    showIcon[index] = !showIcon[index];
-                  });
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      constraints: BoxConstraints(maxWidth: width * 0.25),
-                      child: const Text(
-                        'Xxxxxxxxxxxxx xxxxxxxxxxx',
-                        overflow: TextOverflow.ellipsis,
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    constraints: BoxConstraints(maxWidth: width * 0.25),
+                    child: const Text(
+                      'Xxxxxxxxxxxxx xxxxxxxxxxx',
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    showIcon[index]
-                        ? const SizedBox(
-                            width: 20,
-                            child: Icon(
-                              Icons.check,
-                              color: Color.fromARGB(255, 254, 207, 0),
-                            ))
-                        : Container(
-                            width: 20,
-                          ),
-                  ],
-                ),
+                  ),
+                  showIcon[index]
+                      ? const SizedBox(
+                          width: 20,
+                          child: Icon(
+                            Icons.check,
+                            color: Color.fromARGB(255, 254, 207, 0),
+                          ))
+                      : Container(
+                          width: 20,
+                        ),
+                ],
               ),
             ),
           ],

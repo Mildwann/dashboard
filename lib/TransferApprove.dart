@@ -31,9 +31,9 @@ class _TransferApproveState extends State<TransferApprove> {
                 height: 475,
                 width: (width - 80),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        color: const Color.fromRGBO(254, 206, 0, 0.25)),
-                    borderRadius: BorderRadius.circular(20)),
+                  border: Border.all(color: Color.fromARGB(255, 255, 208, 0)),
+                  borderRadius: BorderRadius.circular(20),
+                ),
                 child: MyTable(),
               ),
             ));
@@ -245,7 +245,7 @@ class _TransferApproveState extends State<TransferApprove> {
                   //Cancel button
                   Container(
                     width: 160,
-                    height: 40,
+                    height: 45,
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
@@ -264,6 +264,7 @@ class _TransferApproveState extends State<TransferApprove> {
                           style: TextStyle(
                               color: buttonColor.yellow,
                               fontWeight: FontWeight.w700,
+                              fontFamily: "NT",
                               fontSize: 22),
                         ),
                       ),
@@ -275,7 +276,7 @@ class _TransferApproveState extends State<TransferApprove> {
                   // Search Button
                   Container(
                     width: 160,
-                    height: 40,
+                    height: 45,
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
@@ -292,6 +293,7 @@ class _TransferApproveState extends State<TransferApprove> {
                           style: TextStyle(
                               color: ColorApp.white,
                               fontWeight: FontWeight.w700,
+                              fontFamily: "NT",
                               fontSize: 22),
                         ),
                       ),

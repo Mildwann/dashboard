@@ -13,9 +13,6 @@ class _CompleteState extends State<Complete> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-
     String convertNumber(double number) {
       if (number >= 1000) {
         return NumberFormat('#,###0.00').format(number);

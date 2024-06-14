@@ -17,90 +17,100 @@ class _MyTableState extends State<MyTable> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
-    return DataTable(
-      headingRowHeight: 55,
-      headingRowColor: MaterialStateColor.resolveWith(
-          (states) => const Color.fromARGB(255, 248, 248, 248)),
-      showCheckboxColumn: false,
-      dataRowHeight: 41.66,
-      columns: const <DataColumn>[
-        DataColumn(
-          label: Expanded(
-            child: Text(
-              'Employee ID',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-            ),
-          ),
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(30),
+        topRight: Radius.circular(30),
+      ),
+      child: DataTable(
+        border: const TableBorder(
+          horizontalInside:
+              BorderSide(width: 1, color: Color.fromRGBO(254, 206, 0, 0.25)),
         ),
-        DataColumn(
-          label: Expanded(
-            child: Text(
-              'Full Name',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-            ),
-          ),
-        ),
-        DataColumn(
-          label: Expanded(
-            child: Text(
-              'Department',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-            ),
-          ),
-        ),
-      ],
-      rows: List<DataRow>.generate(
-        list,
-        (index) => DataRow(
-          color: MaterialStateProperty.resolveWith((states) {
-            return rowColors[index].withOpacity(0.03);
-          }),
-          onSelectChanged: (value) {
-            setState(() {
-              rowColors[index] = rowColors[index] == Colors.white
-                  ? const Color.fromRGBO(252, 182, 0, 1)
-                  : Colors.white;
-              showIcon[index] = !showIcon[index];
-            });
-          },
-          cells: <DataCell>[
-            DataCell(
-              Container(
-                width: double.infinity,
-                child: const Text('0000000000'),
+        headingRowHeight: 55,
+        headingRowColor: MaterialStateColor.resolveWith(
+            (states) => Color.fromARGB(255, 248, 248, 248)),
+        showCheckboxColumn: false,
+        dataRowHeight: 41.66,
+        columns: const <DataColumn>[
+          DataColumn(
+            label: Expanded(
+              child: Text(
+                'Employee ID',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
               ),
             ),
-            DataCell(
-              Container(
-                width: double.infinity,
-                child: const Text('0000000000'),
+          ),
+          DataColumn(
+            label: Expanded(
+              child: Text(
+                'Full Name',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
               ),
             ),
-            DataCell(
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    constraints: BoxConstraints(maxWidth: width * 0.25),
-                    child: const Text(
-                      'Xxxxxxxxxxxxx xxxxxxxxxxx',
-                      overflow: TextOverflow.ellipsis,
+          ),
+          DataColumn(
+            label: Expanded(
+              child: Text(
+                'Department',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              ),
+            ),
+          ),
+        ],
+        rows: List<DataRow>.generate(
+          list,
+          (index) => DataRow(
+            color: MaterialStateProperty.resolveWith((states) {
+              return rowColors[index].withOpacity(0.03);
+            }),
+            onSelectChanged: (value) {
+              setState(() {
+                rowColors[index] = rowColors[index] == Colors.white
+                    ? Color.fromRGBO(252, 182, 0, 1)
+                    : Colors.white;
+                showIcon[index] = !showIcon[index];
+              });
+            },
+            cells: <DataCell>[
+              DataCell(
+                Container(
+                  width: double.infinity,
+                  child: Text('0000000000'),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: double.infinity,
+                  child: Text('0000000000'),
+                ),
+              ),
+              DataCell(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      constraints: BoxConstraints(maxWidth: width * 0.25),
+                      child: const Text(
+                        'Xxxxxxxxxxxxx xxxxxxxxxxx',
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                  ),
-                  showIcon[index]
-                      ? const SizedBox(
-                          width: 20,
-                          child: Icon(
-                            Icons.check,
-                            color: Color.fromARGB(255, 254, 207, 0),
-                          ))
-                      : Container(
-                          width: 20,
-                        ),
-                ],
+                    showIcon[index]
+                        ? const SizedBox(
+                            width: 20,
+                            child: Icon(
+                              Icons.check,
+                              color: Color.fromARGB(255, 254, 207, 0),
+                            ))
+                        : Container(
+                            width: 20,
+                          ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

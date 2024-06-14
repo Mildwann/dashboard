@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dashbord_flutter/Components/Transfer/MyTable.dart';
 import 'package:dashbord_flutter/Components/Transfer/Search.dart';
 import 'package:dashbord_flutter/constants/ColorApp.dart';

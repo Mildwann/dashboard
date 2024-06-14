@@ -31,7 +31,7 @@ class _TransferApproveState extends State<TransferApprove> {
                 height: 475,
                 width: (width - 80),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Color.fromARGB(255, 255, 208, 0)),
+                  border: Border.all(color: Color.fromRGBO(254, 206, 0, 0.25)),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: MyTable(),
@@ -220,11 +220,13 @@ class _TransferApproveState extends State<TransferApprove> {
                       buttonSelectedBackgroundColor: Colors.transparent,
                       buttonUnselectedBackgroundColor: Colors.transparent,
                       buttonShape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            10), // Optional: Adjust border radius
+                        borderRadius: BorderRadius.circular(10),
+                        // Optional: Adjust border radius
                       ),
-                      buttonUnselectedForegroundColor: Colors.black,
-                      buttonSelectedForegroundColor: Colors.yellow,
+                      buttonUnselectedForegroundColor:
+                          Color.fromARGB(255, 89, 89, 89),
+                      buttonSelectedForegroundColor:
+                          Color.fromARGB(255, 254, 207, 0),
                     ),
                     numberPages: numberPages,
                     onPageChange: (index) {
@@ -245,7 +247,7 @@ class _TransferApproveState extends State<TransferApprove> {
                   //Cancel button
                   Container(
                     width: 160,
-                    height: 45,
+                    height: 50,
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
@@ -276,7 +278,7 @@ class _TransferApproveState extends State<TransferApprove> {
                   // Search Button
                   Container(
                     width: 160,
-                    height: 45,
+                    height: 50,
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(

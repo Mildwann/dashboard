@@ -28,12 +28,12 @@ flutter:
     - assets/images/
   #   - images/a_dot_ham.jpeg
 
-  fonts:
-    - family: NT
-      fonts:
-        - asset: assets/fonts/NT_regular.ttf
-        - asset: assets/fonts/NT_Bold.ttf
-          weight: 700
+  #fonts:
+  #  - family: NT
+  #    fonts:
+  #     - asset: assets/fonts/NT_regular.ttf
+  #     - asset: assets/fonts/NT_Bold.ttf
+  #        weight: 700
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

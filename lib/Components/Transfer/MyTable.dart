@@ -59,7 +59,7 @@ class _MyTableState extends State<MyTable> {
           onSelectChanged: (value) {
             setState(() {
               rowColors[index] = rowColors[index] == Colors.white
-                  ? Color.fromRGBO(252, 182, 0, 0.03)
+                  ? Color.fromRGBO(255, 183, 0, 0.027)
                   : Colors.white;
               showIcon[index] = !showIcon[index];
             });

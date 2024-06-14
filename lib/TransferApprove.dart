@@ -20,6 +20,20 @@ class _TransferApproveState extends State<TransferApprove> {
   int numberPages = 59;
   int currentpage = 0;
 
+  // Declare controllers for each search field
+  TextEditingController employeeController = TextEditingController();
+  TextEditingController fullnameController = TextEditingController();
+  TextEditingController departmentController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Dispose controllers when not needed to avoid memory leaks
+    employeeController.dispose();
+    fullnameController.dispose();
+    departmentController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -146,17 +160,23 @@ class _TransferApproveState extends State<TransferApprove> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Search(
-                      head: "Employee ID",
-                      hintText: "search",
-                      icon: Icons.search),
+                    head: "Employee ID",
+                    hintText: "search",
+                    icon: Icons.search,
+                    controller: employeeController,
+                  ),
                   Search(
-                      head: "Full Name",
-                      hintText: "search",
-                      icon: Icons.search),
+                    head: "Full Name",
+                    hintText: "search",
+                    icon: Icons.search,
+                    controller: fullnameController,
+                  ),
                   Search(
-                      head: "Department",
-                      hintText: "search",
-                      icon: Icons.search),
+                    head: "Department",
+                    hintText: "search",
+                    icon: Icons.search,
+                    controller: departmentController,
+                  ),
                 ],
               ),
             ),

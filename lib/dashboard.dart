@@ -8,16 +8,25 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:intl/intl.dart';
 
 class MyDashBord extends StatefulWidget {
-  const MyDashBord({Key? key}) : super(key: key);
+  MyDashBord({Key? key}) : super(key: key);
 
   @override
   State<MyDashBord> createState() => _MyDashBordState();
 }
 
 class _MyDashBordState extends State<MyDashBord> {
-  TextEditingController userId1Controller = TextEditingController();
-  TextEditingController userId2Controller = TextEditingController();
-  TextEditingController userId3Controller = TextEditingController();
+  TextEditingController employeeController = TextEditingController();
+  TextEditingController fullnameController = TextEditingController();
+  TextEditingController departmentController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Dispose controllers when not needed to avoid memory leaks
+    employeeController.dispose();
+    fullnameController.dispose();
+    departmentController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,17 +102,23 @@ class _MyDashBordState extends State<MyDashBord> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Standardsearch(
-                            head: "User ID ",
-                            hintText: "search",
-                            icon: Icons.search),
+                          head: "User ID ",
+                          hintText: "search",
+                          icon: Icons.search,
+                          controller: employeeController,
+                        ),
                         Standardsearch(
-                            head: "Billing Account (BA) ",
-                            hintText: "search",
-                            icon: Icons.search),
+                          head: "Billing Account (BA) ",
+                          hintText: "search",
+                          icon: Icons.search,
+                          controller: fullnameController,
+                        ),
                         Standardsearch(
-                            head: "Calender ",
-                            hintText: "search",
-                            icon: Icons.calendar_today_outlined),
+                          head: "Calendar ",
+                          hintText: "search",
+                          icon: Icons.calendar_today_outlined,
+                          controller: departmentController,
+                        ),
                       ],
                     ),
                   ),

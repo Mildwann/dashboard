@@ -98,8 +98,8 @@ class _closetaskState extends State<closeTask> {
               height: 127, // Height of the TextField
               child: TextField(
                 controller: descriptionController,
-                maxLines: null, // Allow unlimited lines of text
-                expands: true, // Expand the TextField as needed
+                maxLines: null,
+                expands: true,
                 keyboardType: TextInputType.multiline,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -114,10 +114,12 @@ class _closetaskState extends State<closeTask> {
                     fontWeight: FontWeight.w400,
                     color: Color.fromARGB(255, 200, 200, 200),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(
-                    vertical: 16,
-                    horizontal: 22,
-                  ),
+                  contentPadding: const EdgeInsets.fromLTRB(
+                      22, 16, 22, 0), // Adjust top padding
+                  isCollapsed:
+                      true, // This will remove the default padding around the text field.
+                  alignLabelWithHint:
+                      true, // Ensures the label (hint text) aligns with the hint
                 ),
               ),
             ),

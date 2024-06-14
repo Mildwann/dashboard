@@ -16,12 +16,11 @@ class _MyTableState extends State<MyTable> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
 
     return DataTable(
       headingRowHeight: 55,
       headingRowColor: MaterialStateColor.resolveWith(
-          (states) => Color.fromARGB(255, 248, 248, 248)),
+          (states) => const Color.fromARGB(255, 248, 248, 248)),
       showCheckboxColumn: false,
       dataRowHeight: 41.66,
       columns: const <DataColumn>[
@@ -54,12 +53,12 @@ class _MyTableState extends State<MyTable> {
         list,
         (index) => DataRow(
           color: MaterialStateProperty.resolveWith((states) {
-            return rowColors[index];
+            return rowColors[index].withOpacity(0.03);
           }),
           onSelectChanged: (value) {
             setState(() {
               rowColors[index] = rowColors[index] == Colors.white
-                  ? Color.fromRGBO(255, 183, 0, 0.027)
+                  ? const Color.fromRGBO(252, 182, 0, 1)
                   : Colors.white;
               showIcon[index] = !showIcon[index];
             });
@@ -68,13 +67,13 @@ class _MyTableState extends State<MyTable> {
             DataCell(
               Container(
                 width: double.infinity,
-                child: Text('0000000000'),
+                child: const Text('0000000000'),
               ),
             ),
             DataCell(
               Container(
                 width: double.infinity,
-                child: Text('0000000000'),
+                child: const Text('0000000000'),
               ),
             ),
             DataCell(

@@ -12,7 +12,8 @@ class Myicons {
 BoxDecoration primaryBorder(
     {double? radius, Color? color, Color? colorBorder}) {
   return BoxDecoration(
-    border: Border.all(width: 1.0, color: colorBorder ?? Colors.blueAccent),
+    border: Border.all(
+        width: 1.0, color: colorBorder ?? Color.fromARGB(255, 226, 225, 225)),
     color: color ?? Colors.white,
     borderRadius: BorderRadius.all(Radius.circular(radius ?? 20.0)),
   );

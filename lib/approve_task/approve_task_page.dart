@@ -1,6 +1,6 @@
+// ignore_for_file: unused_field
 import 'package:dashbord_flutter/approve_task/components/ItemSeach.dart';
 import 'package:dashbord_flutter/approve_task/app_injector.dart';
-
 import 'package:dashbord_flutter/constants/MyIcons.dart';
 import 'package:dashbord_flutter/approve_task/view_model/approve_view_model.dart';
 import 'package:flutter/material.dart';
@@ -13,18 +13,28 @@ class ApproveTaskPage extends StatefulWidget {
 }
 
 class _ApproveTaskPageState extends State<ApproveTaskPage> {
-  //final ReportController _reportController = getIt();
+  final TextEditingController orderIdController = TextEditingController();
+  final TextEditingController approvalStatusController =
+      TextEditingController();
+  String orderid = "";
+  String approval = "";
+
+  @override
+  void dispose() {
+    orderIdController.dispose();
+    approvalStatusController.dispose();
+    super.dispose();
+  }
+
   final List<String> types = [
     'Provisioning',
     'Package/Component Approve',
-    // 'Backdate Order Approval',
   ];
   String? selectedValue;
   final ApproveViewModel _approveViewModel = getIt();
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -68,15 +78,19 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                         const SizedBox(
                           width: 20,
                         ),
-                        const ItemSearch(
-                            title: "Order ID",
-                            inputType: TypeInput.itemTextField),
+                        ItemSearch(
+                          title: "Order ID",
+                          inputType: TypeInput.itemTextField,
+                          controller: orderIdController,
+                        ),
                         const SizedBox(
                           width: 20,
                         ),
-                        const ItemSearch(
-                            title: "Approval Status",
-                            inputType: TypeInput.itemTextField),
+                        ItemSearch(
+                          title: "Approval Status",
+                          inputType: TypeInput.itemTextField,
+                          controller: approvalStatusController,
+                        ),
                       ],
                     ),
                     const SizedBox(
@@ -86,38 +100,51 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Container(
+                        SizedBox(
                           height: 42,
                           width: MediaQuery.of(context).size.width * 0.1,
                           child: OutlinedButton(
                             style: OutlinedButton.styleFrom(
                               side: const BorderSide(
-                                  width: 1, color: Colors.blue),
+                                  width: 1, color: Color(0xFFFECE00)),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12)),
                               backgroundColor: Colors.white,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                orderIdController.clear();
+                                approvalStatusController.clear();
+                                orderid = "";
+                                approval = "";
+                                selectedValue = null;
+                              });
+                            },
                             child: const Text('Clear',
                                 style: TextStyle(
-                                    fontSize: 22, color: Colors.blue)),
+                                    fontSize: 22, color: Color(0xFFFECE00))),
                           ),
                         ),
                         const SizedBox(
                           width: 18,
                         ),
-                        Container(
+                        SizedBox(
                           height: 42,
                           width: MediaQuery.of(context).size.width * 0.1,
                           child: OutlinedButton(
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: Colors.blue,
+                              backgroundColor: const Color(0xFFFECE00),
                               side: const BorderSide(
-                                  width: 1, color: Colors.blue),
+                                  width: 1, color: Color(0xFFFECE00)),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12)),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                orderid = orderIdController.text;
+                                approval = approvalStatusController.text;
+                              });
+                            },
                             child: const Text(
                               'Search',
                               style:
@@ -130,6 +157,9 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                   ],
                 ),
               ),
+              const SizedBox(height: 20),
+              Text("OrderID: $orderid"),
+              Text("Approval : $approval"),
             ],
           ),
         ),

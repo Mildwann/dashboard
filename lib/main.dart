@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyDashBord(),
+      home: ApproveTaskPage(),
       theme: new ThemeData(scaffoldBackgroundColor: ColorApp.backgroundColor),
       debugShowCheckedModeBanner: false,
     );

@@ -13,28 +13,25 @@ class ItemSearch extends StatefulWidget {
   final String? selectedItem;
   final String? dateFormat;
 
-  const ItemSearch(
-      {this.title,
-      this.inputType,
-      this.dropdownList,
-      this.callback,
-      this.controller,
-      this.selectedItem,
-      this.dateFormat,
-      this.callbackCalendar,
-      super.key});
+  const ItemSearch({
+    this.title,
+    this.inputType,
+    this.dropdownList,
+    this.callback,
+    this.controller,
+    this.selectedItem,
+    this.dateFormat,
+    this.callbackCalendar,
+    super.key,
+  });
 
   @override
   State<ItemSearch> createState() => _ItemSearchState();
 }
 
 class _ItemSearchState extends State<ItemSearch> {
-  final List<String> items = [
-    '',
-  ];
   String? selectedValue;
   DateTime? _selectedDate;
-  String? dateConvert;
 
   Widget? itemWidget() {
     switch (widget.inputType) {
@@ -44,24 +41,21 @@ class _ItemSearchState extends State<ItemSearch> {
             isExpanded: true,
             hint: const Text(
               "Please select",
-              style: TextStyle(fontSize: 20, color: Colors.amber),
+              style: TextStyle(fontSize: 20, color: Color(0xFFC8C8C8)),
             ),
-            items: ((widget.dropdownList) ?? items)
+            items: ((widget.dropdownList) ?? [])
                 .map((String item) => DropdownMenuItem<String>(
                       value: item,
                       child: Text(
                         item,
-                        style:
-                            const TextStyle(fontSize: 20, color: Colors.amber),
+                        style: const TextStyle(
+                            fontSize: 20, color: Color(0xFFC8C8C8)),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ))
                 .toList(),
             value: widget.selectedItem ?? selectedValue,
             onChanged: (String? value) {
-              // setState(() {
-              //   selectedValue = value;
-              // });
               widget.callback?.call(value ?? "");
             },
             iconStyleData: const IconStyleData(
@@ -70,7 +64,7 @@ class _ItemSearchState extends State<ItemSearch> {
                 child: Icon(Icons.keyboard_arrow_down_rounded),
               ),
               iconSize: 20,
-              iconEnabledColor: Colors.amber,
+              iconEnabledColor: Color(0xFF3C3C3C),
               iconDisabledColor: Colors.grey,
             ),
             menuItemStyleData: const MenuItemStyleData(
@@ -118,14 +112,10 @@ class _ItemSearchState extends State<ItemSearch> {
               children: [
                 Expanded(
                   child: Text(
-                    (_selectedDate ?? widget.dateFormat).toString(),
+                    (_selectedDate ?? widget.dateFormat ?? "").toString(),
                     style: const TextStyle(fontSize: 20),
                   ),
                 ),
-                // SizedBox(
-                //     width: 20,
-                //     height: 20,
-                //     child: Assets.images.icon.icCalendar.image())
               ],
             ),
           ),

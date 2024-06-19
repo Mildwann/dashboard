@@ -1,3 +1,5 @@
+// ignore_for_file: use_super_parameters
+
 import 'package:flutter/material.dart';
 
 class Search extends StatelessWidget {
@@ -6,7 +8,7 @@ class Search extends StatelessWidget {
   final IconData icon;
   final TextEditingController controller;
 
-  Search({
+  const Search({
     Key? key,
     required this.head,
     required this.hintText,
@@ -17,7 +19,6 @@ class Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
 
     return Container(
       width: ((width - 80) / 3) - 12,

@@ -18,11 +18,8 @@ class Orderitemsummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-
     return Container(
-      padding: EdgeInsets.fromLTRB(20, 32, 20, 32),
+      padding: const EdgeInsets.fromLTRB(20, 32, 20, 32),
       decoration: BoxDecoration(
           color: ColorApp.white, // Background color
           border: Border.all(color: ColorApp.borderColor),
@@ -66,7 +63,8 @@ class Orderitemsummary extends StatelessWidget {
               Flexible(
                 child: Text(
                   "$amount THB",
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.w400),
+                  style: const TextStyle(
+                      fontSize: 28, fontWeight: FontWeight.w400),
                   overflow: TextOverflow.ellipsis,
                 ),
               )
@@ -78,7 +76,8 @@ class Orderitemsummary extends StatelessWidget {
               Flexible(
                 child: Text(
                   "$total Item",
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 40),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w700, fontSize: 40),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),

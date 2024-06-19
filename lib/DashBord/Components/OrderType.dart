@@ -1,3 +1,4 @@
+import 'package:dashbord_flutter/constants/ColorApp.dart';
 import 'package:flutter/material.dart';
 
 class Ordertype extends StatelessWidget {
@@ -28,7 +29,7 @@ class Ordertype extends StatelessWidget {
             child: Text(
               title,
               style: const TextStyle(
-                  color: Colors.white,
+                  color: ColorApp.white,
                   fontSize: 28,
                   fontWeight: FontWeight.w400),
               overflow: TextOverflow.ellipsis,
@@ -38,7 +39,7 @@ class Ordertype extends StatelessWidget {
             child: Text(
               "$amount THB",
               style: const TextStyle(
-                  color: Colors.white,
+                  color: ColorApp.white,
                   fontSize: 28,
                   fontWeight: FontWeight.w700),
               overflow: TextOverflow.ellipsis,
@@ -58,7 +59,7 @@ class Ordertype extends StatelessWidget {
                   child: Text(
                     "$order Order",
                     style: const TextStyle(
-                        color: Colors.white,
+                        color: ColorApp.white,
                         fontSize: 40,
                         fontWeight: FontWeight.w700),
                     overflow: TextOverflow.ellipsis,

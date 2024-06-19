@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
+//DashBord
 class ColorApp {
-  static const BackgroundColor = Color.fromARGB(255, 248, 248, 248);
+  static const backgroundColor = Color.fromARGB(255, 248, 248, 248);
   static const white = Color.fromARGB(255, 255, 255, 255);
   static const borderColor = Color.fromARGB(255, 224, 224, 224);
   static const borderColorSearch = Color.fromARGB(255, 211, 216, 217);
@@ -9,7 +10,7 @@ class ColorApp {
 
 class ColorOrderType {
   static const yellow = Color.fromARGB(255, 243, 186, 73);
-  static const Orange = Color.fromARGB(255, 235, 138, 78);
+  static const orange = Color.fromARGB(255, 235, 138, 78);
 }
 
 class iconColor {
@@ -37,4 +38,5 @@ class orderItem {
   static const yellow = Color.fromARGB(255, 243, 186, 73);
   static const purple = Color.fromARGB(255, 176, 130, 190);
   static const blue = Color.fromARGB(255, 123, 181, 232);
+  static const bordercomplete = Color.fromARGB(238, 231, 227, 227);
 }

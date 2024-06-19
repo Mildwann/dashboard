@@ -27,11 +27,8 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: ColorApp.white,
       body: SafeArea(
         child: Column(
           children: [

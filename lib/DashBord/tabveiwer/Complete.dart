@@ -1,4 +1,5 @@
-import 'package:dashbord_flutter/tabveiwer/TabVeiw_Components/Com_Complete.dart';
+import 'package:dashbord_flutter/DashBord/tabveiwer/TabVeiw_Components/Com_Complete.dart';
+import 'package:dashbord_flutter/constants/ColorApp.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:intl/intl.dart';
@@ -27,7 +28,7 @@ class _CompleteState extends State<Complete> {
         children: [
           Container(
             margin: const EdgeInsets.only(top: 34),
-            color: const Color.fromARGB(255, 255, 255, 255),
+            color: ColorApp.white,
             child: const Text(
               "Years",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
@@ -37,7 +38,7 @@ class _CompleteState extends State<Complete> {
           Container(
             decoration: BoxDecoration(
               border: Border.all(
-                color: const Color.fromARGB(238, 231, 227, 227),
+                color: orderItem.bordercomplete,
               ), // Border color
               borderRadius: BorderRadius.circular(8.0),
             ),

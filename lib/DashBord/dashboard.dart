@@ -1,8 +1,8 @@
-import 'package:dashbord_flutter/Components/OrderItemSummary.dart';
-import 'package:dashbord_flutter/Components/StandardSearch.dart';
+import 'package:dashbord_flutter/DashBord/Components/OrderItemSummary.dart';
+import 'package:dashbord_flutter/DashBord/Components/StandardSearch.dart';
 import 'package:dashbord_flutter/constants/ColorApp.dart';
-import 'package:dashbord_flutter/Components/OrderType.dart';
-import 'package:dashbord_flutter/tabveiwer/TabView.dart';
+import 'package:dashbord_flutter/DashBord/Components/OrderType.dart';
+import 'package:dashbord_flutter/DashBord/tabveiwer/TabView.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:intl/intl.dart';
@@ -163,7 +163,9 @@ class _MyDashBordState extends State<MyDashBord> {
                           width: 180,
                           height: 42,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              // _viewmodel.search(orderid: employeeController);
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: buttonColor.yellow,
                               shadowColor: Colors.transparent,
@@ -325,7 +327,7 @@ class _MyDashBordState extends State<MyDashBord> {
                             title: "Modify",
                             amount: convertNumber(88000),
                             order: convertNodouble(890),
-                            color: ColorOrderType.Orange,
+                            color: ColorOrderType.orange,
                             image: 'assets/images/Edit.png',
                           )),
                         ],

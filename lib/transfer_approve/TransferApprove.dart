@@ -1,5 +1,5 @@
-import 'package:dashbord_flutter/Components/Transfer/MyTable.dart';
-import 'package:dashbord_flutter/Components/Transfer/Search.dart';
+import 'package:dashbord_flutter/transfer_approve/components/Transfer/MyTable.dart';
+import 'package:dashbord_flutter/transfer_approve/components/Transfer/Search.dart';
 import 'package:dashbord_flutter/constants/ColorApp.dart';
 
 import 'package:flutter/material.dart';

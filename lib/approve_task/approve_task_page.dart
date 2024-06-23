@@ -1,6 +1,7 @@
 // ignore_for_file: unused_field
 import 'package:dashbord_flutter/approve_task/components/ItemSeach.dart';
 import 'package:dashbord_flutter/approve_task/app_injector.dart';
+import 'package:dashbord_flutter/approve_task/components/table_task.dart';
 import 'package:dashbord_flutter/constants/MyIcons.dart';
 import 'package:dashbord_flutter/approve_task/view_model/approve_view_model.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,6 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
   final TextEditingController orderIdController = TextEditingController();
   final TextEditingController approvalStatusController =
       TextEditingController();
-  String orderid = "";
-  String approval = "";
 
   @override
   void dispose() {
@@ -40,6 +39,8 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -56,7 +57,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
               ),
               Container(
                 padding: const EdgeInsets.all(60),
-                width: MediaQuery.of(context).size.width,
+                width: width,
                 decoration: primaryBorder(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,7 +103,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                       children: [
                         SizedBox(
                           height: 42,
-                          width: MediaQuery.of(context).size.width * 0.1,
+                          width: width * 0.1,
                           child: OutlinedButton(
                             style: OutlinedButton.styleFrom(
                               side: const BorderSide(
@@ -111,15 +112,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                                   borderRadius: BorderRadius.circular(12)),
                               backgroundColor: Colors.white,
                             ),
-                            onPressed: () {
-                              setState(() {
-                                orderIdController.clear();
-                                approvalStatusController.clear();
-                                orderid = "";
-                                approval = "";
-                                selectedValue = null;
-                              });
-                            },
+                            onPressed: () {},
                             child: const Text('Clear',
                                 style: TextStyle(
                                     fontSize: 22, color: Color(0xFFFECE00))),
@@ -130,7 +123,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                         ),
                         SizedBox(
                           height: 42,
-                          width: MediaQuery.of(context).size.width * 0.1,
+                          width: width * 0.1,
                           child: OutlinedButton(
                             style: OutlinedButton.styleFrom(
                               backgroundColor: const Color(0xFFFECE00),
@@ -139,12 +132,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12)),
                             ),
-                            onPressed: () {
-                              setState(() {
-                                orderid = orderIdController.text;
-                                approval = approvalStatusController.text;
-                              });
-                            },
+                            onPressed: () {},
                             child: const Text(
                               'Search',
                               style:
@@ -157,9 +145,50 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
-              Text("OrderID: $orderid"),
-              Text("Approval : $approval"),
+              Container(
+                margin: const EdgeInsets.only(top: 24),
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Result",
+                      style:
+                          TextStyle(fontSize: 36, fontWeight: FontWeight.w700),
+                    ),
+                    SizedBox(
+                      height: 42,
+                      width: width * 0.08,
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: const Color(0xFFFECE00),
+                          side: const BorderSide(
+                              width: 1, color: Color(0xFFFECE00)),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                        ),
+                        onPressed: () {},
+                        child: const Text(
+                          'close',
+                          style: TextStyle(fontSize: 22, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: const Color(0xFFFCB600)),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                height: 1533,
+                width: double.infinity,
+                child: const TableTask(),
+              ),
             ],
           ),
         ),

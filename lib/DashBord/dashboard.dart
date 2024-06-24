@@ -1,5 +1,8 @@
+// ignore_for_file: no_logic_in_create_state
+
 import 'package:dashbord_flutter/DashBord/Components/OrderItemSummary.dart';
 import 'package:dashbord_flutter/DashBord/Components/StandardSearch.dart';
+import 'package:dashbord_flutter/DashBord/view_model/dashboard_viewmodel.dart';
 import 'package:dashbord_flutter/constants/ColorApp.dart';
 import 'package:dashbord_flutter/DashBord/Components/OrderType.dart';
 import 'package:dashbord_flutter/DashBord/tabveiwer/TabView.dart';
@@ -8,10 +11,11 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:intl/intl.dart';
 
 class MyDashBord extends StatefulWidget {
-  MyDashBord({Key? key}) : super(key: key);
+  const MyDashBord({Key? key, required this.viewmodel}) : super(key: key);
+  final DashboardViewmodel viewmodel;
 
   @override
-  State<MyDashBord> createState() => _MyDashBordState();
+  State<MyDashBord> createState() => _MyDashBordState(viewmodel: viewmodel);
 }
 
 class _MyDashBordState extends State<MyDashBord> {
@@ -20,13 +24,21 @@ class _MyDashBordState extends State<MyDashBord> {
   TextEditingController departmentController = TextEditingController();
 
   @override
+  void initState() {
+    viewmodel.fetchUser();
+    super.initState();
+  }
+
+  @override
   void dispose() {
-    // Dispose controllers when not needed to avoid memory leaks
     employeeController.dispose();
     fullnameController.dispose();
     departmentController.dispose();
     super.dispose();
   }
+
+  final DashboardViewmodel viewmodel;
+  _MyDashBordState({required this.viewmodel});
 
   @override
   Widget build(BuildContext context) {
@@ -223,7 +235,7 @@ class _MyDashBordState extends State<MyDashBord> {
                                 fontWeight: FontWeight.w700, fontSize: 32),
                             overflow: TextOverflow.ellipsis,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           Expanded(
@@ -232,9 +244,12 @@ class _MyDashBordState extends State<MyDashBord> {
                                 Expanded(
                                     child: Orderitemsummary(
                                   title: "New",
-                                  amount: convertNumber(2800000),
+                                  amount: convertNumber(280000),
                                   image: 'assets/images/New.png',
-                                  total: convertNumber(28),
+                                  total: convertNumber((viewmodel.respond.data!
+                                              .items![0].totalItems ??
+                                          0)
+                                      .toDouble()),
                                 )),
                                 const SizedBox(
                                   width: 20,
@@ -403,7 +418,7 @@ class _MyDashBordState extends State<MyDashBord> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            margin: EdgeInsets.only(left: 30, top: 30),
+                            margin: const EdgeInsets.only(left: 30, top: 30),
                             child: const Text(
                               "Approve Task",
                               style: TextStyle(
@@ -418,7 +433,8 @@ class _MyDashBordState extends State<MyDashBord> {
                                 Expanded(
                                   flex: 1,
                                   child: Container(
-                                    margin: EdgeInsets.only(left: 30, top: 30),
+                                    margin: const EdgeInsets.only(
+                                        left: 30, top: 30),
                                     child: const Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -460,7 +476,8 @@ class _MyDashBordState extends State<MyDashBord> {
                                 Expanded(
                                   flex: 1,
                                   child: Container(
-                                    margin: EdgeInsets.only(left: 30, top: 30),
+                                    margin: const EdgeInsets.only(
+                                        left: 30, top: 30),
                                     child: const Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -504,8 +521,8 @@ class _MyDashBordState extends State<MyDashBord> {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 40),
                                     child: Container(
-                                      margin:
-                                          EdgeInsets.only(left: 30, top: 30),
+                                      margin: const EdgeInsets.only(
+                                          left: 30, top: 30),
                                       child: const Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,

@@ -1,11 +1,12 @@
 import 'package:dashbord_flutter/constants/ColorApp.dart';
+import 'package:dashbord_flutter/gen/assets.gen.dart';
 
 import 'package:flutter/material.dart';
 
 class Orderitemsummary extends StatelessWidget {
   final String title;
   final String amount;
-  final String image;
+  final Image image;
   final String total;
 
   const Orderitemsummary({
@@ -41,9 +42,7 @@ class Orderitemsummary extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: Image.asset(
-                            image,
-                          )),
+                          child: image),
                     ),
                     Flexible(
                       flex: 5,

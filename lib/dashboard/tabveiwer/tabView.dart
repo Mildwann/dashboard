@@ -1,7 +1,7 @@
 import 'package:dashbord_flutter/constants/ColorApp.dart';
+import 'package:dashbord_flutter/dashboard/tabveiwer/Inprogress.dart';
 import 'package:flutter/material.dart';
-import './complete.dart';
-import './inprogress.dart';
+import 'complete.dart';
 
 class TabView extends StatefulWidget {
   const TabView({super.key});

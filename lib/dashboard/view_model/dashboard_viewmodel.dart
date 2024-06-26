@@ -1,9 +1,12 @@
-// ignore_for_file: unused_field
+// ignore_for_file: unused_field, non_constant_identifier_names
 
-import 'package:dashbord_flutter/DashBord/model/dashboard_respond.dart';
+import 'package:dashbord_flutter/api/dashboard_api.dart';
+import 'package:dashbord_flutter/app_injector.dart';
+import 'package:dashbord_flutter/dashboard/model/dashboard_respond.dart';
 import 'package:flutter/material.dart';
 
 class DashboardViewmodel with ChangeNotifier {
+  final DashboardApi dashboardApi = getIt();
   late dasboardRespond _respond;
   late Status _status;
   late Data _data;
@@ -45,5 +48,18 @@ class DashboardViewmodel with ChangeNotifier {
 
     _respond = dasboardRespond(status: _status, data: _data);
     notifyListeners();
+  }
+
+  Future<void> getDashboard() async {
+    final requestBody = {
+      "user_id": "",
+      "billing_acc_id": "9200264443",
+      "date": "",
+      "status_order": "0001",
+      "page": 1,
+      "page_size": 10
+    };
+
+    var result = await dashboardApi.getDashboardOrder(requestBody);
   }
 }

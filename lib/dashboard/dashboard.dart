@@ -1,31 +1,35 @@
 // ignore_for_file: no_logic_in_create_state
 
-import 'package:dashbord_flutter/DashBord/Components/OrderItemSummary.dart';
-import 'package:dashbord_flutter/DashBord/Components/StandardSearch.dart';
-import 'package:dashbord_flutter/DashBord/view_model/dashboard_viewmodel.dart';
+import 'package:dashbord_flutter/app_injector.dart';
+import 'package:dashbord_flutter/dashboard/components/orderItemsummary.dart';
+import 'package:dashbord_flutter/dashboard/components/standardsearch.dart';
+import 'package:dashbord_flutter/dashboard/view_model/dashboard_viewmodel.dart';
 import 'package:dashbord_flutter/constants/ColorApp.dart';
-import 'package:dashbord_flutter/DashBord/Components/OrderType.dart';
-import 'package:dashbord_flutter/DashBord/tabveiwer/TabView.dart';
+import 'package:dashbord_flutter/dashboard/components/ordertype.dart';
+import 'package:dashbord_flutter/dashboard/tabveiwer/tabView.dart';
+import 'package:dashbord_flutter/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:intl/intl.dart';
 
 class MyDashBord extends StatefulWidget {
-  const MyDashBord({Key? key, required this.viewmodel}) : super(key: key);
-  final DashboardViewmodel viewmodel;
+  const MyDashBord({super.key});
 
   @override
-  State<MyDashBord> createState() => _MyDashBordState(viewmodel: viewmodel);
+  State<MyDashBord> createState() => _MyDashBordState();
 }
 
 class _MyDashBordState extends State<MyDashBord> {
+  final DashboardViewmodel viewModel = getIt();
+
   TextEditingController employeeController = TextEditingController();
   TextEditingController fullnameController = TextEditingController();
   TextEditingController departmentController = TextEditingController();
 
   @override
   void initState() {
-    viewmodel.fetchUser();
+    viewModel.getDashboard();
+    viewModel.fetchUser();
     super.initState();
   }
 
@@ -36,9 +40,6 @@ class _MyDashBordState extends State<MyDashBord> {
     departmentController.dispose();
     super.dispose();
   }
-
-  final DashboardViewmodel viewmodel;
-  _MyDashBordState({required this.viewmodel});
 
   @override
   Widget build(BuildContext context) {
@@ -245,8 +246,8 @@ class _MyDashBordState extends State<MyDashBord> {
                                     child: Orderitemsummary(
                                   title: "New",
                                   amount: convertNumber(280000),
-                                  image: 'assets/images/New.png',
-                                  total: convertNumber((viewmodel.respond.data!
+                                  image: Assets.images.icNew.image(),
+                                  total: convertNumber((viewModel.respond.data!
                                               .items![0].totalItems ??
                                           0)
                                       .toDouble()),
@@ -258,7 +259,7 @@ class _MyDashBordState extends State<MyDashBord> {
                                     child: Orderitemsummary(
                                   title: "Provisioning",
                                   amount: convertNumber(90000),
-                                  image: 'assets/images/Provisoning.png',
+                                  image: Assets.images.provisoning.image(),
                                   total: convertNumber(9),
                                 )),
                               ],
@@ -274,7 +275,7 @@ class _MyDashBordState extends State<MyDashBord> {
                                     child: Orderitemsummary(
                                   title: "Billing",
                                   amount: convertNumber(590000),
-                                  image: 'assets/images/Billing.png',
+                                  image: Assets.images.billing.image(),
                                   total: convertNumber(59),
                                 )),
                                 const SizedBox(
@@ -284,7 +285,7 @@ class _MyDashBordState extends State<MyDashBord> {
                                     child: Orderitemsummary(
                                   title: "Complete",
                                   amount: convertNumber(1280000),
-                                  image: 'assets/images/complete.png',
+                                  image: Assets.images.complete.image(),
                                   total: convertNumber(128),
                                 )),
                               ],
@@ -332,7 +333,7 @@ class _MyDashBordState extends State<MyDashBord> {
                             amount: convertNumber(1090000),
                             order: convertNodouble(2099),
                             color: ColorOrderType.yellow,
-                            image: 'assets/images/NewNoBack.png',
+                            image: 'assets/images/newnoback.png',
                           )),
                           const SizedBox(
                             height: 10,
@@ -343,7 +344,7 @@ class _MyDashBordState extends State<MyDashBord> {
                             amount: convertNumber(88000),
                             order: convertNodouble(890),
                             color: ColorOrderType.orange,
-                            image: 'assets/images/Edit.png',
+                            image: 'assets/images/edit.png',
                           )),
                         ],
                       ),

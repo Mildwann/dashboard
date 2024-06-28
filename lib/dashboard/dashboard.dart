@@ -29,7 +29,7 @@ class _MyDashBordState extends State<MyDashBord> {
   @override
   void initState() {
     viewModel.getDashboard();
-    viewModel.fetchUser();
+    //viewModel.fetchUser();
     super.initState();
   }
 
@@ -247,10 +247,9 @@ class _MyDashBordState extends State<MyDashBord> {
                                   title: "New",
                                   amount: convertNumber(280000),
                                   image: Assets.images.icNew.image(),
-                                  total: convertNumber((viewModel.respond.data!
-                                              .items![0].totalItems ??
-                                          0)
-                                      .toDouble()),
+                                  total: convertNumber(
+                                      (viewModel.item?[0].totalItems ?? 0)
+                                          .toDouble()),
                                 )),
                                 const SizedBox(
                                   width: 20,

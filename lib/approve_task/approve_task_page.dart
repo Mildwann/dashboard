@@ -2,6 +2,7 @@
 import 'package:dashbord_flutter/approve_task/components/ItemSeach.dart';
 import 'package:dashbord_flutter/app_injector.dart';
 import 'package:dashbord_flutter/approve_task/components/table_task.dart';
+import 'package:dashbord_flutter/close_task/closeTask.dart';
 import 'package:dashbord_flutter/constants/MyIcons.dart';
 import 'package:dashbord_flutter/approve_task/view_model/approve_view_model.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -155,6 +157,33 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                       "Result",
                       style:
                           TextStyle(fontSize: 36, fontWeight: FontWeight.w700),
+                    ),
+                    const Spacer(),
+                    SizedBox(
+                      height: 42,
+                      width: width * 0.08,
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: const Color(0xFFFECE00),
+                          side: const BorderSide(
+                              width: 1, color: Color(0xFFFECE00)),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                        ),
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => const closeTask(),
+                          );
+                        },
+                        child: const Text(
+                          'Approve',
+                          style: TextStyle(fontSize: 22, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: width * 0.01,
                     ),
                     SizedBox(
                       height: 42,

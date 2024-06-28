@@ -1,9 +1,8 @@
-// ignore_for_file: deprecated_member_use
-
+import 'package:dashbord_flutter/close_task/closeTask.dart';
 import 'package:flutter/material.dart';
 
 class TableTask extends StatefulWidget {
-  const TableTask({super.key});
+  const TableTask({Key? key}) : super(key: key);
 
   @override
   State<TableTask> createState() => _TableTaskState();
@@ -12,10 +11,10 @@ class TableTask extends StatefulWidget {
 class _TableTaskState extends State<TableTask> {
   final Map<String, String> _data = {
     "Subject":
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...",
     "Order ID": "xxxxxxxxx",
     "Date Due": "2023-10-26",
-    "Status": "opent",
+    "Status": "open",
     "User ID": "--",
   };
 
@@ -27,8 +26,6 @@ class _TableTaskState extends State<TableTask> {
     // Initialize selectedRows with false for each row
     selectedRows = List.generate(10, (index) => false);
   }
-
-  bool x = false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,68 +39,112 @@ class _TableTaskState extends State<TableTask> {
         dataRowHeight: (1533 - 66) / 10,
         showCheckboxColumn: true,
         headingRowColor:
-            WidgetStateColor.resolveWith((states) => const Color(0xFFFFB900)),
+            MaterialStateColor.resolveWith((states) => const Color(0xFFFFB900)),
         columns: [
           DataColumn(
             label: Checkbox(
               side: const BorderSide(color: Colors.white),
               checkColor: Colors.white,
               activeColor: const Color(0xFFFFB900),
-              value: x,
+              value: selectedRows.every((isSelected) => isSelected == true),
               onChanged: (value) {
                 setState(() {
-                  x = value!;
+                  selectedRows = List.generate(10, (index) => value!);
                 });
-                if (selectedRows.every((isSelected) => isSelected == true)) {
-                  selectedRows = List.generate(10, (index) => false);
-                } else {
-                  selectedRows = List.generate(10, (index) => true);
-                }
               },
             ),
           ),
           const DataColumn(
-              label: Text(
-            'Subject',
-            style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
-          )),
+            label: Flexible(
+              child: Text(
+                'Subject',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
           const DataColumn(
-              label: Text(
-            'Order ID',
-            style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
-          )),
+            label: Flexible(
+              child: Text(
+                'Order ID',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
           const DataColumn(
-              label: Text(
-            'Date Due',
-            style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
-          )),
+            label: Flexible(
+              child: Text(
+                'Date Due',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
           const DataColumn(
-              label: Text(
-            'Status',
-            style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
-          )),
+            label: Flexible(
+              child: Text(
+                'Status',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
           const DataColumn(
-              label: Text(
-            'User ID',
-            style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
-          )),
+            label: Flexible(
+              child: Text(
+                'User ID',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
           const DataColumn(
-              label: Text(
-            'View Task',
-            style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
-          )),
+            label: Flexible(
+              child: Text(
+                'View Task',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
           const DataColumn(
-              label: Text(
-            'View Order',
-            style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
-          )),
+            label: Flexible(
+              child: Text(
+                'View Order',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
         ],
         rows: List<DataRow>.generate(10, (index) {
           return DataRow(
@@ -124,11 +165,12 @@ class _TableTaskState extends State<TableTask> {
               DataCell(
                 Container(
                   constraints: const BoxConstraints(
-                      maxWidth: 677,
-                      minWidth: 677), // Adjust maxWidth as needed
+                    maxWidth: 677,
+                    minWidth: 677,
+                  ),
                   child: Text(
                     _data['Subject']!,
-                    maxLines: 5, // Limit to 2 lines of text
+                    maxLines: 5,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
@@ -137,14 +179,47 @@ class _TableTaskState extends State<TableTask> {
               DataCell(Text(_data['Date Due']!)),
               DataCell(Text(_data['Status']!)),
               DataCell(Text(_data['User ID']!)),
-              DataCell(IconButton(
-                onPressed: () {},
-                icon: Image.asset("assets/images/Billing.png"),
-              )),
-              DataCell(IconButton(
-                onPressed: () {},
-                icon: Image.asset("assets/images/Billing.png"),
-              )),
+              DataCell(
+                IconButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        content: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Positioned(
+                              right: -40,
+                              top: -40,
+                              child: InkResponse(
+                                onTap: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Image.asset(
+                                  "assets/images/Billing.png",
+                                  width: 100,
+                                  height: 100,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                  icon: Image.asset(
+                    "assets/images/Billing.png",
+                  ),
+                ),
+              ),
+              DataCell(
+                IconButton(
+                  onPressed: () {},
+                  icon: Image.asset(
+                    "assets/images/Billing.png",
+                  ),
+                ),
+              ),
             ],
           );
         }),

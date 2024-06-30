@@ -35,6 +35,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
 
   @override
   void initState() {
+    _approveViewModel.getApprove2();
     super.initState();
   }
 

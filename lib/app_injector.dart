@@ -1,4 +1,5 @@
 import 'package:curl_logger_dio_interceptor/curl_logger_dio_interceptor.dart';
+import 'package:dashbord_flutter/api/approve_api.dart';
 import 'package:dashbord_flutter/api/dashboard_api.dart';
 import 'package:dashbord_flutter/approve_task/view_model/approve_view_model.dart';
 import 'package:dashbord_flutter/dashboard/view_model/dashboard_viewmodel.dart';
@@ -56,6 +57,8 @@ abstract class ApiModule {
   @singleton
   DashboardApi dashboardapi(Dio dio) =>
       DashboardApi(dio, baseUrl: "https://ntom-api.intense.co.th/OMNewAPI");
+  ApproveApi approveapi(Dio dio) =>
+      ApproveApi(dio, baseUrl: "https://ntom-api.intense.co.th/OMNewAPI");
 }
 
 @module

@@ -1,10 +1,11 @@
-// ignore_for_file: unused_field
+// ignore_for_file: unused_field, avoid_print
 import 'package:dashbord_flutter/approve_task/components/ItemSeach.dart';
 import 'package:dashbord_flutter/app_injector.dart';
 import 'package:dashbord_flutter/approve_task/components/table_task.dart';
 import 'package:dashbord_flutter/close_task/closeTask.dart';
 import 'package:dashbord_flutter/constants/MyIcons.dart';
 import 'package:dashbord_flutter/approve_task/view_model/approve_view_model.dart';
+import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 
 class ApproveTaskPage extends StatefulWidget {
@@ -35,6 +36,27 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
 
   @override
   void initState() {
+    _approveViewModel.eventBus.on<ApproveError>().listen((event) {
+      print(event.error);
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('AlertDialog Title'),
+          content: Text(event.error.toString()),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    });
+    _approveViewModel.setDropdown();
     _approveViewModel.getApprove2();
     super.initState();
   }
@@ -42,7 +64,6 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -92,8 +113,8 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                         ),
                         ItemSearch(
                           title: "Approval Status",
-                          inputType: TypeInput.itemTextField,
-                          controller: approvalStatusController,
+                          dropdownList: types,
+                          inputType: TypeInput.itemDropDown,
                         ),
                       ],
                     ),

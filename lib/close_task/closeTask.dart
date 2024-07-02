@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, camel_case_types
+
 import 'package:dashbord_flutter/constants/ColorApp.dart';
 import 'package:flutter/material.dart';
 

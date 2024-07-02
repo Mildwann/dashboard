@@ -33,13 +33,21 @@ class ApproveViewModel with ChangeNotifier {
     return approveApi.getApprove().then((value) => value.data);
   }
 
-  void setDropdown() {
+  List<String>? setDropdown() {
     _items = [
-      Items(key: "1", value: "20"),
-      Items(key: "2", value: "100"),
-      Items(key: "3", value: "150"),
+      Items(key: "3001", value: "mild"),
+      Items(key: "3003", value: "wann"),
+      Items(key: "4001", value: "love"),
     ];
+
+    List<String>? a = _items
+        ?.map((item) => item.value)
+        .where((value) => value != null)
+        .toList()
+        .cast<String>();
+
     notifyListeners();
+    return a;
   }
 }
 

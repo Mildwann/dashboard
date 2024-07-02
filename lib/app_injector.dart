@@ -1,13 +1,5 @@
-import 'package:curl_logger_dio_interceptor/curl_logger_dio_interceptor.dart';
-import 'package:dashbord_flutter/api/approve_api.dart';
-import 'package:dashbord_flutter/api/dashboard_api.dart';
-import 'package:dashbord_flutter/approve_task/view_model/approve_view_model.dart';
-import 'package:dashbord_flutter/dashboard/view_model/dashboard_viewmodel.dart';
-import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'app_injector.config.dart';
+import 'constants/app_import.dart';
 
 final getIt = GetIt.instance;
 

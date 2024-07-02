@@ -1,12 +1,9 @@
-// ignore_for_file: unused_field, avoid_print
-import 'package:dashbord_flutter/approve_task/components/ItemSeach.dart';
-import 'package:dashbord_flutter/app_injector.dart';
-import 'package:dashbord_flutter/approve_task/components/table_task.dart';
-import 'package:dashbord_flutter/close_task/closeTask.dart';
-import 'package:dashbord_flutter/constants/MyIcons.dart';
-import 'package:dashbord_flutter/approve_task/view_model/approve_view_model.dart';
-import 'package:event_bus/event_bus.dart';
-import 'package:flutter/material.dart';
+// ignore_for_file: avoid_print
+
+import 'package:dashbord_flutter/dashboard/model/dashboard_respond.dart';
+import 'package:dashbord_flutter/approve_task/model/approve_model.dart';
+
+import '../constants/app_import.dart';
 
 class ApproveTaskPage extends StatefulWidget {
   const ApproveTaskPage({super.key});
@@ -31,9 +28,9 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
     'Provisioning',
     'Package/Component Approve',
   ];
+
   String? selectedValue;
   final ApproveViewModel _approveViewModel = getIt();
-
   @override
   void initState() {
     _approveViewModel.eventBus.on<ApproveError>().listen((event) {
@@ -113,7 +110,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                         ),
                         ItemSearch(
                           title: "Approval Status",
-                          dropdownList: types,
+                          dropdownList: _approveViewModel.setDropdown(),
                           inputType: TypeInput.itemDropDown,
                         ),
                       ],

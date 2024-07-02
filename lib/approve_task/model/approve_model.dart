@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_new, unnecessary_this, prefer_collection_literals
+
 class ApproveModel {
   Status? status;
   Data? data;
@@ -42,7 +44,7 @@ class Status {
 }
 
 class Data {
-  Null? selected;
+  Null selected;
   List<Items>? items;
 
   Data({this.selected, this.items});

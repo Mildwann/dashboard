@@ -12,4 +12,12 @@ abstract class ApproveApi {
     "Accept": "application/json",
   })
   Future<HttpResponse<ApproveModel>> getApprove();
+
+  @POST('/inquire_tasks/searchInquireApprovalTask')
+  @Headers(<String, dynamic>{
+    "Accept": "application/json",
+  })
+  Future<HttpResponse<dasboardRespond>> getDashboardOrder(
+    @Body() Map<String, dynamic> body,
+  );
 }

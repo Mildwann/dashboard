@@ -1,4 +1,5 @@
 import 'package:dashbord_flutter/approve_task/model/approve_model.dart';
+import 'package:dashbord_flutter/approve_task/model/searchInquire_model.dart';
 import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/retrofit.dart';
 part 'approve_api.g.dart';
@@ -17,7 +18,7 @@ abstract class ApproveApi {
   @Headers(<String, dynamic>{
     "Accept": "application/json",
   })
-  Future<HttpResponse<dasboardRespond>> getDashboardOrder(
+  Future<HttpResponse<SearchInquireModel>> getSearch(
     @Body() Map<String, dynamic> body,
   );
 }

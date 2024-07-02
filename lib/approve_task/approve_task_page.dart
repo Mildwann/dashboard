@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'package:dashbord_flutter/approve_task/model/searchInquire_model.dart';
+import 'package:dashbord_flutter/approve_task/view_model/searchinquire_viewmodel.dart';
 import 'package:dashbord_flutter/dashboard/model/dashboard_respond.dart';
 import 'package:dashbord_flutter/approve_task/model/approve_model.dart';
 
@@ -31,6 +33,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
 
   String? selectedValue;
   final ApproveViewModel _approveViewModel = getIt();
+  final SearchinquireViewmodel _searchinquireViewmodel = getIt();
   @override
   void initState() {
     _approveViewModel.eventBus.on<ApproveError>().listen((event) {
@@ -55,6 +58,8 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
     });
     _approveViewModel.setDropdown();
     _approveViewModel.getApprove2();
+    _searchinquireViewmodel.getSearch2();
+
     super.initState();
   }
 

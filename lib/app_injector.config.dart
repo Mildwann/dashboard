@@ -11,7 +11,8 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'app_injector.dart' as _i4;
+import 'app_injector.dart' as _i5;
+import 'approve_task/view_model/searchinquire_viewmodel.dart' as _i4;
 import 'constants/app_import.dart' as _i3;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -32,6 +33,8 @@ _i1.GetIt $initGetIt(
   gh.factory<_i3.DashboardViewmodel>(
       () => viewModelModule.dashboardViewModel());
   gh.factory<_i3.ApproveViewModel>(() => viewModelModule.approveViewModel());
+  gh.factory<_i4.SearchinquireViewmodel>(
+      () => viewModelModule.searchinquireViewmodel());
   gh.singleton<_i3.Interceptor>(
     () => interceptorModule.prettyLoggerInterceptor(),
     instanceName: 'prettyLogger',
@@ -49,10 +52,10 @@ _i1.GetIt $initGetIt(
   return getIt;
 }
 
-class _$ViewModelModule extends _i4.ViewModelModule {}
+class _$ViewModelModule extends _i5.ViewModelModule {}
 
-class _$InterceptorModule extends _i4.InterceptorModule {}
+class _$InterceptorModule extends _i5.InterceptorModule {}
 
-class _$ThirdPartyModule extends _i4.ThirdPartyModule {}
+class _$ThirdPartyModule extends _i5.ThirdPartyModule {}
 
-class _$ApiModule extends _i4.ApiModule {}
+class _$ApiModule extends _i5.ApiModule {}

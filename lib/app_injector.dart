@@ -1,4 +1,7 @@
+import 'package:dashbord_flutter/approve_task/view_model/searchinquire_viewmodel.dart';
+
 import 'app_injector.config.dart';
+import 'approve_task/model/searchInquire_model.dart';
 import 'constants/app_import.dart';
 
 final getIt = GetIt.instance;
@@ -57,4 +60,5 @@ abstract class ApiModule {
 abstract class ViewModelModule {
   DashboardViewmodel dashboardViewModel() => DashboardViewmodel();
   ApproveViewModel approveViewModel() => ApproveViewModel();
+  SearchinquireViewmodel searchinquireViewmodel() => SearchinquireViewmodel();
 }

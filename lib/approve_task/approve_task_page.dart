@@ -1,9 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'package:dashbord_flutter/approve_task/model/searchInquire_model.dart';
 import 'package:dashbord_flutter/approve_task/view_model/searchinquire_viewmodel.dart';
-import 'package:dashbord_flutter/dashboard/model/dashboard_respond.dart';
-import 'package:dashbord_flutter/approve_task/model/approve_model.dart';
 
 import '../constants/app_import.dart';
 
@@ -30,6 +27,10 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
     'Provisioning',
     'Package/Component Approve',
   ];
+
+  void showData() {
+    print(orderIdController.text);
+  }
 
   String? selectedValue;
   final ApproveViewModel _approveViewModel = getIt();
@@ -99,9 +100,10 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                     Row(
                       children: [
                         ItemSearch(
-                            title: "Task type",
-                            dropdownList: types,
-                            inputType: TypeInput.itemDropDown),
+                          title: "Task type",
+                          dropdownList: types,
+                          inputType: TypeInput.itemDropDown,
+                        ),
                         const SizedBox(
                           width: 20,
                         ),
@@ -138,7 +140,11 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                                   borderRadius: BorderRadius.circular(12)),
                               backgroundColor: Colors.white,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                orderIdController.clear();
+                              });
+                            },
                             child: const Text('Clear',
                                 style: TextStyle(
                                     fontSize: 22, color: Color(0xFFFECE00))),
@@ -158,7 +164,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12)),
                             ),
-                            onPressed: () {},
+                            onPressed: showData,
                             child: const Text(
                               'Search',
                               style:

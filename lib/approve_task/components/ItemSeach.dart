@@ -1,7 +1,7 @@
-// ignore: file_names
-import 'package:dashbord_flutter/constants/MyIcons.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
+
+// Constants or imports that are used (like primaryBorder) are assumed to be defined elsewhere.
 
 class ItemSearch extends StatefulWidget {
   final String? title;
@@ -14,6 +14,7 @@ class ItemSearch extends StatefulWidget {
   final String? dateFormat;
 
   const ItemSearch({
+    super.key,
     this.title,
     this.inputType,
     this.dropdownList,
@@ -22,7 +23,6 @@ class ItemSearch extends StatefulWidget {
     this.selectedItem,
     this.dateFormat,
     this.callbackCalendar,
-    super.key,
   });
 
   @override
@@ -33,7 +33,14 @@ class _ItemSearchState extends State<ItemSearch> {
   String? selectedValue;
   DateTime? _selectedDate;
 
-  Widget? itemWidget() {
+  @override
+  void initState() {
+    super.initState();
+    selectedValue = widget
+        .selectedItem; // Initialize selectedValue from widget's selectedItem
+  }
+
+  Widget itemWidget() {
     switch (widget.inputType) {
       case TypeInput.itemDropDown:
         return DropdownButtonHideUnderline(
@@ -54,9 +61,14 @@ class _ItemSearchState extends State<ItemSearch> {
                       ),
                     ))
                 .toList(),
-            value: widget.selectedItem ?? selectedValue,
+            value: selectedValue,
             onChanged: (String? value) {
-              widget.callback?.call(value ?? "");
+              setState(() {
+                selectedValue =
+                    value; // Update selectedValue when dropdown value changes
+              });
+              widget.callback
+                  ?.call(value ?? ""); // Invoke callback with selected value
             },
             iconStyleData: const IconStyleData(
               icon: Padding(
@@ -102,8 +114,9 @@ class _ItemSearchState extends State<ItemSearch> {
               setState(() {
                 _selectedDate = picked;
               });
+              widget.callbackCalendar
+                  ?.call(picked); // Invoke callback with selected date
             }
-            widget.callbackCalendar?.call(picked ?? DateTime.now());
           },
           child: Container(
             padding:
@@ -112,7 +125,7 @@ class _ItemSearchState extends State<ItemSearch> {
               children: [
                 Expanded(
                   child: Text(
-                    (_selectedDate ?? widget.dateFormat ?? "").toString(),
+                    _selectedDate?.toString() ?? widget.dateFormat ?? "",
                     style: const TextStyle(fontSize: 20),
                   ),
                 ),
@@ -144,7 +157,7 @@ class _ItemSearchState extends State<ItemSearch> {
         children: [
           if (widget.title != null) ...[
             Text(
-              widget.title ?? "",
+              widget.title!,
               style: const TextStyle(fontSize: 18),
             ),
             const SizedBox(
@@ -153,7 +166,11 @@ class _ItemSearchState extends State<ItemSearch> {
           ],
           Container(
             height: 48,
-            decoration: primaryBorder(radius: 12),
+            decoration: BoxDecoration(
+              // Define primaryBorder function or use BoxDecoration directly
+              border: Border.all(color: Colors.black), // Example border
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: Center(child: itemWidget()),
           )
         ],

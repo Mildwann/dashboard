@@ -19,14 +19,14 @@ class SearchinquireViewmodel with ChangeNotifier {
       "page_size": 100,
       "items": {
         "approval_task_id": "string",
-        "approval_status_value": "string",
+        "approval_status_value": "string", //
         "subject": "string",
         "service_item_id": "string",
         "task_status_value": "string",
         "approver_user_id": "string",
         "due_date": "string",
-        "task_type": "string",
-        "order_id": "string"
+        "task_type": "string", //
+        "order_id": "string" //
       }
     };
 

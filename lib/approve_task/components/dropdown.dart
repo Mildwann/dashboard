@@ -22,8 +22,8 @@ class _DropdownState extends State<Dropdown> {
 
   @override
   void initState() {
-    super.initState();
     selectedValue = widget.selectedItem;
+    super.initState();
   }
 
   @override

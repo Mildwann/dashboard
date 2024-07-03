@@ -13,13 +13,15 @@ class ApproveTaskPage extends StatefulWidget {
 
 class _ApproveTaskPageState extends State<ApproveTaskPage> {
   final TextEditingController orderIdController = TextEditingController();
-  final TextEditingController approvalStatusController =
-      TextEditingController();
+  final TextEditingController taskTypeController = TextEditingController();
+  final TextEditingController approveStatusController = TextEditingController();
 
   @override
   void dispose() {
     orderIdController.dispose();
-    approvalStatusController.dispose();
+    taskTypeController.dispose();
+    approveStatusController.dispose();
+
     super.dispose();
   }
 
@@ -29,7 +31,9 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
   ];
 
   void showData() {
+    print(taskTypeController.text);
     print(orderIdController.text);
+    print(approveStatusController.text);
   }
 
   String? selectedValue;
@@ -103,6 +107,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                           title: "Task type",
                           dropdownList: types,
                           inputType: TypeInput.itemDropDown,
+                          controller: taskTypeController,
                         ),
                         const SizedBox(
                           width: 20,
@@ -119,6 +124,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                           title: "Approval Status",
                           dropdownList: _approveViewModel.setDropdown(),
                           inputType: TypeInput.itemDropDown,
+                          controller: approveStatusController,
                         ),
                       ],
                     ),

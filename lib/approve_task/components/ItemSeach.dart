@@ -38,6 +38,24 @@ class _ItemSearchState extends State<ItemSearch> {
     super.initState();
     selectedValue = widget
         .selectedItem; // Initialize selectedValue from widget's selectedItem
+    if (widget.controller != null && selectedValue != null) {
+      widget.controller!.text = selectedValue!;
+    }
+    widget.controller?.addListener(_syncControllerWithDropdown);
+  }
+
+  void _syncControllerWithDropdown() {
+    if (widget.controller != null && widget.controller!.text != selectedValue) {
+      setState(() {
+        selectedValue = widget.controller!.text;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    widget.controller?.removeListener(_syncControllerWithDropdown);
+    super.dispose();
   }
 
   Widget itemWidget() {
@@ -50,7 +68,7 @@ class _ItemSearchState extends State<ItemSearch> {
               "Please select",
               style: TextStyle(fontSize: 20, color: Color(0xFFC8C8C8)),
             ),
-            items: ((widget.dropdownList) ?? [])
+            items: (widget.dropdownList ?? [])
                 .map((String item) => DropdownMenuItem<String>(
                       value: item,
                       child: Text(
@@ -64,8 +82,10 @@ class _ItemSearchState extends State<ItemSearch> {
             value: selectedValue,
             onChanged: (String? value) {
               setState(() {
-                selectedValue =
-                    value; // Update selectedValue when dropdown value changes
+                selectedValue = value;
+                if (widget.controller != null) {
+                  widget.controller!.text = value!;
+                }
               });
               widget.callback
                   ?.call(value ?? ""); // Invoke callback with selected value
@@ -172,7 +192,7 @@ class _ItemSearchState extends State<ItemSearch> {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Center(child: itemWidget()),
-          )
+          ),
         ],
       ),
     );

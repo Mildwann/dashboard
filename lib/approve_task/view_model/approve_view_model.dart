@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:event_bus/event_bus.dart';
 
 class ApproveViewModel with ChangeNotifier {
+  Items? showData;
   EventBus eventBus = EventBus();
   final ApproveApi approveApi = getIt();
   late Data _data;
@@ -15,12 +16,12 @@ class ApproveViewModel with ChangeNotifier {
   Data get data => _data;
   List<Items>? get item => _items;
 
-  Future<ApproveModel> getApprove2() async {
+  Future<void> getApprove2() async {
     try {
       final result = await approveApi.getApprove();
       if (result.data.status?.code == 200) {
         _items = result.data.data?.items ?? [];
-        print(_items);
+        print(item);
       } else {
         print("No");
       }
@@ -30,24 +31,27 @@ class ApproveViewModel with ChangeNotifier {
     }
 
     notifyListeners();
-    return approveApi.getApprove().then((value) => value.data);
   }
 
-  List<String>? setDropdown() {
-    _items = [
-      Items(key: "3001", value: "mild"),
-      Items(key: "3003", value: "wann"),
-      Items(key: "4001", value: "love"),
-    ];
+  // List<String>? setDropdown() {
+  //   _items = [
+  //     Items(key: "3001", value: "mild"),
+  //     Items(key: "3003", value: "wann"),
+  //     Items(key: "4001", value: "love"),
+  //   ];
 
-    List<String>? a = _items
-        ?.map((item) => item.value)
-        .where((value) => value != null)
-        .toList()
-        .cast<String>();
+  //   List<String>? a = _items
+  //       ?.map((item) => item.value)
+  //       .where((value) => value != null)
+  //       .toList()
+  //       .cast<String>();
 
+  //   notifyListeners();
+  //   return a;
+  // }
+  void setApproveDropdown(Items value) {
+    showData = value;
     notifyListeners();
-    return a;
   }
 }
 
@@ -60,3 +64,7 @@ class ApproveSuccess {
   Object sucess;
   ApproveSuccess(this.sucess);
 }
+
+// listItem: รายการของข้อมูลที่ใช้สำหรับ Dropdown จาก ViewModel.
+// selectedValue: ค่าที่ถูกเลือกปัจจุบันใน Dropdown.
+// callback: ฟังก์ชันที่ถูกเรียกเมื่อมีการเลือกค่าใน Dropdown.

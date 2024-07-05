@@ -6,8 +6,15 @@ class DropdownApprove extends StatelessWidget {
   final List<Items>? listItem;
   final Items? selectedValue;
   final Function(Items)? callback;
-  const DropdownApprove(
-      {this.listItem, this.selectedValue, this.callback, super.key});
+  final TextEditingController controller;
+
+  const DropdownApprove({
+    required this.controller,
+    this.listItem,
+    this.selectedValue,
+    this.callback,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +55,7 @@ class DropdownApprove extends StatelessWidget {
               value: selectedValue,
               onChanged: (Items? value) {
                 if (value != null) {
+                  controller.text = value.key ?? "";
                   callback?.call(value);
                 }
               },

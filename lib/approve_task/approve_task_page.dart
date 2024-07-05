@@ -36,6 +36,9 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
     print(taskTypeController.text);
     print(orderIdController.text);
     print(approveStatusController.text);
+
+    _searchinquireViewmodel.getSearch2(approveStatusController.text,
+        taskTypeController.text, orderIdController.text);
   }
 
   String? selectedValue;
@@ -65,7 +68,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
     });
     //_approveViewModel.setDropdown();
     _approveViewModel.getApprove2();
-    _searchinquireViewmodel.getSearch2();
+    // _searchinquireViewmodel.getSearch2();
 
     super.initState();
   }
@@ -129,6 +132,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                                 ),
                                 Expanded(
                                   child: DropdownApprove(
+                                    controller: approveStatusController,
                                     listItem: _approveViewModel.item,
                                     selectedValue: _approveViewModel.showData,
                                     callback: (value) {

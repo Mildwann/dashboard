@@ -169,7 +169,13 @@ class _MyDashBordState extends State<MyDashBord> {
                                   width: 160,
                                   height: 35,
                                   child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      setState(() {
+                                        userIdController.clear();
+                                        billingController.clear();
+                                        departmentController.clear();
+                                      });
+                                    },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.transparent,
                                       shadowColor: Colors.transparent,

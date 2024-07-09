@@ -31,7 +31,7 @@ class _CompleteState extends State<Complete> {
             color: ColorApp.white,
             child: const Text(
               "Years",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
             ),
           ),
           const SizedBox(height: 10),

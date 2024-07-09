@@ -67,12 +67,12 @@ class _MyDashBordState extends State<MyDashBord> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: const EdgeInsets.fromLTRB(30, 50, 30, 40),
+              margin: const EdgeInsets.fromLTRB(30, 20, 30, 20),
               child: const Text(
                 "Dashbord",
                 style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    fontSize: 36,
+                    fontSize: 20,
                     fontFamily: 'NT',
                     color: frontColor.black),
               ),
@@ -98,17 +98,17 @@ class _MyDashBordState extends State<MyDashBord> {
                 children: [
                   Container(
                     width: double.infinity,
-                    margin: const EdgeInsets.fromLTRB(32, 32, 20, 32),
+                    margin: const EdgeInsets.fromLTRB(32, 25, 20, 24),
                     child: const Text(
                       "Standard search",
                       style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 16,
                           fontWeight: FontWeight.w700,
                           fontFamily: "NT"),
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.fromLTRB(32, 0, 32, 32),
+                    margin: const EdgeInsets.fromLTRB(32, 0, 32, 25),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -137,14 +137,14 @@ class _MyDashBordState extends State<MyDashBord> {
 
                   // //Clear button / Search Button
                   Container(
-                    padding: const EdgeInsets.only(right: 32, bottom: 32),
+                    padding: const EdgeInsets.only(right: 32, bottom: 25),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         //Clear button
                         Container(
-                          width: 180,
-                          height: 42,
+                          width: 160,
+                          height: 35,
                           child: ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
@@ -158,12 +158,13 @@ class _MyDashBordState extends State<MyDashBord> {
                               textStyle: const TextStyle(fontSize: 14),
                             ),
                             child: const Padding(
-                              padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
+                              padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
                               child: Text(
                                 'Clear',
                                 style: TextStyle(
                                     color: buttonColor.yellow,
-                                    fontWeight: FontWeight.w700),
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12),
                               ),
                             ),
                           ),
@@ -173,8 +174,8 @@ class _MyDashBordState extends State<MyDashBord> {
                         ),
                         // Search Button
                         Container(
-                          width: 180,
-                          height: 42,
+                          width: 160,
+                          height: 35,
                           child: ElevatedButton(
                             onPressed: () {
                               // _viewmodel.search(orderid: employeeController);
@@ -187,12 +188,13 @@ class _MyDashBordState extends State<MyDashBord> {
                               ),
                             ),
                             child: const Padding(
-                              padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
+                              padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
                               child: Text(
                                 'Search',
                                 style: TextStyle(
                                     color: ColorApp.white,
-                                    fontWeight: FontWeight.w700),
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12),
                               ),
                             ),
                           ),
@@ -206,8 +208,8 @@ class _MyDashBordState extends State<MyDashBord> {
 
             //Order Item Summary
             Container(
-              margin: const EdgeInsets.fromLTRB(30, 40, 30, 40),
-              height: 500,
+              margin: const EdgeInsets.fromLTRB(30, 20, 30, 20),
+              height: 310,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -233,11 +235,11 @@ class _MyDashBordState extends State<MyDashBord> {
                           const Text(
                             "Order Item Summary",
                             style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 32),
+                                fontWeight: FontWeight.w700, fontSize: 18),
                             overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(
-                            height: 30,
+                            height: 20,
                           ),
                           Expanded(
                             child: Row(
@@ -321,10 +323,10 @@ class _MyDashBordState extends State<MyDashBord> {
                           const Text(
                             "Order Type",
                             style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 32),
+                                fontWeight: FontWeight.w700, fontSize: 18),
                           ),
                           const SizedBox(
-                            height: 30,
+                            height: 20,
                           ),
                           Expanded(
                               child: Ordertype(
@@ -356,7 +358,7 @@ class _MyDashBordState extends State<MyDashBord> {
             //Order Item
             Container(
               margin: const EdgeInsets.fromLTRB(30, 0, 30, 20),
-              height: 850,
+              height: 690,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -384,7 +386,7 @@ class _MyDashBordState extends State<MyDashBord> {
                           Text(
                             "Order Item",
                             style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 36),
+                                fontWeight: FontWeight.w700, fontSize: 18),
                           ),
                           Expanded(
                             child: TabView(), //TabVeiw
@@ -401,7 +403,7 @@ class _MyDashBordState extends State<MyDashBord> {
                   Expanded(
                     flex: 1,
                     child: Container(
-                      height: 750,
+                      height: 600,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: const [
@@ -422,19 +424,18 @@ class _MyDashBordState extends State<MyDashBord> {
                             child: const Text(
                               "Approve Task",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w700, fontSize: 32),
+                                  fontWeight: FontWeight.w700, fontSize: 18),
                             ),
                           ),
                           Container(
-                            margin: const EdgeInsets.only(top: 25),
-                            height: 150,
+                            margin: const EdgeInsets.only(top: 10),
                             child: Row(
                               children: [
                                 Expanded(
                                   flex: 1,
                                   child: Container(
                                     margin: const EdgeInsets.only(
-                                        left: 30, top: 30),
+                                        left: 30, top: 10),
                                     child: const Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -442,7 +443,7 @@ class _MyDashBordState extends State<MyDashBord> {
                                         Text(
                                           "Provisioning",
                                           style: TextStyle(
-                                              fontSize: 20,
+                                              fontSize: 14,
                                               fontWeight: FontWeight.w400),
                                           overflow: TextOverflow.ellipsis,
                                         ),
@@ -461,7 +462,7 @@ class _MyDashBordState extends State<MyDashBord> {
                                               child: Text(
                                                 "200 Task",
                                                 style: TextStyle(
-                                                    fontSize: 20,
+                                                    fontSize: 14,
                                                     fontWeight:
                                                         FontWeight.w700),
                                                 overflow: TextOverflow.ellipsis,
@@ -477,7 +478,7 @@ class _MyDashBordState extends State<MyDashBord> {
                                   flex: 1,
                                   child: Container(
                                     margin: const EdgeInsets.only(
-                                        left: 30, top: 30),
+                                        left: 30, top: 10),
                                     child: const Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -485,7 +486,7 @@ class _MyDashBordState extends State<MyDashBord> {
                                         Text(
                                           "Package/component",
                                           style: TextStyle(
-                                              fontSize: 20,
+                                              fontSize: 14,
                                               fontWeight: FontWeight.w400),
                                           overflow: TextOverflow.ellipsis,
                                         ),
@@ -504,7 +505,7 @@ class _MyDashBordState extends State<MyDashBord> {
                                               child: Text(
                                                 "60 Task",
                                                 style: TextStyle(
-                                                    fontSize: 20,
+                                                    fontSize: 14,
                                                     fontWeight:
                                                         FontWeight.w700),
                                                 overflow: TextOverflow.ellipsis,
@@ -522,7 +523,7 @@ class _MyDashBordState extends State<MyDashBord> {
                                     padding: const EdgeInsets.only(left: 40),
                                     child: Container(
                                       margin: const EdgeInsets.only(
-                                          left: 30, top: 30),
+                                          left: 30, top: 10),
                                       child: const Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -530,7 +531,7 @@ class _MyDashBordState extends State<MyDashBord> {
                                           Text(
                                             "Backdate",
                                             style: TextStyle(
-                                                fontSize: 20,
+                                                fontSize: 14,
                                                 fontWeight: FontWeight.w400),
                                             overflow: TextOverflow.ellipsis,
                                           ),
@@ -549,7 +550,7 @@ class _MyDashBordState extends State<MyDashBord> {
                                                 child: Text(
                                                   "80 Task",
                                                   style: TextStyle(
-                                                      fontSize: 20,
+                                                      fontSize: 14,
                                                       fontWeight:
                                                           FontWeight.w700),
                                                   overflow:
@@ -569,8 +570,8 @@ class _MyDashBordState extends State<MyDashBord> {
                           const SizedBox(
                             height: 50,
                           ),
-                          Container(
-                            height: 344,
+                          SizedBox(
+                            height: 350,
                             child: Expanded(
                                 child: Stack(
                                     alignment: Alignment.center,
@@ -579,7 +580,7 @@ class _MyDashBordState extends State<MyDashBord> {
                                     "340 Task",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w700,
-                                        fontSize: 32),
+                                        fontSize: 14),
                                   ),
                                   PieChart(PieChartData(sections: [
                                     PieChartSectionData(

@@ -18,10 +18,11 @@ class _CameraAppState extends State<CameraApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-      appBar: AppBar(title: const Text('Camera test')),
-      body: AppBody(),
-    ));
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Camera test')),
+        body: AppBody(),
+      ),
+    );
   }
 }
 
@@ -77,7 +78,7 @@ class _AppBodyState extends State<AppBody> {
 class CameraView extends StatefulWidget {
   final List<CameraDescription> cameras;
 
-  const CameraView({super.key, required this.cameras});
+  const CameraView({required this.cameras});
 
   @override
   _CameraViewState createState() => _CameraViewState();
@@ -133,50 +134,12 @@ class _CameraViewState extends State<CameraView> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          AspectRatio(aspectRatio: 16 / 9, child: CameraPreview(controller!)),
-          Material(
-            child: DropdownButton<CameraDescription>(
-              value: cameraDescription,
-              icon: const Icon(Icons.arrow_downward),
-              iconSize: 24,
-              elevation: 16,
-              onChanged: (CameraDescription? newValue) async {
-                if (controller != null) {
-                  await controller!.dispose();
-                }
-                setState(() {
-                  controller = null;
-                  cameraDescription = newValue!;
-                });
-
-                initCam(newValue!);
-              },
-              items: widget.cameras
-                  .map<DropdownMenuItem<CameraDescription>>((value) {
-                return DropdownMenuItem<CameraDescription>(
-                  value: value,
-                  child: Text('${value.name}: ${value.lensDirection}'),
-                );
-              }).toList(),
+          Container(
+            height: 200, // Adjust this height to minimize the camera preview
+            child: AspectRatio(
+              aspectRatio: controller!.value.aspectRatio,
+              child: CameraPreview(controller!),
             ),
-          ),
-          ElevatedButton(
-            onPressed: controller == null
-                ? null
-                : () async {
-                    await controller!.startVideoRecording();
-                    await Future.delayed(const Duration(seconds: 5));
-                    final file = await controller!.stopVideoRecording();
-                    final bytes = await file.readAsBytes();
-                    final uri = Uri.dataFromBytes(bytes,
-                        mimeType: 'video/webm;codecs=vp8');
-
-                    final link = AnchorElement(href: uri.toString());
-                    link.download = 'recording.webm';
-                    link.click();
-                    link.remove();
-                  },
-            child: const Text('Record 5 second video.'),
           ),
           ElevatedButton(
             onPressed: controller == null
@@ -186,15 +149,16 @@ class _CameraViewState extends State<CameraView> {
                     final bytes = await file.readAsBytes();
 
                     final link = AnchorElement(
-                        href: Uri.dataFromBytes(bytes, mimeType: 'image/png')
-                            .toString());
+                      href: Uri.dataFromBytes(bytes, mimeType: 'image/png')
+                          .toString(),
+                    );
 
                     link.download = 'picture.png';
                     link.click();
                     link.remove();
                   },
-            child: const Text('Take picture.'),
-          )
+            child: const Text('Take picture'),
+          ),
         ],
       ),
     );

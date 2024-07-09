@@ -33,7 +33,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
         child: Column(
           children: [
             Container(
-              margin: const EdgeInsets.only(top: 20),
+              margin: const EdgeInsets.only(top: 10),
               height: 50,
               decoration: const BoxDecoration(),
               child: TabBar(
@@ -48,7 +48,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                 labelColor: buttonColor.yellow,
                 unselectedLabelColor: Colors.grey.shade900,
                 labelStyle: const TextStyle(
-                  fontSize: 24,
+                  fontSize: 14,
                   fontWeight: FontWeight.w400,
                 ),
                 tabs: const [

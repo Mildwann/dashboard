@@ -9,7 +9,7 @@ class Inprogress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 40),
+      padding: EdgeInsets.only(top: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -29,7 +29,7 @@ class Inprogress extends StatelessWidget {
 
   Widget buildSection(String title, String item, Map<String, double> dataMap) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 35),
+      padding: const EdgeInsets.only(bottom: 25),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -37,15 +37,15 @@ class Inprogress extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
               ),
               Text(
                 item,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
               ),
             ],
           ),
-          SizedBox(height: 11),
+          SizedBox(height: 10),
           CombinedValueBarChart(dataMap: dataMap, colorMap: {
             "Flutter": orderItem.yellow,
             "React": orderItem.purple,
@@ -73,7 +73,7 @@ class CombinedValueBarChart extends StatelessWidget {
             return Expanded(
               flex: entry.value.toInt(),
               child: Container(
-                height: 30,
+                height: 22,
                 decoration: BoxDecoration(
                   color: colorMap[entry.key],
                   borderRadius: BorderRadius.horizontal(
@@ -86,14 +86,14 @@ class CombinedValueBarChart extends StatelessWidget {
                 child: Center(
                   child: Text(
                     '${entry.value}',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white, fontSize: 12),
                   ),
                 ),
               ),
             );
           }).toList(),
         ),
-        SizedBox(height: 16),
+        SizedBox(height: 10),
       ],
     );
   }

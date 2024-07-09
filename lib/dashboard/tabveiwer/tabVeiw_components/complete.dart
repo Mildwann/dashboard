@@ -13,10 +13,11 @@ class Com_Complete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 90,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
           color: const Color.fromARGB(115, 255, 255, 255), // Background color
-          border: Border.all(color: Color.fromARGB(255, 224, 224, 224)),
+          border: Border.all(color: const Color.fromARGB(255, 224, 224, 224)),
           borderRadius: BorderRadius.circular(20) // Border color
           ),
       child: Column(
@@ -28,7 +29,7 @@ class Com_Complete extends StatelessWidget {
               Expanded(
                 child: Row(
                   children: [
-                    Image.asset(image),
+                    SizedBox(height: 20, child: Image.asset(image)),
                     const SizedBox(
                       width: 8,
                     ),
@@ -36,7 +37,7 @@ class Com_Complete extends StatelessWidget {
                       child: Text(
                         month,
                         style: const TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.w400),
+                            fontSize: 14, fontWeight: FontWeight.w400),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -49,7 +50,7 @@ class Com_Complete extends StatelessWidget {
             margin: const EdgeInsets.only(top: 5),
             child: Text(
               "$amount THB",
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 28),
+              style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
               overflow: TextOverflow.ellipsis,
             ),
           )

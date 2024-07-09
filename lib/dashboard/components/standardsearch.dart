@@ -26,18 +26,18 @@ class Standardsearch extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: const EdgeInsets.only(bottom: 16),
+              margin: const EdgeInsets.only(bottom: 13),
               child: Text(
                 head,
                 style: const TextStyle(
-                  fontSize: 18,
+                  fontSize: 12,
                   fontWeight: FontWeight.w400,
                   fontFamily: "NT",
                 ),
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 35,
               child: TextField(
                 controller: controller,
                 decoration: InputDecoration(

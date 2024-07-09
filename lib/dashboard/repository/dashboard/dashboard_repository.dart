@@ -1,5 +1,5 @@
 import 'package:dashbord_flutter/api/dashboard_api.dart';
-import 'package:dashbord_flutter/dashboard/model/dashboard_respond.dart';
+import 'package:dashbord_flutter/dashboard/model/dashboard_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 abstract class DashboardRepository {

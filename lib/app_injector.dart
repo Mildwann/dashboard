@@ -1,7 +1,9 @@
 import 'package:dashbord_flutter/approve_task/view_model/searchinquire_viewmodel.dart';
+import 'package:dashbord_flutter/dashboard/view_model/dashboard_complete_viewmodel.dart';
+import 'package:dashbord_flutter/dashboard/view_model/dashboard_order_viewmodel.dart';
+import 'package:dashbord_flutter/dashboard/view_model/dashboard_service_viewmodel.dart';
 
 import 'app_injector.config.dart';
-import 'approve_task/model/searchInquire_model.dart';
 import 'constants/app_import.dart';
 
 final getIt = GetIt.instance;
@@ -61,4 +63,10 @@ abstract class ViewModelModule {
   DashboardViewmodel dashboardViewModel() => DashboardViewmodel();
   ApproveViewModel approveViewModel() => ApproveViewModel();
   SearchinquireViewmodel searchinquireViewmodel() => SearchinquireViewmodel();
+  DashboardServiceViewmodel dashboardServiceViewmodel() =>
+      DashboardServiceViewmodel();
+  DashboardOrderViewmodel dashboardOrderViewmodel() =>
+      DashboardOrderViewmodel();
+  DashboardCompleteViewmodel dashboardCompleteViewmodel() =>
+      DashboardCompleteViewmodel();
 }

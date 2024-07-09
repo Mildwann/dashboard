@@ -3,6 +3,9 @@
 import 'package:dashbord_flutter/app_injector.dart';
 import 'package:dashbord_flutter/dashboard/components/orderItemsummary.dart';
 import 'package:dashbord_flutter/dashboard/components/standardsearch.dart';
+import 'package:dashbord_flutter/dashboard/view_model/dashboard_complete_viewmodel.dart';
+import 'package:dashbord_flutter/dashboard/view_model/dashboard_order_viewmodel.dart';
+import 'package:dashbord_flutter/dashboard/view_model/dashboard_service_viewmodel.dart';
 import 'package:dashbord_flutter/dashboard/view_model/dashboard_viewmodel.dart';
 import 'package:dashbord_flutter/constants/ColorApp.dart';
 import 'package:dashbord_flutter/dashboard/components/ordertype.dart';
@@ -21,6 +24,9 @@ class MyDashBord extends StatefulWidget {
 
 class _MyDashBordState extends State<MyDashBord> {
   final DashboardViewmodel viewModel = getIt();
+  final DashboardServiceViewmodel serviceViewmodel = getIt();
+  final DashboardOrderViewmodel orderViewmodel = getIt();
+  final DashboardCompleteViewmodel completeViewmodel = getIt();
 
   TextEditingController employeeController = TextEditingController();
   TextEditingController fullnameController = TextEditingController();
@@ -29,7 +35,9 @@ class _MyDashBordState extends State<MyDashBord> {
   @override
   void initState() {
     viewModel.getDashboard();
-    //viewModel.fetchUser();
+    serviceViewmodel.getService();
+    orderViewmodel.getOrder();
+    completeViewmodel.getComplete2();
     super.initState();
   }
 

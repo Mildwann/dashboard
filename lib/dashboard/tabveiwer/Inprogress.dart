@@ -1,29 +1,87 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
+import 'package:dashbord_flutter/app_injector.dart';
 import 'package:dashbord_flutter/constants/ColorApp.dart';
+import 'package:dashbord_flutter/dashboard/view_model/dashboard_order_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class Inprogress extends StatelessWidget {
+class Inprogress extends StatefulWidget {
   const Inprogress({super.key});
 
   @override
+  State<Inprogress> createState() => _InprogressState();
+}
+
+class _InprogressState extends State<Inprogress> {
+  final DashboardOrderViewmodel dashboardOrderViewmodel = getIt();
+
+  @override
+  void initState() {
+    dashboardOrderViewmodel.getOrder();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 30),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          buildSection("Over Due :", " 50 Item",
-              {"Flutter": 10, "React": 15, "Xamarin": 25}),
-          buildSection("Over Due :", " 20 Item", {"React": 10, "Xamarin": 10}),
-          buildSection("Over Due :", " 9 Item", {
-            "Flutter": 6,
-            "React": 3,
-          }),
-          buildSection("Over Due :", " 120 Item",
-              {"Flutter": 40, "React": 40, "Xamarin": 40}),
-        ],
-      ),
+    return ChangeNotifierProvider(
+      create: (context) => dashboardOrderViewmodel,
+      builder: (context, _) {
+        return Container(
+          padding: EdgeInsets.only(top: 30),
+          child: Consumer<DashboardOrderViewmodel>(
+            builder: (context, viewModel, _) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  buildSection(
+                      "Over Due :",
+                      "${dashboardOrderViewmodel.inprogress.overDue?.totalItem} Item",
+                      {
+                        "newItem": dashboardOrderViewmodel
+                            .inprogress.overDue!.newItem as double,
+                        "provisioningItem": dashboardOrderViewmodel
+                            .inprogress.overDue!.provisioningItem as double,
+                        "billingItem": dashboardOrderViewmodel
+                            .inprogress.overDue!.billingItem as double,
+                      }),
+                  buildSection(
+                      "At Risk :",
+                      "${dashboardOrderViewmodel.inprogress.atRisk?.totalItem} Item",
+                      {
+                        "newItem": dashboardOrderViewmodel
+                            .inprogress.atRisk!.newItem as double,
+                        "provisioningItem": dashboardOrderViewmodel
+                            .inprogress.atRisk!.provisioningItem as double,
+                        "billingItem": dashboardOrderViewmodel
+                            .inprogress.atRisk!.billingItem as double,
+                      }),
+                  buildSection(
+                      "Due This week :",
+                      "${dashboardOrderViewmodel.inprogress.dueThisWeek?.totalItem} Item",
+                      {
+                        "newItem": dashboardOrderViewmodel
+                            .inprogress.dueThisWeek!.newItem as double,
+                        "provisioningItem": dashboardOrderViewmodel
+                            .inprogress.dueThisWeek!.provisioningItem as double,
+                        "billingItem": dashboardOrderViewmodel
+                            .inprogress.dueThisWeek!.billingItem as double,
+                      }),
+                  buildSection(
+                      "Due This month :",
+                      "${dashboardOrderViewmodel.inprogress.dueThisMonth?.totalItem} Item",
+                      {
+                        "newItem": dashboardOrderViewmodel
+                            .inprogress.dueThisMonth!.newItem as double,
+                        "provisioningItem": dashboardOrderViewmodel.inprogress
+                            .dueThisMonth!.provisioningItem as double,
+                        "billingItem": dashboardOrderViewmodel
+                            .inprogress.dueThisMonth!.billingItem as double,
+                      }),
+                ],
+              );
+            },
+          ),
+        );
+      },
     );
   }
 
@@ -46,11 +104,7 @@ class Inprogress extends StatelessWidget {
             ],
           ),
           SizedBox(height: 10),
-          CombinedValueBarChart(dataMap: dataMap, colorMap: {
-            "Flutter": orderItem.yellow,
-            "React": orderItem.purple,
-            "Xamarin": orderItem.blue,
-          }),
+          CombinedValueBarChart(dataMap: dataMap),
         ],
       ),
     );
@@ -59,23 +113,27 @@ class Inprogress extends StatelessWidget {
 
 class CombinedValueBarChart extends StatelessWidget {
   final Map<String, double> dataMap;
-  final Map<String, Color> colorMap;
 
-  CombinedValueBarChart(
-      {super.key, required this.dataMap, required this.colorMap});
+  CombinedValueBarChart({super.key, required this.dataMap});
 
   @override
   Widget build(BuildContext context) {
+    // Calculate total sum of values
+    double totalSum =
+        dataMap.values.fold(0, (previous, current) => previous + current);
+
     return Column(
       children: [
         Row(
           children: dataMap.entries.map((entry) {
+            double percentage =
+                totalSum != 0 ? entry.value / totalSum : 1 / dataMap.length;
             return Expanded(
-              flex: entry.value.toInt(),
+              flex: (percentage * 100).toInt(),
               child: Container(
                 height: 22,
                 decoration: BoxDecoration(
-                  color: colorMap[entry.key],
+                  color: _getColorForEntry(entry.key),
                   borderRadius: BorderRadius.horizontal(
                     left: Radius.circular(
                         dataMap.keys.first == entry.key ? 40 : 0),
@@ -96,5 +154,18 @@ class CombinedValueBarChart extends StatelessWidget {
         SizedBox(height: 10),
       ],
     );
+  }
+
+  Color _getColorForEntry(String key) {
+    switch (key) {
+      case 'newItem':
+        return orderItem.yellow;
+      case 'provisioningItem':
+        return orderItem.purple;
+      case 'billingItem':
+        return orderItem.blue;
+      default:
+        return Colors.grey;
+    }
   }
 }

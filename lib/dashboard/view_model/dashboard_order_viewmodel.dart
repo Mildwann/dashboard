@@ -34,8 +34,8 @@ class DashboardOrderViewmodel with ChangeNotifier {
 
     final result = await dashboardApi.getDashboardOrder(requestBody);
     if (result.data.status?.code == 200) {
-      result.data.data?.inprogress = inprogress;
-      result.data.data?.summary = summary;
+      _inprogress = result.data.data!.inprogress!;
+      _summary = result.data.data!.summary!;
     } else {
       print("No");
     }

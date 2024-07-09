@@ -26,14 +26,37 @@ class DashboardServiceViewmodel with ChangeNotifier {
     final requestBody = {
       "user_id": "",
       "billing_acct_number": "",
-      "month": "01",
+      "month": "7",
       "year": "2019"
     };
-
     final result = await dashboardApi.getDashboardService(requestBody);
     if (result.data.status?.code == 200) {
-      result.data.data?.approveTask = approveTask;
-      result.data.data?.orderType = orderType;
+      _orderType = result.data.data!.orderType!;
+      _approveTask = result.data.data!.approveTask!;
+
+      print(approveTask.toJson());
+      print(orderType.toJson());
+    } else {
+      print("No");
+    }
+    notifyListeners();
+  }
+
+  Future<void> getServiceBySearch(
+      String month, String year, String user, String billing) async {
+    final requestBody = {
+      "user_id": user,
+      "billing_acct_number": billing,
+      "month": month,
+      "year": year
+    };
+    final result = await dashboardApi.getDashboardService(requestBody);
+    if (result.data.status?.code == 200) {
+      _orderType = result.data.data!.orderType!;
+      _approveTask = result.data.data!.approveTask!;
+
+      print(approveTask.toJson());
+      print(orderType.toJson());
     } else {
       print("No");
     }

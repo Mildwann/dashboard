@@ -35,7 +35,7 @@ abstract class DashboardApi {
     @Body() Map<String, dynamic> body,
   );
 
-  @POST('dashboard/order/complete')
+  @POST('/dashboard/order/complete')
   @Headers(<String, dynamic>{
     "Accept": "application/json",
   })

@@ -128,7 +128,7 @@ class _DashboardApi implements DashboardApi {
     )
             .compose(
               _dio.options,
-              'dashboard/order/complete',
+              '/dashboard/order/complete',
               queryParameters: queryParameters,
               data: _data,
             )

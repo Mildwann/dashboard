@@ -65,7 +65,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  const Inprogress(),
+                  Inprogress(),
                   Complete(),
                 ],
               ),

@@ -22,12 +22,34 @@ class DashboardCompleteViewmodel with ChangeNotifier {
     final requestBody = {
       "user_id": "wom112",
       "billing_acct_number": "1206451003",
-      "year": "2022"
+      "year": "2024"
     };
 
     final result = await dashboardApi.getComplete(requestBody);
     if (result.data.status?.code == 200) {
-      result.data.data?.orderComplete = orderComplete;
+      // result.data.data?.orderComplete = orderComplete;
+
+      _orderComplete = result.data.data!.orderComplete!;
+      print(orderComplete.toJson());
+    } else {
+      print("No");
+    }
+    notifyListeners();
+  }
+
+  Future<void> getCompleteByYear(String year) async {
+    final requestBody = {
+      "user_id": "wom112",
+      "billing_acct_number": "1206451003",
+      "year": year
+    };
+
+    final result = await dashboardApi.getComplete(requestBody);
+    if (result.data.status?.code == 200) {
+      // result.data.data?.orderComplete = orderComplete;
+
+      _orderComplete = result.data.data!.orderComplete!;
+      print(orderComplete.toJson());
     } else {
       print("No");
     }

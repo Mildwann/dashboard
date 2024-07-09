@@ -121,7 +121,7 @@ class OrderType {
 }
 
 class NewOrder {
-  int? values;
+  double? values;
   int? items;
 
   NewOrder({this.values, this.items});

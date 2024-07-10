@@ -33,18 +33,13 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
     'Package/Component Approve',
   ];
 
-  void showData() {
-    print(taskTypeController.text);
-    print(orderIdController.text);
-    print(approveStatusController.text);
-
-    _searchinquireViewmodel.getSearch2(approveStatusController.text,
+  void searchButton() {
+    const TableTask().searchMid(approveStatusController.text,
         taskTypeController.text, orderIdController.text);
   }
 
   String? selectedValue;
   final ApproveViewModel _approveViewModel = getIt();
-  final SearchinquireViewmodel _searchinquireViewmodel = getIt();
   final ApproveStatusViewModel _approveStatusViewModel = getIt();
   @override
   void initState() {
@@ -68,9 +63,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
         ),
       );
     });
-    //_approveViewModel.setDropdown();
     _approveViewModel.getApprove2();
-    // _searchinquireViewmodel.getSearch2();
     _approveStatusViewModel.getAppStatus();
     super.initState();
   }
@@ -197,7 +190,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                                           borderRadius:
                                               BorderRadius.circular(12)),
                                     ),
-                                    onPressed: showData,
+                                    onPressed: searchButton,
                                     child: const Text(
                                       'Search',
                                       style: TextStyle(

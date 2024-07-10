@@ -9,23 +9,19 @@ class SearchinquireViewmodel with ChangeNotifier {
 
   late Status _status;
   late Data _data;
+  List<Items>? _item;
 
   Data get data => _data;
   Status get status => _status;
+  List<Items>? get item => _item;
 
   Future<void> getSearch2(
       String approvalStatusValue, String taskType, String orderId) async {
     final requestBody = {
-      "page": 1,
-      "page_size": 100,
+      "page": 10,
+      "page_size": 10,
       "items": {
-        // "approval_task_id": "string",
-        "approval_status_value": approvalStatusValue,
-        // "subject": "string",
-        // "service_item_id": "string",
-        // "task_status_value": "string",
-        // "approver_user_id": "string",
-        // "due_date": "string",
+        "approval_status_value": "2002",
         "task_type": taskType,
         "order_id": orderId
       }
@@ -34,17 +30,42 @@ class SearchinquireViewmodel with ChangeNotifier {
     try {
       final result = await approveApi.getSearch(requestBody);
 
-      // Ensure that result.status and result.data are not null
-      if (result.data?.status?.code == 200 && result.data?.data != null) {
-        _data = result.data.data!; // Assign result.data.data to _data
-        print(data);
-        notifyListeners(); // Notify listeners about the change
+      if (result.data.status?.code == 200 && result.data.data != null) {
+        _item = result.data.data?.data?.items;
+        print(item);
+        notifyListeners();
       } else {
-        // Handle the case when the status code is not 200 or data is null
         print("Failed to fetch data");
       }
     } catch (e) {
-      // Handle any errors that occur during the API call
+      print("Error occurred: $e");
+    }
+  }
+
+  Future<void> getSearchBase() async {
+    final requestBody = {
+      "page": 1,
+      "page_size": 10,
+      "items": {
+        "approval_status_value": "2002",
+        "task_type": "Provisioning",
+        "order_id": ""
+      }
+    };
+
+    try {
+      final result = await approveApi.getSearch(requestBody);
+
+      if (result.data.status?.code == 200 && result.data.data != null) {
+        _item = result.data.data?.data?.items;
+        print(item);
+        print("${item?[0].subject} item");
+        print("item");
+        notifyListeners();
+      } else {
+        print("Failed to fetch data");
+      }
+    } catch (e) {
       print("Error occurred: $e");
     }
   }

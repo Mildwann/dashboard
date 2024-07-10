@@ -11,7 +11,8 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'app_injector.dart' as _i8;
+import 'app_injector.dart' as _i9;
+import 'approve_task/view_model/approve_status_viewmodel.dart' as _i8;
 import 'approve_task/view_model/searchinquire_viewmodel.dart' as _i4;
 import 'constants/app_import.dart' as _i3;
 import 'dashboard/view_model/dashboard_complete_viewmodel.dart' as _i7;
@@ -44,6 +45,8 @@ _i1.GetIt $initGetIt(
       () => viewModelModule.dashboardOrderViewmodel());
   gh.factory<_i7.DashboardCompleteViewmodel>(
       () => viewModelModule.dashboardCompleteViewmodel());
+  gh.factory<_i8.ApproveStatusViewModel>(
+      () => viewModelModule.approveStatusViewModel());
   gh.singleton<_i3.Interceptor>(
     () => interceptorModule.prettyLoggerInterceptor(),
     instanceName: 'prettyLogger',
@@ -61,10 +64,10 @@ _i1.GetIt $initGetIt(
   return getIt;
 }
 
-class _$ViewModelModule extends _i8.ViewModelModule {}
+class _$ViewModelModule extends _i9.ViewModelModule {}
 
-class _$InterceptorModule extends _i8.InterceptorModule {}
+class _$InterceptorModule extends _i9.InterceptorModule {}
 
-class _$ThirdPartyModule extends _i8.ThirdPartyModule {}
+class _$ThirdPartyModule extends _i9.ThirdPartyModule {}
 
-class _$ApiModule extends _i8.ApiModule {}
+class _$ApiModule extends _i9.ApiModule {}

@@ -33,22 +33,6 @@ class ApproveViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  // List<String>? setDropdown() {
-  //   _items = [
-  //     Items(key: "3001", value: "mild"),
-  //     Items(key: "3003", value: "wann"),
-  //     Items(key: "4001", value: "love"),
-  //   ];
-
-  //   List<String>? a = _items
-  //       ?.map((item) => item.value)
-  //       .where((value) => value != null)
-  //       .toList()
-  //       .cast<String>();
-
-  //   notifyListeners();
-  //   return a;
-  // }
   void setApproveDropdown(Items value) {
     showData = value;
     notifyListeners();

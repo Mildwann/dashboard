@@ -29,55 +29,67 @@ class _InprogressState extends State<Inprogress> {
           padding: EdgeInsets.only(top: 30),
           child: Consumer<DashboardOrderViewmodel>(
             builder: (context, viewModel, _) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  buildSection(
-                      "Over Due :",
-                      "${dashboardOrderViewmodel.inprogress.overDue?.totalItem} Item",
-                      {
-                        "newItem": dashboardOrderViewmodel
-                            .inprogress.overDue!.newItem as double,
-                        "provisioningItem": dashboardOrderViewmodel
-                            .inprogress.overDue!.provisioningItem as double,
-                        "billingItem": dashboardOrderViewmodel
-                            .inprogress.overDue!.billingItem as double,
-                      }),
-                  buildSection(
-                      "At Risk :",
-                      "${dashboardOrderViewmodel.inprogress.atRisk?.totalItem} Item",
-                      {
-                        "newItem": dashboardOrderViewmodel
-                            .inprogress.atRisk!.newItem as double,
-                        "provisioningItem": dashboardOrderViewmodel
-                            .inprogress.atRisk!.provisioningItem as double,
-                        "billingItem": dashboardOrderViewmodel
-                            .inprogress.atRisk!.billingItem as double,
-                      }),
-                  buildSection(
-                      "Due This week :",
-                      "${dashboardOrderViewmodel.inprogress.dueThisWeek?.totalItem} Item",
-                      {
-                        "newItem": dashboardOrderViewmodel
-                            .inprogress.dueThisWeek!.newItem as double,
-                        "provisioningItem": dashboardOrderViewmodel
-                            .inprogress.dueThisWeek!.provisioningItem as double,
-                        "billingItem": dashboardOrderViewmodel
-                            .inprogress.dueThisWeek!.billingItem as double,
-                      }),
-                  buildSection(
-                      "Due This month :",
-                      "${dashboardOrderViewmodel.inprogress.dueThisMonth?.totalItem} Item",
-                      {
-                        "newItem": dashboardOrderViewmodel
-                            .inprogress.dueThisMonth!.newItem as double,
-                        "provisioningItem": dashboardOrderViewmodel.inprogress
-                            .dueThisMonth!.provisioningItem as double,
-                        "billingItem": dashboardOrderViewmodel
-                            .inprogress.dueThisMonth!.billingItem as double,
-                      }),
-                ],
-              );
+              return dashboardOrderViewmodel.isLoading
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        buildSection(
+                            "Over Due :",
+                            "${dashboardOrderViewmodel.inprogress.overDue?.totalItem} Item",
+                            {
+                              "newItem": dashboardOrderViewmodel
+                                  .inprogress.overDue!.newItem as double,
+                              "provisioningItem": dashboardOrderViewmodel
+                                  .inprogress
+                                  .overDue!
+                                  .provisioningItem as double,
+                              "billingItem": dashboardOrderViewmodel
+                                  .inprogress.overDue!.billingItem as double,
+                            }),
+                        buildSection(
+                            "At Risk :",
+                            "${dashboardOrderViewmodel.inprogress.atRisk?.totalItem} Item",
+                            {
+                              "newItem": dashboardOrderViewmodel
+                                  .inprogress.atRisk!.newItem as double,
+                              "provisioningItem": dashboardOrderViewmodel
+                                  .inprogress
+                                  .atRisk!
+                                  .provisioningItem as double,
+                              "billingItem": dashboardOrderViewmodel
+                                  .inprogress.atRisk!.billingItem as double,
+                            }),
+                        buildSection(
+                            "Due This week :",
+                            "${dashboardOrderViewmodel.inprogress.dueThisWeek?.totalItem} Item",
+                            {
+                              "newItem": dashboardOrderViewmodel
+                                  .inprogress.dueThisWeek!.newItem as double,
+                              "provisioningItem": dashboardOrderViewmodel
+                                  .inprogress
+                                  .dueThisWeek!
+                                  .provisioningItem as double,
+                              "billingItem": dashboardOrderViewmodel.inprogress
+                                  .dueThisWeek!.billingItem as double,
+                            }),
+                        buildSection(
+                            "Due This month :",
+                            "${dashboardOrderViewmodel.inprogress.dueThisMonth?.totalItem} Item",
+                            {
+                              "newItem": dashboardOrderViewmodel
+                                  .inprogress.dueThisMonth!.newItem as double,
+                              "provisioningItem": dashboardOrderViewmodel
+                                  .inprogress
+                                  .dueThisMonth!
+                                  .provisioningItem as double,
+                              "billingItem": dashboardOrderViewmodel.inprogress
+                                  .dueThisMonth!.billingItem as double,
+                            }),
+                      ],
+                    );
             },
           ),
         );

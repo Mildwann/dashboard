@@ -39,7 +39,7 @@ class DropdownApprove extends StatelessWidget {
               isExpanded: true,
               hint: const Text(
                 "My group & open",
-                style: TextStyle(fontSize: 20, color: Color(0xFFC8C8C8)),
+                style: TextStyle(fontSize: 20, color: Colors.black),
               ),
               items: (listItem ?? [])
                   .map((Items item) => DropdownMenuItem<Items>(
@@ -47,7 +47,7 @@ class DropdownApprove extends StatelessWidget {
                         child: Text(
                           item.value ?? "",
                           style: const TextStyle(
-                              fontSize: 20, color: Color(0xFFC8C8C8)),
+                              fontSize: 20, color: Colors.black),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ))

@@ -365,67 +365,75 @@ class _MyDashBordState extends State<MyDashBord> {
                             Expanded(
                               flex: 1,
                               child: Container(
-                                padding: const EdgeInsets.all(30),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      color: Color.fromRGBO(41, 72, 152, 0.06),
-                                      offset: Offset(0, 0),
-                                      blurRadius: 50,
-                                      spreadRadius: 0,
-                                    ),
-                                  ],
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      "Order Type",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 18),
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    Expanded(
-                                        child: Ordertype(
-                                      title: "New",
-                                      amount: serviceViewmodel
-                                                  .orderType.newOrder?.values !=
-                                              null
-                                          ? convertNumber(serviceViewmodel
-                                              .orderType.newOrder!.values!)
-                                          : "0",
-                                      order: serviceViewmodel
-                                          .orderType.newOrder!.items
-                                          .toString(),
-                                      color: ColorOrderType.yellow,
-                                      image: 'assets/images/newnoback.png',
-                                    )),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Expanded(
-                                        child: Ordertype(
-                                      title: "Modify",
-                                      amount: serviceViewmodel
-                                                  .orderType.modify?.values !=
-                                              null
-                                          ? convertNumber(serviceViewmodel
-                                              .orderType.modify!.values!)
-                                          : "0",
-                                      order: serviceViewmodel
-                                          .orderType.modify!.items
-                                          .toString(),
-                                      color: ColorOrderType.orange,
-                                      image: 'assets/images/edit.png',
-                                    )),
-                                  ],
-                                ),
-                              ),
+                                  padding: const EdgeInsets.all(30),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        color:
+                                            Color.fromRGBO(41, 72, 152, 0.06),
+                                        offset: Offset(0, 0),
+                                        blurRadius: 50,
+                                        spreadRadius: 0,
+                                      ),
+                                    ],
+                                  ),
+                                  child: serviceViewmodel.isLoading
+                                      ? Center(
+                                          child: CircularProgressIndicator(),
+                                        )
+                                      : Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Text(
+                                              "Order Type",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 18),
+                                            ),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            Expanded(
+                                                child: Ordertype(
+                                              title: "New",
+                                              amount: serviceViewmodel.orderType
+                                                          .newOrder?.values !=
+                                                      null
+                                                  ? convertNumber(
+                                                      serviceViewmodel.orderType
+                                                          .newOrder!.values!)
+                                                  : "0",
+                                              order: serviceViewmodel
+                                                  .orderType.newOrder!.items
+                                                  .toString(),
+                                              color: ColorOrderType.yellow,
+                                              image:
+                                                  'assets/images/newnoback.png',
+                                            )),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Expanded(
+                                                child: Ordertype(
+                                              title: "Modify",
+                                              amount: serviceViewmodel.orderType
+                                                          .modify?.values !=
+                                                      null
+                                                  ? convertNumber(
+                                                      serviceViewmodel.orderType
+                                                          .modify!.values!)
+                                                  : "0",
+                                              order: serviceViewmodel
+                                                  .orderType.modify!.items
+                                                  .toString(),
+                                              color: ColorOrderType.orange,
+                                              image: 'assets/images/edit.png',
+                                            )),
+                                          ],
+                                        )),
                             ),
                           ],
                         ),
@@ -493,215 +501,254 @@ class _MyDashBordState extends State<MyDashBord> {
                                   ],
                                   color: Colors.white,
                                 ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      margin: const EdgeInsets.only(
-                                          left: 30, top: 30),
-                                      child: const Text(
-                                        "Approve Task",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 18),
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: const EdgeInsets.only(top: 10),
-                                      child: Row(
+                                child: serviceViewmodel.isLoading
+                                    ? Center(
+                                        child: CircularProgressIndicator(),
+                                      )
+                                    : Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Expanded(
-                                            flex: 1,
-                                            child: Container(
-                                              margin: const EdgeInsets.only(
-                                                  left: 30, top: 10),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  const Text(
-                                                    "Provisioning",
-                                                    style: TextStyle(
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      const Icon(
-                                                        Icons.circle,
-                                                        color: Color.fromARGB(
-                                                            255, 151, 102, 214),
-                                                        size: 10,
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 10,
-                                                      ),
-                                                      Flexible(
-                                                        child: Text(
-                                                          "${serviceViewmodel.approveTask.provisioning.toString()} Task",
-                                                          style: const TextStyle(
-                                                              fontSize: 14,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700),
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
+                                          Container(
+                                            margin: const EdgeInsets.only(
+                                                left: 30, top: 30),
+                                            child: const Text(
+                                              "Approve Task",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 18),
                                             ),
                                           ),
-                                          Expanded(
-                                            flex: 1,
-                                            child: Container(
-                                              margin: const EdgeInsets.only(
-                                                  left: 30, top: 10),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    "Package/component",
-                                                    style: TextStyle(
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Icon(
-                                                        Icons.circle,
-                                                        color: Color.fromARGB(
-                                                            255, 232, 143, 173),
-                                                        size: 10,
-                                                      ),
-                                                      SizedBox(
-                                                        width: 10,
-                                                      ),
-                                                      Flexible(
-                                                        child: Text(
-                                                          "${serviceViewmodel.approveTask.packageComponent.toString()} Task",
+                                          Container(
+                                            margin:
+                                                const EdgeInsets.only(top: 10),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Container(
+                                                    margin:
+                                                        const EdgeInsets.only(
+                                                            left: 30, top: 10),
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        const Text(
+                                                          "Provisioning",
                                                           style: TextStyle(
                                                               fontSize: 14,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .w700),
+                                                                      .w400),
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                         ),
-                                                      ),
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 1,
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 40),
-                                              child: Container(
-                                                margin: const EdgeInsets.only(
-                                                    left: 30, top: 10),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      "Backdate",
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w400),
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
+                                                        Row(
+                                                          children: [
+                                                            const Icon(
+                                                              Icons.circle,
+                                                              color: Color
+                                                                  .fromARGB(
+                                                                      255,
+                                                                      151,
+                                                                      102,
+                                                                      214),
+                                                              size: 10,
+                                                            ),
+                                                            const SizedBox(
+                                                              width: 10,
+                                                            ),
+                                                            Flexible(
+                                                              child: Text(
+                                                                "${serviceViewmodel.approveTask.provisioning.toString()} Task",
+                                                                style: const TextStyle(
+                                                                    fontSize:
+                                                                        14,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w700),
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      ],
                                                     ),
-                                                    Row(
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Container(
+                                                    margin:
+                                                        const EdgeInsets.only(
+                                                            left: 30, top: 10),
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: [
-                                                        Icon(
-                                                          Icons.circle,
-                                                          color: Color.fromARGB(
-                                                              255,
-                                                              79,
-                                                              162,
-                                                              218),
-                                                          size: 10,
+                                                        Text(
+                                                          "Package/component",
+                                                          style: TextStyle(
+                                                              fontSize: 14,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400),
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
                                                         ),
-                                                        SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        Flexible(
-                                                          child: Text(
-                                                            "${serviceViewmodel.approveTask.backdate.toString()} Task",
+                                                        Row(
+                                                          children: [
+                                                            Icon(
+                                                              Icons.circle,
+                                                              color: Color
+                                                                  .fromARGB(
+                                                                      255,
+                                                                      232,
+                                                                      143,
+                                                                      173),
+                                                              size: 10,
+                                                            ),
+                                                            SizedBox(
+                                                              width: 10,
+                                                            ),
+                                                            Flexible(
+                                                              child: Text(
+                                                                "${serviceViewmodel.approveTask.packageComponent.toString()} Task",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        14,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w700),
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 40),
+                                                    child: Container(
+                                                      margin:
+                                                          const EdgeInsets.only(
+                                                              left: 30,
+                                                              top: 10),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            "Backdate",
                                                             style: TextStyle(
                                                                 fontSize: 14,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w700),
+                                                                        .w400),
                                                             overflow:
                                                                 TextOverflow
                                                                     .ellipsis,
                                                           ),
-                                                        ),
-                                                      ],
-                                                    )
-                                                  ],
+                                                          Row(
+                                                            children: [
+                                                              Icon(
+                                                                Icons.circle,
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        79,
+                                                                        162,
+                                                                        218),
+                                                                size: 10,
+                                                              ),
+                                                              SizedBox(
+                                                                width: 10,
+                                                              ),
+                                                              Flexible(
+                                                                child: Text(
+                                                                  "${serviceViewmodel.approveTask.backdate.toString()} Task",
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          14,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w700),
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
+                                              ],
                                             ),
+                                          ),
+                                          const SizedBox(
+                                            height: 50,
+                                          ),
+                                          SizedBox(
+                                            height: 350,
+                                            child: Expanded(
+                                                child: Stack(
+                                                    alignment: Alignment.center,
+                                                    children: [
+                                                  Text(
+                                                    "${serviceViewmodel.approveTask.totals.toString()} Task",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontSize: 14),
+                                                  ),
+                                                  PieChart(
+                                                      PieChartData(sections: [
+                                                    PieChartSectionData(
+                                                        radius: 60,
+                                                        value: serviceViewmodel
+                                                            .approveTask
+                                                            .backdate
+                                                            ?.toDouble(),
+                                                        color:
+                                                            approveColor.blue),
+                                                    PieChartSectionData(
+                                                        radius: 60,
+                                                        value: serviceViewmodel
+                                                            .approveTask
+                                                            .packageComponent
+                                                            ?.toDouble(),
+                                                        color:
+                                                            approveColor.pink),
+                                                    PieChartSectionData(
+                                                        radius: 60,
+                                                        value: serviceViewmodel
+                                                            .approveTask
+                                                            .provisioning
+                                                            ?.toDouble(),
+                                                        color:
+                                                            approveColor.purple)
+                                                  ])),
+                                                ])),
                                           ),
                                         ],
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 50,
-                                    ),
-                                    SizedBox(
-                                      height: 350,
-                                      child: Expanded(
-                                          child: Stack(
-                                              alignment: Alignment.center,
-                                              children: [
-                                            Text(
-                                              "${serviceViewmodel.approveTask.totals.toString()} Task",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 14),
-                                            ),
-                                            PieChart(PieChartData(sections: [
-                                              PieChartSectionData(
-                                                  radius: 60,
-                                                  value: serviceViewmodel
-                                                      .approveTask.backdate
-                                                      ?.toDouble(),
-                                                  color: approveColor.blue),
-                                              PieChartSectionData(
-                                                  radius: 60,
-                                                  value: serviceViewmodel
-                                                      .approveTask
-                                                      .packageComponent
-                                                      ?.toDouble(),
-                                                  color: approveColor.pink),
-                                              PieChartSectionData(
-                                                  radius: 60,
-                                                  value: serviceViewmodel
-                                                      .approveTask.provisioning
-                                                      ?.toDouble(),
-                                                  color: approveColor.purple)
-                                            ])),
-                                          ])),
-                                    ),
-                                  ],
-                                ),
                               ),
                             ),
                           ],

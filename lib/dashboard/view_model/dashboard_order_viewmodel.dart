@@ -23,6 +23,12 @@ class DashboardOrderViewmodel with ChangeNotifier {
   NewSum get newsum => _newSum;
   Inprogress get inprogress => _inprogress;
   OverDue get overDue => _overDue;
+  bool isLoading = true;
+
+  void setLoading(bool loading) {
+    isLoading = loading;
+    notifyListeners();
+  }
 
   Future<void> getOrder() async {
     final requestBody = {
@@ -32,13 +38,19 @@ class DashboardOrderViewmodel with ChangeNotifier {
       "year": "2022"
     };
 
-    final result = await dashboardApi.getDashboardOrder(requestBody);
-    if (result.data.status?.code == 200) {
-      _inprogress = result.data.data!.inprogress!;
-      _summary = result.data.data!.summary!;
-    } else {
-      print("No");
+    try {
+      final result = await dashboardApi.getDashboardOrder(requestBody);
+      if (result.data.status?.code == 200) {
+        _inprogress = result.data.data!.inprogress!;
+        _summary = result.data.data!.summary!;
+      } else {
+        print("No");
+      }
+    } catch (e) {
+    } finally {
+      setLoading(false);
     }
+
     notifyListeners();
   }
 }

@@ -19,6 +19,8 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
   final TextEditingController taskTypeController = TextEditingController();
   final TextEditingController approveStatusController = TextEditingController();
 
+  bool isDisable = true;
+
   @override
   void dispose() {
     orderIdController.dispose();
@@ -34,15 +36,26 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
   ];
 
   void searchButton() {
-    const TableTask().searchMid(approveStatusController.text,
-        taskTypeController.text, orderIdController.text);
+    const TableTask().searchMid(
+      approveStatusController.text,
+      _approveViewModel.selectedTask ?? "",
+      orderIdController.text,
+    );
   }
 
   String? selectedValue;
   final ApproveViewModel _approveViewModel = getIt();
   final ApproveStatusViewModel _approveStatusViewModel = getIt();
+  final SearchinquireViewmodel _searchinquireViewmodel = getIt();
+
   @override
   void initState() {
+    // showDialog(
+    //     context: context,
+    //     builder: (context) {
+    //       return Center(child: CircularProgressIndicator());
+    //     });
+
     _approveViewModel.eventBus.on<ApproveError>().listen((event) {
       print(event.error);
       showDialog<String>(
@@ -65,13 +78,14 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
     });
     _approveViewModel.getApprove2();
     _approveStatusViewModel.getAppStatus();
+
+    // Navigator.of(context).pop;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-
     return ChangeNotifierProvider(
         create: (context) => _approveViewModel,
         builder: (context, _) {
@@ -113,6 +127,9 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                                   dropdownList: types,
                                   inputType: TypeInput.itemDropDown,
                                   controller: taskTypeController,
+                                  selectedItem: _approveViewModel.selectedTask,
+                                  callback: (value) => _approveViewModel
+                                      .setDropDownTaskType(value),
                                 ),
                                 const SizedBox(
                                   width: 20,
@@ -168,6 +185,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                                       setState(() {
                                         orderIdController.clear();
                                       });
+                                      _approveViewModel.setDropdownDefault();
                                     },
                                     child: const Text('Clear',
                                         style: TextStyle(
@@ -219,18 +237,38 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                               height: 42,
                               width: width * 0.08,
                               child: OutlinedButton(
-                                style: OutlinedButton.styleFrom(
-                                  backgroundColor: const Color(0xFFFECE00),
-                                  side: const BorderSide(
-                                      width: 1, color: Color(0xFFFECE00)),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12)),
-                                ),
+                                style: _searchinquireViewmodel
+                                            .item?[1].isSelected ??
+                                        false
+                                    ? OutlinedButton.styleFrom(
+                                        backgroundColor: const Color.fromARGB(
+                                            255, 143, 143, 143),
+                                        side: const BorderSide(
+                                            width: 1,
+                                            color: Color.fromARGB(
+                                                255, 143, 143, 143)),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(12)),
+                                        enabledMouseCursor:
+                                            SystemMouseCursors.forbidden)
+                                    : OutlinedButton.styleFrom(
+                                        backgroundColor:
+                                            const Color(0xFFFECE00),
+                                        side: const BorderSide(
+                                            width: 1, color: Color(0xFFFECE00)),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(12)),
+                                      ),
                                 onPressed: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) => const closeTask(),
-                                  );
+                                  if (isDisable) {
+                                  } else {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => const closeTask(),
+                                    );
+                                  }
                                 },
                                 child: const Text(
                                   'Approve',

@@ -16,6 +16,8 @@ class ApproveViewModel with ChangeNotifier {
   Data get data => _data;
   List<Items>? get item => _items;
 
+  String? selectedTask;
+
   Future<void> getApprove2() async {
     try {
       final result = await approveApi.getApprove();
@@ -35,6 +37,17 @@ class ApproveViewModel with ChangeNotifier {
 
   void setApproveDropdown(Items value) {
     showData = value;
+    notifyListeners();
+  }
+
+  void setDropdownDefault() {
+    showData = null;
+    selectedTask = null;
+    notifyListeners();
+  }
+
+  void setDropDownTaskType(value) {
+    selectedTask = value;
     notifyListeners();
   }
 }

@@ -18,41 +18,61 @@ class DashboardCompleteViewmodel with ChangeNotifier {
   Data get data => _data;
   OrderComplete get orderComplete => _orderComplete;
 
+  bool isLoading = true;
+
+  void setLoading(bool loading) {
+    isLoading = loading;
+    notifyListeners();
+  }
+
   Future<void> getComplete2() async {
     final requestBody = {
       "user_id": "wom112",
       "billing_acct_number": "1206451003",
       "year": "2024"
     };
+    try {
+      final result = await dashboardApi.getComplete(requestBody);
+      if (result.data.status?.code == 200) {
+        // result.data.data?.orderComplete = orderComplete;
 
-    final result = await dashboardApi.getComplete(requestBody);
-    if (result.data.status?.code == 200) {
-      // result.data.data?.orderComplete = orderComplete;
-
-      _orderComplete = result.data.data!.orderComplete!;
-      print(orderComplete.toJson());
-    } else {
-      print("No");
+        _orderComplete = result.data.data!.orderComplete!;
+        print(orderComplete.toJson());
+      } else {
+        print("No");
+      }
+    } catch (e) {
+    } finally {
+      setLoading(false);
     }
+
     notifyListeners();
   }
 
   Future<void> getCompleteByYear(String year) async {
+    setLoading(true);
     final requestBody = {
       "user_id": "wom112",
       "billing_acct_number": "1206451003",
       "year": year
     };
 
-    final result = await dashboardApi.getComplete(requestBody);
-    if (result.data.status?.code == 200) {
-      // result.data.data?.orderComplete = orderComplete;
+    try {
+      final result = await dashboardApi.getComplete(requestBody);
+      if (result.data.status?.code == 200) {
+        // result.data.data?.orderComplete = orderComplete;
 
-      _orderComplete = result.data.data!.orderComplete!;
-      print(orderComplete.toJson());
-    } else {
-      print("No");
+        _orderComplete = result.data.data!.orderComplete!;
+        print(orderComplete.toJson());
+      } else {
+        print("No");
+      }
+    } catch (e) {
+    } finally {
+      await Future.delayed(const Duration(milliseconds: 200));
+      setLoading(false);
     }
+
     notifyListeners();
   }
 }

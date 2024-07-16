@@ -66,27 +66,21 @@ class _ItemSearchState extends State<ItemSearch> {
             isExpanded: true,
             hint: const Text(
               "Please select",
-              style: TextStyle(fontSize: 20, color: Color(0xFFC8C8C8)),
+              style: TextStyle(fontSize: 20, color: Colors.black),
             ),
             items: (widget.dropdownList ?? [])
                 .map((String item) => DropdownMenuItem<String>(
                       value: item,
                       child: Text(
                         item,
-                        style: const TextStyle(
-                            fontSize: 20, color: Color(0xFFC8C8C8)),
+                        style:
+                            const TextStyle(fontSize: 20, color: Colors.black),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ))
                 .toList(),
-            value: selectedValue,
+            value: widget.selectedItem,
             onChanged: (String? value) {
-              setState(() {
-                selectedValue = value;
-                if (widget.controller != null) {
-                  widget.controller!.text = value!;
-                }
-              });
               widget.callback
                   ?.call(value ?? ""); // Invoke callback with selected value
             },

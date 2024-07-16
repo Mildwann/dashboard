@@ -15,8 +15,16 @@ class SearchinquireViewmodel with ChangeNotifier {
   Status get status => _status;
   List<Items>? get item => _item;
 
+  bool isLoading = false;
+
+  void setLoading(bool loading) {
+    isLoading = loading;
+    notifyListeners();
+  }
+
   Future<void> getSearch2(
       String approvalStatusValue, String taskType, String orderId) async {
+    setLoading(true);
     final requestBody = {
       "page": 10,
       "page_size": 10,
@@ -39,6 +47,9 @@ class SearchinquireViewmodel with ChangeNotifier {
       }
     } catch (e) {
       print("Error occurred: $e");
+    } finally {
+      await Future.delayed(const Duration(seconds: 1));
+      setLoading(false);
     }
   }
 
@@ -68,5 +79,10 @@ class SearchinquireViewmodel with ChangeNotifier {
     } catch (e) {
       print("Error occurred: $e");
     }
+  }
+
+  void setSelected(int index, bool value) {
+    item?[index].isSelected = value;
+    notifyListeners();
   }
 }

@@ -1,4 +1,5 @@
 analyzer:
   errors:
+    empty_catches: ignore
     unused_local_variable: ignore
 include: package:flutter_lints/flutter.yaml

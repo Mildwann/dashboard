@@ -118,6 +118,7 @@ class Items {
   String? catBillAcctId;
   String? caId;
   int? rOWNUMBER;
+  bool? isSelected;
 
   Items(
       {this.approverGroup,
@@ -140,7 +141,8 @@ class Items {
       this.orderTypeName,
       this.catBillAcctId,
       this.caId,
-      this.rOWNUMBER});
+      this.rOWNUMBER,
+      this.isSelected});
 
   Items.fromJson(Map<String, dynamic> json) {
     approverGroup = json['approverGroup'];

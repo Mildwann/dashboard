@@ -25,8 +25,8 @@ class _TableTaskState extends State<TableTask> {
   @override
   void initState() {
     searchinquireViewmodel.getSearchBase();
-    super.initState();
     selectedRows = List.generate(10, (index) => false);
+    super.initState();
   }
 
   @override
@@ -154,87 +154,124 @@ class _TableTaskState extends State<TableTask> {
                     ),
                   ),
                 ],
-                rows: List<DataRow>.generate(
-                    searchinquireViewmodel.item!.length, (index) {
-                  return DataRow(
-                    cells: [
-                      DataCell(
-                        Checkbox(
-                          side: const BorderSide(color: Color(0xFFFFB900)),
-                          checkColor: Colors.white,
-                          activeColor: const Color(0xFFFFB900),
-                          value: selectedRows[index],
-                          onChanged: (value) {
-                            setState(() {
-                              selectedRows[index] = value!;
-                            });
-                          },
-                        ),
-                      ),
-                      DataCell(
-                        Container(
-                          constraints: const BoxConstraints(
-                            maxWidth: 500,
-                            minWidth: 500,
+                rows: (searchinquireViewmodel.item ?? []).isEmpty
+                    ? [
+                        const DataRow(cells: [
+                          DataCell(Text("")),
+                          DataCell(Text("")),
+                          DataCell(Text("")),
+                          DataCell(Text("")),
+                          DataCell(
+                            Center(
+                              child: Text(
+                                'No data available',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 0, 0, 0)),
+                              ),
+                            ),
                           ),
-                          child: Text(
-                            searchinquireViewmodel.item![index].subject!,
-                            maxLines: 5,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ),
-                      DataCell(
-                          Text(searchinquireViewmodel.item![index].orderId!)),
-                      DataCell(
-                          Text(searchinquireViewmodel.item![index].dueDate!)),
-                      DataCell(Text(searchinquireViewmodel
-                          .item![index].approvalStatusValueStr!)),
-                      DataCell(Text(searchinquireViewmodel.item![index].caId!)),
-                      DataCell(
-                        IconButton(
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                content: Stack(
-                                  clipBehavior: Clip.none,
-                                  children: [
-                                    Positioned(
-                                      right: -40,
-                                      top: -40,
-                                      child: InkResponse(
-                                        onTap: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: Image.asset(
-                                          "assets/images/Billing.png",
-                                          width: 100,
-                                          height: 100,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                          DataCell(Text("")),
+                          DataCell(Text("")),
+                          DataCell(Text("")),
+                        ]),
+                      ]
+                    : searchinquireViewmodel.isLoading
+                        ? [
+                            const DataRow(cells: [
+                              DataCell(Text("")),
+                              DataCell(Text("")),
+                              DataCell(Text("")),
+                              DataCell(Text("")),
+                              DataCell(
+                                Center(
+                                  child: CircularProgressIndicator(),
                                 ),
                               ),
-                            );
-                          },
-                          icon: Image.asset(
-                            "assets/images/document.png",
+                              DataCell(Text("")),
+                              DataCell(Text("")),
+                              DataCell(Text("")),
+                            ]),
+                          ]
+                        : List<DataRow>.generate(
+                            searchinquireViewmodel.item!.length,
+                            (index) {
+                              return DataRow(
+                                cells: [
+                                  DataCell(
+                                    Checkbox(
+                                      side: const BorderSide(
+                                        color:
+                                            Color.fromARGB(255, 150, 145, 132),
+                                      ),
+                                      checkColor: Colors.white,
+                                      activeColor: const Color(0xFFFFB900),
+                                      value: selectedRows[index],
+                                      onChanged: (value) {
+                                        setState(() {
+                                          selectedRows[index] = value ?? false;
+                                        });
+                                        searchinquireViewmodel.setSelected(
+                                          index,
+                                          value ?? false,
+                                        );
+                                        print(selectedRows.toString());
+                                      },
+                                    ),
+                                  ),
+                                  DataCell(
+                                    Container(
+                                      constraints: const BoxConstraints(
+                                        maxWidth: 500,
+                                        minWidth: 500,
+                                      ),
+                                      child: Text(
+                                        searchinquireViewmodel
+                                            .item![index].subject!,
+                                        maxLines: 5,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ),
+                                  DataCell(
+                                    Text(searchinquireViewmodel
+                                        .item![index].orderId!),
+                                  ),
+                                  DataCell(
+                                    Text(searchinquireViewmodel
+                                        .item![index].dueDate!),
+                                  ),
+                                  DataCell(
+                                    Text(searchinquireViewmodel
+                                        .item![index].approvalStatusValueStr!),
+                                  ),
+                                  DataCell(
+                                    Text(searchinquireViewmodel
+                                        .item![index].caId!),
+                                  ),
+                                  DataCell(
+                                    IconButton(
+                                      onPressed: () {
+                                        // Handle button press action
+                                      },
+                                      icon: Image.asset(
+                                        "assets/images/document.png",
+                                      ),
+                                    ),
+                                  ),
+                                  DataCell(
+                                    IconButton(
+                                      onPressed: () {
+                                        // Handle button press action
+                                      },
+                                      icon: Image.asset(
+                                        "assets/images/document.png",
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
                           ),
-                        ),
-                      ),
-                      DataCell(
-                        IconButton(
-                          onPressed: () {},
-                          icon: Image.asset(
-                            "assets/images/document.png",
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                }),
               );
             }),
           );

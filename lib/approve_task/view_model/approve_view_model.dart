@@ -3,6 +3,7 @@
 import 'package:dashbord_flutter/api/approve_api.dart';
 import 'package:dashbord_flutter/app_injector.dart';
 import 'package:dashbord_flutter/approve_task/model/approve_model.dart';
+import 'package:dashbord_flutter/approve_task/model/approve_status.dart';
 import 'package:flutter/material.dart';
 import 'package:event_bus/event_bus.dart';
 
@@ -123,6 +124,25 @@ class ApproveViewModel with ChangeNotifier {
 
   void setSelected(int index, bool value) {
     _itemSearch?[index].isSelected = value;
+    notifyListeners();
+  }
+
+  late StatusAppoveStatus _statusAppoveStatus;
+  late DataAppoveStatus _dataAppoveStatus;
+  late ItemsAppoveStatus _itemStatus;
+
+  DataAppoveStatus get dataStatus => _dataAppoveStatus;
+  StatusAppoveStatus get status2 => _statusAppoveStatus;
+  ItemsAppoveStatus get itemStatus => _itemStatus;
+
+  Future<void> getAppStatus() async {
+    final result = await approveApi.getApproveStatus();
+    if (result.data.status?.code == 200) {
+      result.data.data?.items;
+      print(itemStatus);
+    } else {
+      print("No");
+    }
     notifyListeners();
   }
 }

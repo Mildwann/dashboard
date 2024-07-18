@@ -33,7 +33,6 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
 
   String? selectedValue;
   final ApproveViewModel _approveViewModel = getIt();
-  final ApproveStatusViewModel _approveStatusViewModel = getIt();
 
   @override
   void initState() {
@@ -58,7 +57,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
       );
     });
     _approveViewModel.getApprove2();
-    _approveStatusViewModel.getAppStatus();
+    _approveViewModel.getAppStatus();
 
     // Navigator.of(context).pop;
     super.initState();

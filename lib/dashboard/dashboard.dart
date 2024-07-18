@@ -11,7 +11,6 @@ class MyDashBord extends StatefulWidget {
 }
 
 class _MyDashBordState extends State<MyDashBord> {
-  final DashboardViewmodel viewModel = getIt();
   final DashboardServiceViewmodel serviceViewmodel = getIt();
 
   TextEditingController userIdController = TextEditingController();
@@ -20,7 +19,6 @@ class _MyDashBordState extends State<MyDashBord> {
 
   @override
   void initState() {
-    viewModel.getDashboard();
     serviceViewmodel.getService();
     serviceViewmodel.getOrder();
     serviceViewmodel.getComplete2();

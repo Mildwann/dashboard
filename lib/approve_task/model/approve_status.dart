@@ -1,13 +1,16 @@
 class AppoveStatus {
-  Status? status;
-  Data? data;
+  StatusAppoveStatus? status;
+  DataAppoveStatus? data;
 
   AppoveStatus({this.status, this.data});
 
   AppoveStatus.fromJson(Map<String, dynamic> json) {
-    status =
-        json['status'] != null ? new Status.fromJson(json['status']) : null;
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    status = json['status'] != null
+        ? new StatusAppoveStatus.fromJson(json['status'])
+        : null;
+    data = json['data'] != null
+        ? new DataAppoveStatus.fromJson(json['data'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -22,13 +25,13 @@ class AppoveStatus {
   }
 }
 
-class Status {
+class StatusAppoveStatus {
   int? code;
   String? description;
 
-  Status({this.code, this.description});
+  StatusAppoveStatus({this.code, this.description});
 
-  Status.fromJson(Map<String, dynamic> json) {
+  StatusAppoveStatus.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     description = json['description'];
   }
@@ -41,18 +44,18 @@ class Status {
   }
 }
 
-class Data {
-  Null? selected;
-  List<Items>? items;
+class DataAppoveStatus {
+  Null selected;
+  List<ItemsAppoveStatus>? items;
 
-  Data({this.selected, this.items});
+  DataAppoveStatus({this.selected, this.items});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  DataAppoveStatus.fromJson(Map<String, dynamic> json) {
     selected = json['selected'];
     if (json['items'] != null) {
-      items = <Items>[];
+      items = <ItemsAppoveStatus>[];
       json['items'].forEach((v) {
-        items!.add(new Items.fromJson(v));
+        items!.add(new ItemsAppoveStatus.fromJson(v));
       });
     }
   }
@@ -67,13 +70,13 @@ class Data {
   }
 }
 
-class Items {
+class ItemsAppoveStatus {
   String? value;
   String? key;
 
-  Items({this.value, this.key});
+  ItemsAppoveStatus({this.value, this.key});
 
-  Items.fromJson(Map<String, dynamic> json) {
+  ItemsAppoveStatus.fromJson(Map<String, dynamic> json) {
     value = json['value'];
     key = json['key'];
   }

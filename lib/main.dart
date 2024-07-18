@@ -7,13 +7,14 @@ void main() {
 }
 
 class MainApp extends StatelessWidget {
-  final DashboardViewmodel dashboardViewmodel = DashboardViewmodel();
+  final DashboardServiceViewmodel dashboardViewmodel =
+      DashboardServiceViewmodel();
   MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyDashBord(),
+      home: ApproveTaskPage(),
       theme: ThemeData(scaffoldBackgroundColor: ColorApp.backgroundColor),
       debugShowCheckedModeBanner: false,
     );

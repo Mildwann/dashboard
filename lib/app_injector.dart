@@ -59,10 +59,7 @@ abstract class ApiModule {
 
 @module
 abstract class ViewModelModule {
-  DashboardViewmodel dashboardViewModel() => DashboardViewmodel();
   ApproveViewModel approveViewModel() => ApproveViewModel();
-  SearchinquireViewmodel searchinquireViewmodel() => SearchinquireViewmodel();
   DashboardServiceViewmodel dashboardServiceViewmodel() =>
       DashboardServiceViewmodel();
-  ApproveStatusViewModel approveStatusViewModel() => ApproveStatusViewModel();
 }

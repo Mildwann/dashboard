@@ -1,7 +1,5 @@
-// ignore_for_file: use_super_parameters
+// ignore_for_file: use_super_parameters, must_be_immutable
 
-import 'package:dashbord_flutter/app_injector.dart';
-import 'package:dashbord_flutter/approve_task/view_model/searchinquire_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +7,7 @@ import '../view_model/approve_view_model.dart';
 
 class TableTask extends StatefulWidget {
   ApproveViewModel approveViewModel;
-  TableTask(this.approveViewModel);
+  TableTask(this.approveViewModel, {super.key});
 
   @override
   State<TableTask> createState() => _TableTaskState();

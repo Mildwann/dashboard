@@ -17,6 +17,14 @@ class DashboardViewmodel with ChangeNotifier {
   Data get data => _data;
   List<Items>? get item => _item;
 
+  bool isLoadingOrderItem = true;
+  bool isLoading = false;
+  void setLoading(bool loading) {
+    isLoading = loading;
+    isLoadingOrderItem = loading;
+    notifyListeners();
+  }
+
   Future<void> getDashboard() async {
     final requestBody = {
       "user_id": "",

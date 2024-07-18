@@ -12,6 +12,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/SOS.png
+  AssetGenImage get sos => const AssetGenImage('assets/images/SOS.png');
+
   /// File path: assets/images/billing.png
   AssetGenImage get billing => const AssetGenImage('assets/images/billing.png');
 
@@ -30,6 +33,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/edit.png
   AssetGenImage get edit => const AssetGenImage('assets/images/edit.png');
 
+  /// File path: assets/images/home.jpg
+  AssetGenImage get home => const AssetGenImage('assets/images/home.jpg');
+
   /// File path: assets/images/ic_new.png
   AssetGenImage get icNew => const AssetGenImage('assets/images/ic_new.png');
 
@@ -41,16 +47,26 @@ class $AssetsImagesGen {
   AssetGenImage get provisoning =>
       const AssetGenImage('assets/images/provisoning.png');
 
+  /// File path: assets/images/unnamed.jpg
+  AssetGenImage get unnamed => const AssetGenImage('assets/images/unnamed.jpg');
+
+  /// File path: assets/images/web.jpg
+  AssetGenImage get web => const AssetGenImage('assets/images/web.jpg');
+
   /// List of all assets
   List<AssetGenImage> get values => [
+        sos,
         billing,
         calender,
         complete,
         document,
         edit,
+        home,
         icNew,
         newnoback,
-        provisoning
+        provisoning,
+        unnamed,
+        web
       ];
 }
 

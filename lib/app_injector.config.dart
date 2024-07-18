@@ -11,12 +11,10 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'app_injector.dart' as _i9;
-import 'approve_task/view_model/approve_status_viewmodel.dart' as _i8;
+import 'app_injector.dart' as _i7;
+import 'approve_task/view_model/approve_status_viewmodel.dart' as _i6;
 import 'approve_task/view_model/searchinquire_viewmodel.dart' as _i4;
 import 'constants/app_import.dart' as _i3;
-import 'dashboard/view_model/dashboard_complete_viewmodel.dart' as _i7;
-import 'dashboard/view_model/dashboard_order_viewmodel.dart' as _i6;
 import 'dashboard/view_model/dashboard_service_viewmodel.dart' as _i5;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -41,11 +39,7 @@ _i1.GetIt $initGetIt(
       () => viewModelModule.searchinquireViewmodel());
   gh.factory<_i5.DashboardServiceViewmodel>(
       () => viewModelModule.dashboardServiceViewmodel());
-  gh.factory<_i6.DashboardOrderViewmodel>(
-      () => viewModelModule.dashboardOrderViewmodel());
-  gh.factory<_i7.DashboardCompleteViewmodel>(
-      () => viewModelModule.dashboardCompleteViewmodel());
-  gh.factory<_i8.ApproveStatusViewModel>(
+  gh.factory<_i6.ApproveStatusViewModel>(
       () => viewModelModule.approveStatusViewModel());
   gh.singleton<_i3.Interceptor>(
     () => interceptorModule.prettyLoggerInterceptor(),
@@ -64,10 +58,10 @@ _i1.GetIt $initGetIt(
   return getIt;
 }
 
-class _$ViewModelModule extends _i9.ViewModelModule {}
+class _$ViewModelModule extends _i7.ViewModelModule {}
 
-class _$InterceptorModule extends _i9.InterceptorModule {}
+class _$InterceptorModule extends _i7.InterceptorModule {}
 
-class _$ThirdPartyModule extends _i9.ThirdPartyModule {}
+class _$ThirdPartyModule extends _i7.ThirdPartyModule {}
 
-class _$ApiModule extends _i9.ApiModule {}
+class _$ApiModule extends _i7.ApiModule {}

@@ -1,13 +1,16 @@
 class CompleteDashboard {
-  Status? status;
-  Data? data;
+  StatusCompleteDashboard? status;
+  DataCompleteDashboard? data;
 
   CompleteDashboard({this.status, this.data});
 
   CompleteDashboard.fromJson(Map<String, dynamic> json) {
-    status =
-        json['status'] != null ? new Status.fromJson(json['status']) : null;
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    status = json['status'] != null
+        ? new StatusCompleteDashboard.fromJson(json['status'])
+        : null;
+    data = json['data'] != null
+        ? new DataCompleteDashboard.fromJson(json['data'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -22,13 +25,13 @@ class CompleteDashboard {
   }
 }
 
-class Status {
+class StatusCompleteDashboard {
   int? code;
   String? description;
 
-  Status({this.code, this.description});
+  StatusCompleteDashboard({this.code, this.description});
 
-  Status.fromJson(Map<String, dynamic> json) {
+  StatusCompleteDashboard.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     description = json['description'];
   }
@@ -41,12 +44,12 @@ class Status {
   }
 }
 
-class Data {
+class DataCompleteDashboard {
   OrderComplete? orderComplete;
 
-  Data({this.orderComplete});
+  DataCompleteDashboard({this.orderComplete});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  DataCompleteDashboard.fromJson(Map<String, dynamic> json) {
     orderComplete = json['order_complete'] != null
         ? new OrderComplete.fromJson(json['order_complete'])
         : null;

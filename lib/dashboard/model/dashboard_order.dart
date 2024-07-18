@@ -1,13 +1,16 @@
 class OrderDashboard {
-  Status? status;
-  Data? data;
+  StatusOrderDashboard? status;
+  DataOrderDashboard? data;
 
   OrderDashboard({this.status, this.data});
 
   OrderDashboard.fromJson(Map<String, dynamic> json) {
-    status =
-        json['status'] != null ? new Status.fromJson(json['status']) : null;
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    status = json['status'] != null
+        ? new StatusOrderDashboard.fromJson(json['status'])
+        : null;
+    data = json['data'] != null
+        ? new DataOrderDashboard.fromJson(json['data'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -22,13 +25,13 @@ class OrderDashboard {
   }
 }
 
-class Status {
+class StatusOrderDashboard {
   int? code;
   String? description;
 
-  Status({this.code, this.description});
+  StatusOrderDashboard({this.code, this.description});
 
-  Status.fromJson(Map<String, dynamic> json) {
+  StatusOrderDashboard.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     description = json['description'];
   }
@@ -41,17 +44,18 @@ class Status {
   }
 }
 
-class Data {
-  Summary1? summary;
-  Inprogress? inprogress;
+class DataOrderDashboard {
+  Summary1OrderDashboard? summary;
+  InprogressOrderDashboard? inprogress;
 
-  Data({this.summary, this.inprogress});
+  DataOrderDashboard({this.summary, this.inprogress});
 
-  Data.fromJson(Map<String, dynamic> json) {
-    summary =
-        json['summary'] != null ? new Summary1.fromJson(json['summary']) : null;
+  DataOrderDashboard.fromJson(Map<String, dynamic> json) {
+    summary = json['summary'] != null
+        ? new Summary1OrderDashboard.fromJson(json['summary'])
+        : null;
     inprogress = json['inprogress'] != null
-        ? new Inprogress.fromJson(json['inprogress'])
+        ? new InprogressOrderDashboard.fromJson(json['inprogress'])
         : null;
   }
 
@@ -67,26 +71,27 @@ class Data {
   }
 }
 
-class Summary1 {
-  NewSum? newSum;
-  NewSum? provisionningSum;
-  NewSum? billingSum;
-  NewSum? completeSum;
+class Summary1OrderDashboard {
+  NewSumOrderDashboard? newSum;
+  NewSumOrderDashboard? provisionningSum;
+  NewSumOrderDashboard? billingSum;
+  NewSumOrderDashboard? completeSum;
 
-  Summary1(
+  Summary1OrderDashboard(
       {this.newSum, this.provisionningSum, this.billingSum, this.completeSum});
 
-  Summary1.fromJson(Map<String, dynamic> json) {
-    newSum =
-        json['new_sum'] != null ? new NewSum.fromJson(json['new_sum']) : null;
+  Summary1OrderDashboard.fromJson(Map<String, dynamic> json) {
+    newSum = json['new_sum'] != null
+        ? new NewSumOrderDashboard.fromJson(json['new_sum'])
+        : null;
     provisionningSum = json['provisionning_sum'] != null
-        ? new NewSum.fromJson(json['provisionning_sum'])
+        ? new NewSumOrderDashboard.fromJson(json['provisionning_sum'])
         : null;
     billingSum = json['billing_sum'] != null
-        ? new NewSum.fromJson(json['billing_sum'])
+        ? new NewSumOrderDashboard.fromJson(json['billing_sum'])
         : null;
     completeSum = json['complete_sum'] != null
-        ? new NewSum.fromJson(json['complete_sum'])
+        ? new NewSumOrderDashboard.fromJson(json['complete_sum'])
         : null;
   }
 
@@ -108,13 +113,13 @@ class Summary1 {
   }
 }
 
-class NewSum {
+class NewSumOrderDashboard {
   int? values;
   int? items;
 
-  NewSum({this.values, this.items});
+  NewSumOrderDashboard({this.values, this.items});
 
-  NewSum.fromJson(Map<String, dynamic> json) {
+  NewSumOrderDashboard.fromJson(Map<String, dynamic> json) {
     values = json['values'];
     items = json['items'];
   }
@@ -127,25 +132,27 @@ class NewSum {
   }
 }
 
-class Inprogress {
-  OverDue? overDue;
-  OverDue? atRisk;
-  OverDue? dueThisWeek;
-  OverDue? dueThisMonth;
+class InprogressOrderDashboard {
+  OverDueOrderDashboard? overDue;
+  OverDueOrderDashboard? atRisk;
+  OverDueOrderDashboard? dueThisWeek;
+  OverDueOrderDashboard? dueThisMonth;
 
-  Inprogress({this.overDue, this.atRisk, this.dueThisWeek, this.dueThisMonth});
+  InprogressOrderDashboard(
+      {this.overDue, this.atRisk, this.dueThisWeek, this.dueThisMonth});
 
-  Inprogress.fromJson(Map<String, dynamic> json) {
+  InprogressOrderDashboard.fromJson(Map<String, dynamic> json) {
     overDue = json['over_due'] != null
-        ? new OverDue.fromJson(json['over_due'])
+        ? new OverDueOrderDashboard.fromJson(json['over_due'])
         : null;
-    atRisk =
-        json['at_risk'] != null ? new OverDue.fromJson(json['at_risk']) : null;
+    atRisk = json['at_risk'] != null
+        ? new OverDueOrderDashboard.fromJson(json['at_risk'])
+        : null;
     dueThisWeek = json['due_this_week'] != null
-        ? new OverDue.fromJson(json['due_this_week'])
+        ? new OverDueOrderDashboard.fromJson(json['due_this_week'])
         : null;
     dueThisMonth = json['due_this_month'] != null
-        ? new OverDue.fromJson(json['due_this_month'])
+        ? new OverDueOrderDashboard.fromJson(json['due_this_month'])
         : null;
   }
 
@@ -167,16 +174,16 @@ class Inprogress {
   }
 }
 
-class OverDue {
+class OverDueOrderDashboard {
   int? totalItem;
   int? newItem;
   int? provisioningItem;
   int? billingItem;
 
-  OverDue(
+  OverDueOrderDashboard(
       {this.totalItem, this.newItem, this.provisioningItem, this.billingItem});
 
-  OverDue.fromJson(Map<String, dynamic> json) {
+  OverDueOrderDashboard.fromJson(Map<String, dynamic> json) {
     totalItem = json['total_item'];
     newItem = json['new_item'];
     provisioningItem = json['provisioning_item'];

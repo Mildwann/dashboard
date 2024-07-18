@@ -1,7 +1,5 @@
 import 'package:dashbord_flutter/approve_task/view_model/approve_status_viewmodel.dart';
 import 'package:dashbord_flutter/approve_task/view_model/searchinquire_viewmodel.dart';
-import 'package:dashbord_flutter/dashboard/view_model/dashboard_complete_viewmodel.dart';
-import 'package:dashbord_flutter/dashboard/view_model/dashboard_order_viewmodel.dart';
 import 'package:dashbord_flutter/dashboard/view_model/dashboard_service_viewmodel.dart';
 
 import 'app_injector.config.dart';
@@ -66,9 +64,5 @@ abstract class ViewModelModule {
   SearchinquireViewmodel searchinquireViewmodel() => SearchinquireViewmodel();
   DashboardServiceViewmodel dashboardServiceViewmodel() =>
       DashboardServiceViewmodel();
-  DashboardOrderViewmodel dashboardOrderViewmodel() =>
-      DashboardOrderViewmodel();
-  DashboardCompleteViewmodel dashboardCompleteViewmodel() =>
-      DashboardCompleteViewmodel();
   ApproveStatusViewModel approveStatusViewModel() => ApproveStatusViewModel();
 }

@@ -1,6 +1,6 @@
 import 'package:dashbord_flutter/app_injector.dart';
 import 'package:dashbord_flutter/constants/ColorApp.dart';
-import 'package:dashbord_flutter/dashboard/view_model/dashboard_order_viewmodel.dart';
+import 'package:dashbord_flutter/dashboard/view_model/dashboard_service_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +12,7 @@ class Inprogress extends StatefulWidget {
 }
 
 class _InprogressState extends State<Inprogress> {
-  final DashboardOrderViewmodel dashboardOrderViewmodel = getIt();
+  final DashboardServiceViewmodel dashboardOrderViewmodel = getIt();
 
   @override
   void initState() {
@@ -26,11 +26,11 @@ class _InprogressState extends State<Inprogress> {
       create: (context) => dashboardOrderViewmodel,
       builder: (context, _) {
         return Container(
-          padding: EdgeInsets.only(top: 30),
-          child: Consumer<DashboardOrderViewmodel>(
+          padding: const EdgeInsets.only(top: 30),
+          child: Consumer<DashboardServiceViewmodel>(
             builder: (context, viewModel, _) {
-              return dashboardOrderViewmodel.isLoading
-                  ? Center(
+              return dashboardOrderViewmodel.isLoadingOrderItem
+                  ? const Center(
                       child: CircularProgressIndicator(),
                     )
                   : Column(
@@ -107,15 +107,17 @@ class _InprogressState extends State<Inprogress> {
             children: [
               Text(
                 title,
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                style:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
               ),
               Text(
                 item,
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                style:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
               ),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           CombinedValueBarChart(dataMap: dataMap),
         ],
       ),
@@ -156,14 +158,14 @@ class CombinedValueBarChart extends StatelessWidget {
                 child: Center(
                   child: Text(
                     '${entry.value}',
-                    style: TextStyle(color: Colors.white, fontSize: 12),
+                    style: const TextStyle(color: Colors.white, fontSize: 12),
                   ),
                 ),
               ),
             );
           }).toList(),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
       ],
     );
   }

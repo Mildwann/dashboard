@@ -2,8 +2,6 @@
 
 import 'package:dashbord_flutter/approve_task/components/dropdown.dart';
 import 'package:dashbord_flutter/approve_task/view_model/approve_status_viewmodel.dart';
-import 'package:dashbord_flutter/approve_task/view_model/searchinquire_viewmodel.dart';
-import 'package:provider/provider.dart';
 
 import '../constants/app_import.dart';
 
@@ -225,11 +223,11 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                                         .isEmpty
                                     ? OutlinedButton.styleFrom(
                                         backgroundColor: const Color.fromARGB(
-                                            255, 143, 143, 143),
+                                            255, 197, 195, 195),
                                         side: const BorderSide(
                                             width: 1,
                                             color: Color.fromARGB(
-                                                255, 143, 143, 143)),
+                                                255, 197, 195, 195)),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12)),

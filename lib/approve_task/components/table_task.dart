@@ -1,19 +1,15 @@
 // ignore_for_file: use_super_parameters
 
 import 'package:dashbord_flutter/app_injector.dart';
-import 'package:dashbord_flutter/approve_task/model/searchInquire_model.dart';
 import 'package:dashbord_flutter/approve_task/view_model/searchinquire_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-final SearchinquireViewmodel searchinquireViewmodel = getIt();
+import '../view_model/approve_view_model.dart';
 
 class TableTask extends StatefulWidget {
-  const TableTask({Key? key}) : super(key: key);
-
-  void searchMid(String x, String y, String z) {
-    searchinquireViewmodel.getSearch2(x, y, z);
-  }
+  ApproveViewModel approveViewModel;
+  TableTask(this.approveViewModel);
 
   @override
   State<TableTask> createState() => _TableTaskState();
@@ -24,23 +20,22 @@ class _TableTaskState extends State<TableTask> {
 
   @override
   void initState() {
-    searchinquireViewmodel.getSearchBase();
+    widget.approveViewModel.getSearchBase();
     selectedRows = List.generate(10, (index) => false);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) => searchinquireViewmodel,
+    return ChangeNotifierProvider.value(
+        value: widget.approveViewModel,
         builder: (context, _) {
           return ClipRRect(
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(12),
               topRight: Radius.circular(12),
             ),
-            child: Consumer<SearchinquireViewmodel>(
-                builder: (context, viewModel, _) {
+            child: Consumer<ApproveViewModel>(builder: (context, viewModel, _) {
               return DataTable(
                 headingRowHeight: 66,
                 dataRowHeight: (1533 - 66) / 10,
@@ -154,7 +149,7 @@ class _TableTaskState extends State<TableTask> {
                     ),
                   ),
                 ],
-                rows: (searchinquireViewmodel.item ?? []).isEmpty
+                rows: (widget.approveViewModel.itemSearch ?? []).isEmpty
                     ? [
                         const DataRow(cells: [
                           DataCell(Text("")),
@@ -175,7 +170,7 @@ class _TableTaskState extends State<TableTask> {
                           DataCell(Text("")),
                         ]),
                       ]
-                    : searchinquireViewmodel.isLoading
+                    : widget.approveViewModel.isLoading
                         ? [
                             const DataRow(cells: [
                               DataCell(Text("")),
@@ -193,7 +188,7 @@ class _TableTaskState extends State<TableTask> {
                             ]),
                           ]
                         : List<DataRow>.generate(
-                            searchinquireViewmodel.item!.length,
+                            widget.approveViewModel.itemSearch!.length,
                             (index) {
                               return DataRow(
                                 cells: [
@@ -210,7 +205,7 @@ class _TableTaskState extends State<TableTask> {
                                         setState(() {
                                           selectedRows[index] = value ?? false;
                                         });
-                                        searchinquireViewmodel.setSelected(
+                                        widget.approveViewModel.setSelected(
                                           index,
                                           value ?? false,
                                         );
@@ -225,28 +220,30 @@ class _TableTaskState extends State<TableTask> {
                                         minWidth: 500,
                                       ),
                                       child: Text(
-                                        searchinquireViewmodel
-                                            .item![index].subject!,
+                                        widget.approveViewModel
+                                            .itemSearch![index].subject!,
                                         maxLines: 5,
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
                                   ),
                                   DataCell(
-                                    Text(searchinquireViewmodel
-                                        .item![index].orderId!),
+                                    Text(widget.approveViewModel
+                                        .itemSearch![index].orderId!),
                                   ),
                                   DataCell(
-                                    Text(searchinquireViewmodel
-                                        .item![index].dueDate!),
+                                    Text(widget.approveViewModel
+                                        .itemSearch![index].dueDate!),
                                   ),
                                   DataCell(
-                                    Text(searchinquireViewmodel
-                                        .item![index].approvalStatusValueStr!),
+                                    Text(widget
+                                        .approveViewModel
+                                        .itemSearch![index]
+                                        .approvalStatusValueStr!),
                                   ),
                                   DataCell(
-                                    Text(searchinquireViewmodel
-                                        .item![index].caId!),
+                                    Text(widget.approveViewModel
+                                        .itemSearch![index].caId!),
                                   ),
                                   DataCell(
                                     IconButton(

@@ -7,13 +7,13 @@ class SearchinquireViewmodel with ChangeNotifier {
   EventBus eventBus = EventBus();
   final ApproveApi approveApi = getIt<ApproveApi>();
 
-  late Status _status;
-  late Data _data;
-  List<Items>? _item;
+  late StatusSearchInquire _status;
+  late DataSearchInquire _data;
+  List<ItemsSearchInquire>? _item;
 
-  Data get data => _data;
-  Status get status => _status;
-  List<Items>? get item => _item;
+  DataSearchInquire get data => _data;
+  StatusSearchInquire get status => _status;
+  List<ItemsSearchInquire>? get item => _item;
 
   bool isLoading = false;
 
@@ -79,10 +79,5 @@ class SearchinquireViewmodel with ChangeNotifier {
     } catch (e) {
       print("Error occurred: $e");
     }
-  }
-
-  void setSelected(int index, bool value) {
-    item?[index].isSelected = value;
-    notifyListeners();
   }
 }

@@ -1,13 +1,16 @@
 class SearchInquireModel {
-  Status? status;
-  Datas? data;
+  StatusSearchInquire? status;
+  DatasDataSearchInquire? data;
 
   SearchInquireModel({this.status, this.data});
 
   SearchInquireModel.fromJson(Map<String, dynamic> json) {
-    status =
-        json['status'] != null ? new Status.fromJson(json['status']) : null;
-    data = json['data'] != null ? new Datas.fromJson(json['data']) : null;
+    status = json['status'] != null
+        ? new StatusSearchInquire.fromJson(json['status'])
+        : null;
+    data = json['data'] != null
+        ? new DatasDataSearchInquire.fromJson(json['data'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -22,13 +25,13 @@ class SearchInquireModel {
   }
 }
 
-class Status {
+class StatusSearchInquire {
   int? code;
   String? description;
 
-  Status({this.code, this.description});
+  StatusSearchInquire({this.code, this.description});
 
-  Status.fromJson(Map<String, dynamic> json) {
+  StatusSearchInquire.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     description = json['description'];
   }
@@ -41,14 +44,16 @@ class Status {
   }
 }
 
-class Datas {
-  Data? data;
+class DatasDataSearchInquire {
+  DataSearchInquire? data;
   Param? param;
 
-  Datas({this.data, this.param});
+  DatasDataSearchInquire({this.data, this.param});
 
-  Datas.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+  DatasDataSearchInquire.fromJson(Map<String, dynamic> json) {
+    data = json['data'] != null
+        ? new DataSearchInquire.fromJson(json['data'])
+        : null;
     param = json['param'] != null ? new Param.fromJson(json['param']) : null;
   }
 
@@ -64,22 +69,23 @@ class Datas {
   }
 }
 
-class Data {
+class DataSearchInquire {
   int? totalRecord;
   int? currentPage;
   int? pageSize;
-  List<Items>? items;
+  List<ItemsSearchInquire>? items;
 
-  Data({this.totalRecord, this.currentPage, this.pageSize, this.items});
+  DataSearchInquire(
+      {this.totalRecord, this.currentPage, this.pageSize, this.items});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  DataSearchInquire.fromJson(Map<String, dynamic> json) {
     totalRecord = json['total_record'];
     currentPage = json['current_page'];
     pageSize = json['page_size'];
     if (json['items'] != null) {
-      items = <Items>[];
+      items = <ItemsSearchInquire>[];
       json['items'].forEach((v) {
-        items!.add(new Items.fromJson(v));
+        items!.add(new ItemsSearchInquire.fromJson(v));
       });
     }
   }
@@ -96,7 +102,7 @@ class Data {
   }
 }
 
-class Items {
+class ItemsSearchInquire {
   String? approverGroup;
   String? approvalTaskId;
   String? approvalStatusValue;
@@ -120,7 +126,7 @@ class Items {
   int? rOWNUMBER;
   bool? isSelected;
 
-  Items(
+  ItemsSearchInquire(
       {this.approverGroup,
       this.approvalTaskId,
       this.approvalStatusValue,
@@ -144,7 +150,7 @@ class Items {
       this.rOWNUMBER,
       this.isSelected});
 
-  Items.fromJson(Map<String, dynamic> json) {
+  ItemsSearchInquire.fromJson(Map<String, dynamic> json) {
     approverGroup = json['approverGroup'];
     approvalTaskId = json['approvalTaskId'];
     approvalStatusValue = json['approvalStatusValue'];

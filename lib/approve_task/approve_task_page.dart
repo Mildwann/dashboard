@@ -19,8 +19,6 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
   final TextEditingController taskTypeController = TextEditingController();
   final TextEditingController approveStatusController = TextEditingController();
 
-  bool isDisable = true;
-
   @override
   void dispose() {
     orderIdController.dispose();
@@ -35,27 +33,12 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
     'Package/Component Approve',
   ];
 
-  void searchButton() {
-    const TableTask().searchMid(
-      approveStatusController.text,
-      _approveViewModel.selectedTask ?? "",
-      orderIdController.text,
-    );
-  }
-
   String? selectedValue;
   final ApproveViewModel _approveViewModel = getIt();
   final ApproveStatusViewModel _approveStatusViewModel = getIt();
-  final SearchinquireViewmodel _searchinquireViewmodel = getIt();
 
   @override
   void initState() {
-    // showDialog(
-    //     context: context,
-    //     builder: (context) {
-    //       return Center(child: CircularProgressIndicator());
-    //     });
-
     _approveViewModel.eventBus.on<ApproveError>().listen((event) {
       print(event.error);
       showDialog<String>(
@@ -153,13 +136,6 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                                     },
                                   ),
                                 )
-
-                                // ItemSearch(
-                                //   title: "Approval Status",
-                                //   dropdownList: _approveViewModel.item(),
-                                //   inputType: TypeInput.itemDropDown,
-                                //   controller: approveStatusController,
-                                // ),
                               ],
                             ),
                             const SizedBox(
@@ -208,7 +184,13 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                                           borderRadius:
                                               BorderRadius.circular(12)),
                                     ),
-                                    onPressed: searchButton,
+                                    onPressed: () {
+                                      _approveViewModel.getSearch2(
+                                        approveStatusController.text,
+                                        _approveViewModel.selectedTask ?? "",
+                                        orderIdController.text,
+                                      );
+                                    },
                                     child: const Text(
                                       'Search',
                                       style: TextStyle(
@@ -237,9 +219,10 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                               height: 42,
                               width: width * 0.08,
                               child: OutlinedButton(
-                                style: _searchinquireViewmodel
-                                            .item?[1].isSelected ??
-                                        false
+                                style: (_approveViewModel.itemSearch ?? [])
+                                        .where((e) => e.isSelected == true)
+                                        .toList()
+                                        .isEmpty
                                     ? OutlinedButton.styleFrom(
                                         backgroundColor: const Color.fromARGB(
                                             255, 143, 143, 143),
@@ -262,7 +245,10 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                                                 BorderRadius.circular(12)),
                                       ),
                                 onPressed: () {
-                                  if (isDisable) {
+                                  if ((_approveViewModel.itemSearch ?? [])
+                                      .where((e) => e.isSelected == true)
+                                      .toList()
+                                      .isEmpty) {
                                   } else {
                                     showDialog(
                                       context: context,
@@ -312,7 +298,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                         ),
                         height: 1533,
                         width: double.infinity,
-                        child: const TableTask(),
+                        child: TableTask(_approveViewModel),
                       ),
                     ],
                   ),
@@ -321,34 +307,5 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
             }),
           );
         });
-  }
-}
-
-// ignore: camel_case_types
-class itemSearch extends StatelessWidget {
-  final String title;
-  final Widget? widget;
-
-  const itemSearch(this.title, {this.widget, super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(fontSize: 18),
-        ),
-        const SizedBox(
-          height: 4,
-        ),
-        Container(
-          decoration: primaryBorder(radius: 12),
-          height: 30,
-          child: widget,
-        )
-      ],
-    );
   }
 }

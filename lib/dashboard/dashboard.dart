@@ -770,7 +770,9 @@ class _MyDashBordState extends State<MyDashBord> {
         context: context,
         builder: (context) => AlertDialog(
           content: SizedBox(
-              height: 250, child: Image.asset("assets/images/SOS.png")),
+              height: 250,
+              child: Image.network(
+                  "https://ntom-api.intense.co.th/OMNewAPI/Utility/download/17d18e91-deff-4440-96f8-80441d3b6205")),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),

@@ -4,6 +4,7 @@ import 'package:dashbord_flutter/api/approve_api.dart';
 import 'package:dashbord_flutter/app_injector.dart';
 import 'package:dashbord_flutter/approve_task/model/approve_model.dart';
 import 'package:dashbord_flutter/approve_task/model/approve_status.dart';
+import 'package:dashbord_flutter/approve_task/model/updateprvlist_model.dart';
 import 'package:flutter/material.dart';
 import 'package:event_bus/event_bus.dart';
 
@@ -144,6 +145,33 @@ class ApproveViewModel with ChangeNotifier {
       print("No");
     }
     notifyListeners();
+  }
+
+  late StatusupdatePrvList _statusupdatePrvList;
+  StatusupdatePrvList get statusupdate => _statusupdatePrvList;
+
+  Future<void> getupdateList() async {
+    final requestBody = {
+      "data_list": ["string"],
+      "param": {
+        "additionalProp1": {},
+        "additionalProp2": {},
+        "additionalProp3": {}
+      }
+    };
+
+    try {
+      final result = await approveApi.getUpdate(requestBody);
+
+      if (result.data.status?.code == 200) {
+        _statusupdatePrvList = result.data.status!;
+        print(statusupdate);
+      } else {
+        print("Failed to fetch data");
+      }
+    } catch (e) {
+      print("Error occurred: $e");
+    }
   }
 }
 

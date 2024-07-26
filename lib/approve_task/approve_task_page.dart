@@ -36,30 +36,49 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
 
   @override
   void initState() {
-    _approveViewModel.eventBus.on<ApproveError>().listen((event) {
-      print(event.error);
-      showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          title: const Text('AlertDialog Title'),
-          content: Text(event.error.toString()),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('OK'),
-            ),
-          ],
-        ),
-      );
+    _approveViewModel.eventBus.on().listen((event) {
+      if (event is ApproveError) {
+        showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: const Text('AlertDialog Title'),
+            content: Text(event.error.toString()),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      } else if (event is ApproveSuccess) {
+        Navigator.pop(context);
+        showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: const Text("success"),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
     });
+
     _approveViewModel.getApprove2();
     _approveViewModel.getAppStatus();
     // _approveViewModel.getupdateList(descriptionController.text,);
-
     // Navigator.of(context).pop;
     super.initState();
   }

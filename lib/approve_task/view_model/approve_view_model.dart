@@ -178,10 +178,13 @@ class ApproveViewModel with ChangeNotifier {
       if (result.data.status?.code == 200) {
         description = result.data.status?.description ?? "";
         _statusupdatePrvList = result.data.data;
+        eventBus.fire(ApproveSuccess());
       } else {
         print("Failed to fetch data");
       }
     } catch (e) {
+      eventBus.fire(ApproveError(e));
+
       print("Error occurred: $e");
     }
     notifyListeners();
@@ -194,6 +197,5 @@ class ApproveError {
 }
 
 class ApproveSuccess {
-  Object sucess;
-  ApproveSuccess(this.sucess);
+  ApproveSuccess();
 }

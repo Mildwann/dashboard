@@ -11,9 +11,8 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'app_injector.dart' as _i5;
+import 'app_injector.dart' as _i4;
 import 'constants/app_import.dart' as _i3;
-import 'dashboard/view_model/dashboard_service_viewmodel.dart' as _i4;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 _i1.GetIt $initGetIt(
@@ -31,7 +30,7 @@ _i1.GetIt $initGetIt(
   final thirdPartyModule = _$ThirdPartyModule();
   final apiModule = _$ApiModule();
   gh.factory<_i3.ApproveViewModel>(() => viewModelModule.approveViewModel());
-  gh.factory<_i4.DashboardServiceViewmodel>(
+  gh.factory<_i3.DashboardServiceViewmodel>(
       () => viewModelModule.dashboardServiceViewmodel());
   gh.singleton<_i3.Interceptor>(
     () => interceptorModule.prettyLoggerInterceptor(),
@@ -50,10 +49,10 @@ _i1.GetIt $initGetIt(
   return getIt;
 }
 
-class _$ViewModelModule extends _i5.ViewModelModule {}
+class _$ViewModelModule extends _i4.ViewModelModule {}
 
-class _$InterceptorModule extends _i5.InterceptorModule {}
+class _$InterceptorModule extends _i4.InterceptorModule {}
 
-class _$ThirdPartyModule extends _i5.ThirdPartyModule {}
+class _$ThirdPartyModule extends _i4.ThirdPartyModule {}
 
-class _$ApiModule extends _i5.ApiModule {}
+class _$ApiModule extends _i4.ApiModule {}

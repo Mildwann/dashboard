@@ -15,13 +15,14 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
   final TextEditingController orderIdController = TextEditingController();
   final TextEditingController taskTypeController = TextEditingController();
   final TextEditingController approveStatusController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
 
   @override
   void dispose() {
     orderIdController.dispose();
     taskTypeController.dispose();
     approveStatusController.dispose();
-
+    descriptionController.dispose();
     super.dispose();
   }
 
@@ -57,6 +58,7 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
     });
     _approveViewModel.getApprove2();
     _approveViewModel.getAppStatus();
+    // _approveViewModel.getupdateList(descriptionController.text,);
 
     // Navigator.of(context).pop;
     super.initState();
@@ -248,7 +250,14 @@ class _ApproveTaskPageState extends State<ApproveTaskPage> {
                                   } else {
                                     showDialog(
                                       context: context,
-                                      builder: (context) => const closeTask(),
+                                      builder: (context) => closeTask(
+                                        approve: (desp, date) {
+                                          _approveViewModel.getupdateList(
+                                            desp,
+                                            date,
+                                          );
+                                        },
+                                      ),
                                     );
                                   }
                                 },

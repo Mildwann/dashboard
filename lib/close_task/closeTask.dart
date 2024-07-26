@@ -1,10 +1,13 @@
 // ignore_for_file: file_names, camel_case_types
 
+import 'package:dashbord_flutter/app_injector.dart';
+import 'package:dashbord_flutter/approve_task/view_model/approve_view_model.dart';
 import 'package:dashbord_flutter/constants/ColorApp.dart';
 import 'package:flutter/material.dart';
 
 class closeTask extends StatefulWidget {
-  const closeTask({super.key});
+  final Function(String desp, String date)? approve;
+  const closeTask({this.approve, super.key});
 
   @override
   State<closeTask> createState() => _closetaskState();
@@ -13,11 +16,20 @@ class closeTask extends StatefulWidget {
 class _closetaskState extends State<closeTask> {
   TextEditingController dateStartedController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  // final ApproveViewModel _approveViewModel = getIt();
+
   @override
   void dispose() {
     dateStartedController.dispose();
     descriptionController.dispose(); // Dispose the controller when done
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    // _approveViewModel.getupdateList(descriptionController.text);
+    // Navigator.of(context).pop;
+    super.initState();
   }
 
   @override
@@ -190,7 +202,10 @@ class _closetaskState extends State<closeTask> {
                       width: width * 0.09,
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          widget.approve
+                              ?.call(descriptionController.text, "2024-07-11");
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: buttonColor.yellow,
                           shadowColor: Colors.transparent,

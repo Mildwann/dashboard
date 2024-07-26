@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'dart:math';
+
 import 'package:dashbord_flutter/api/approve_api.dart';
 import 'package:dashbord_flutter/app_injector.dart';
 import 'package:dashbord_flutter/approve_task/model/approve_model.dart';
@@ -147,16 +149,26 @@ class ApproveViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  late StatusupdatePrvList _statusupdatePrvList;
-  StatusupdatePrvList get statusupdate => _statusupdatePrvList;
+  StatusupdatePrvList? _statusupdatePrvList;
+  StatusupdatePrvList? get statusupdate => _statusupdatePrvList;
+  String? description;
 
-  Future<void> getupdateList() async {
+  Future<void> getupdateList(String descp, String date) async {
+    List<ItemsSearchInquire>? checkid =
+        itemSearch?.where((e) => e.isSelected == true).toList();
+
+    List<String> checkidstring = [];
+
+    for (var e in (checkid ?? [])) {
+      checkidstring.add(e.approvalTaskId ?? "");
+    }
+
     final requestBody = {
-      "data_list": ["string"],
+      "data_list": checkidstring, //["240125005602"],
       "param": {
-        "additionalProp1": {},
-        "additionalProp2": {},
-        "additionalProp3": {}
+        "status": "3004",
+        "descp": descp,
+        "closeDate": date,
       }
     };
 
@@ -164,14 +176,15 @@ class ApproveViewModel with ChangeNotifier {
       final result = await approveApi.getUpdate(requestBody);
 
       if (result.data.status?.code == 200) {
-        _statusupdatePrvList = result.data.status!;
-        print(statusupdate);
+        description = result.data.status?.description ?? "";
+        _statusupdatePrvList = result.data.data;
       } else {
         print("Failed to fetch data");
       }
     } catch (e) {
       print("Error occurred: $e");
     }
+    notifyListeners();
   }
 }
 
